@@ -1,0 +1,1 @@
+module.exports = require('./webpack.core.config.js').weexConfig;
