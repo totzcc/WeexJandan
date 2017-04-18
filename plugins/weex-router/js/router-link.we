@@ -1,0 +1,39 @@
+<template>
+  <div onclick="handleClick">
+    <slot></slot>
+  </div>
+</template>
+<script>
+  var History = require('./js/history')
+  const pathUtils = require('./js/pathUtils')
+  module.exports =  {
+    data:{
+      to:"",
+      animated:true,
+      action:"push"
+    },
+    created: function () {
+    },
+    methods: {
+      handleClick: function (event) {
+        var bundleUrl = pathUtils.nomalizeBundleUrl(this.$getConfig().bundleUrl);
+        var historyInstance = History.getHistoryInstance(bundleUrl)
+        if (historyInstance) {
+          if (this.to&&this.action == "push") {
+            const location = pathUtils.parsePath(bundleUrl)
+            location.state = {
+              animated: this.animated
+            }
+            location.hash = this.to
+            historyInstance.history.push(location)
+          }
+          else if(this.action == "pop"){
+            historyInstance.history.goBack()
+          }
+
+
+        }
+      }
+    }
+  }
+</script>

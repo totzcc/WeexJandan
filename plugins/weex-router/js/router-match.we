@@ -1,0 +1,77 @@
+<template>
+  <div if = "{{isMatch}}">
+    <content ></content>
+  </div>
+</template>
+
+
+<script>
+var  matchPattern = require('./js/matchPattern')
+var pathUtils = require('./js/pathUtils')
+var History = require('./js/history')
+var navigator = require('./js/navigator')
+
+
+module.exports =  {
+  name: 'Match',
+  data:{
+    pattern:""
+  },
+  abstract: true,
+  created:function () {
+
+  },
+  ready: function(){
+
+  },
+  computed: {
+    isMatch: {
+      get: function() {
+        var bundleUrl = pathUtils.nomalizeBundleUrl(this.$getConfig().bundleUrl);
+        var location = pathUtils.parsePath(bundleUrl)
+        if (this.pattern) {
+          var path;
+          var parentPattern;
+          if(navigator.isMatch){
+            path = navigator.pathname
+            parentPattern = navigator.parentPattern
+          }
+          else {
+            path = location.hash
+          }
+
+          location = pathUtils.parsePath(path)
+          const match = matchPattern(this.pattern, location, false, false)
+          if (match && match.isExact) {
+            navigator.params = match.params
+            navigator.pathname = match.pathname
+            navigator.isMatch = true
+            navigator.parentPattern = this.pattern
+            return true
+          }
+          else {
+            return false
+          }
+        }
+      },
+
+      set: function(v) {
+      }
+    }
+  },
+  shouldUpdate: function () {
+    const pattern = this.pattern
+    var history = History.getHistoryInstance()
+    if (history&&this.pattern) {
+      var location = history.location
+      const match = matchPattern(pattern, location, false, false)
+      if (match && match.isExact) {
+       return true
+      }
+    }
+  },
+
+  destroyed: function () {
+  }
+}
+</script>

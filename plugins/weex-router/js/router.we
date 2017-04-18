@@ -1,0 +1,64 @@
+<template>
+  <div>
+    <content></content>
+  </div>
+</template>
+
+<script>
+  const History = require('./js/history')
+  const Navigator = require('@weex-module/navigator')
+  const pathUtils = require('./js/pathUtils')
+
+  module.exports =  {
+    abstract: true,
+    data: {
+      basename:""
+    },
+    ready: function(){
+
+    },
+    created: function() {
+      var config = this.$getConfig()
+      var bundleUrl = pathUtils.nomalizeBundleUrl(config.bundleUrl);
+      var historyInstance = History.createHistory(this.basename, bundleUrl)
+
+      historyInstance.history.listen(function (location, action)  {
+        var currentLoaction = pathUtils.parsePath(bundleUrl)
+        currentLoaction.hash = location.hash
+        currentLoaction.state = location.state
+        if(config.env.platform == "Web"){
+          currentLoaction.search = pathUtils.addTimestamp(currentLoaction.search)
+        }
+
+        var currentUrl = pathUtils.createPath(currentLoaction)
+
+        if(action.toLowerCase() == "push"){
+          Navigator.push({
+            url:currentUrl,
+            animated : currentLoaction.state.animated ? "true" : "false"
+          }, function(){})
+        }
+        else if(action.toLowerCase() == "pop"){
+          Navigator.pop({
+            animated : "true"
+          }, function(){})
+        }
+
+      })
+    }
+  }
+
+</script>
+
+
+<style>
+  .weex-router-page{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0
+  }
+
+
+</style>

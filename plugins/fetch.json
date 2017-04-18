@@ -1,0 +1,10 @@
+{
+    "weex-router": {
+        "source": {
+            "type": "registry",
+            "id": "weex-router"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

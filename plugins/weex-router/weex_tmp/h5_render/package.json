@@ -1,0 +1,54 @@
+{
+  "name": "weex-html5",
+  "version": "0.3.2",
+  "description": "Weex HTML5 Renderer",
+  "main": "dist/weex.common.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alibaba/weex.git"
+  },
+  "keywords": [
+    "weex",
+    "html5"
+  ],
+  "author": {
+    "name": "mr.raindrop"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://alibaba.github.io/weex",
+  "bugs": {
+    "url": "https://github.com/alibaba/weex/issues"
+  },
+  "_id": "weex-html5@0.3.2",
+  "scripts": {},
+  "_shasum": "45bdf9937353c9d2ac22f183ce9a1d1749e238a3",
+  "_from": "weex-html5@>=0.3.2 <0.4.0",
+  "_npmVersion": "2.15.5",
+  "_nodeVersion": "4.4.5",
+  "_npmUser": {
+    "name": "mr.raindrop",
+    "email": "tekkahs@gmail.com"
+  },
+  "dist": {
+    "shasum": "45bdf9937353c9d2ac22f183ce9a1d1749e238a3",
+    "size": 905507,
+    "noattachment": false,
+    "key": "weex-html5/-/weex-html5-0.3.2.tgz",
+    "tarball": "http://registry.npm.alibaba-inc.com/weex-html5/download/weex-html5-0.3.2.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "mr.raindrop",
+      "email": "tekkahs@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/weex-html5-0.3.2.tgz_1471575108054_0.08377600717358291"
+  },
+  "directories": {},
+  "publish_time": 1471575109137,
+  "_cnpm_publish_time": 1471575109137,
+  "_resolved": "http://registry.npm.alibaba-inc.com/weex-html5/download/weex-html5-0.3.2.tgz",
+  "readme": "ERROR: No README data found!"
+}

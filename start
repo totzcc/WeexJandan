@@ -9,6 +9,6 @@ echo "**************************************************************************
 
     THIS_DIR=$(dirname "$0")
     pushd "$THIS_DIR"
-    npm run serve
+    npm run dev & npm run serve
     popd
 

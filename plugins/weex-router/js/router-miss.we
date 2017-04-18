@@ -1,0 +1,46 @@
+<template>
+  <div if = "{{isMiss}}">
+    <content ></content>
+  </div>
+</template>
+
+
+<script>
+var  matchPattern = require('./js/matchPattern')
+var pathUtils = require('./js/pathUtils')
+var History = require('./js/history')
+var navigator = require('./js/navigator')
+
+
+module.exports =  {
+  name: 'Miss',
+  data:{
+    pattern:""
+  },
+  abstract: true,
+  created:function () {
+
+  },
+  ready: function(){
+
+  },
+  computed: {
+    isMatch: {
+      get: function() {
+        if (navigator.isMatch) {
+            return true
+        } else {
+            return false
+        }
+
+      },
+
+      set: function(v) {
+      }
+    }
+  },
+
+  destroyed: function () {
+  }
+}
+</script>

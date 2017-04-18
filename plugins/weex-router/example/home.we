@@ -1,0 +1,26 @@
+<template>
+  <div class="home">
+    <text class="h1">this is home page</text>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    name: 'home',
+    create () {
+      console.log(this)
+    }
+  }
+</script>
+
+<style>
+  .home{
+    height: 600;
+    background-color: aquamarine;
+    justify-content: center;
+
+  }
+   .h1{
+  }
+
+</style>

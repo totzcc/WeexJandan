@@ -1,0 +1,60 @@
+<template>
+  <div class="app">
+    <router class="app">
+      <div class="app">
+        <div class="nav">
+
+            <router-link  to = "/" class="link">
+              <text class="title">home</text>
+            </router-link>
+            <router-link  to = "/detail/1235" class="link">
+              <text class="title">detail</text>
+            </router-link>
+            <router-link  to = "/about/me" class="link">
+              <text class="title">about</text>
+            </router-link>
+            <router-link  action="pop" class="link">
+              <text class="title">back</text>
+            </router-link>
+        </div>
+
+        <router-match pattern = "/"><home></home></router-match>
+        <router-match pattern = "/detail/:id"><detail></detail></router-match>
+        <router-match pattern = "/about/*"><about></about></router-match>
+      </div>
+    </router>
+  </div>
+</template>
+
+<script>
+  require("../index")
+</script>
+
+
+
+<style>
+.app {
+  text-align: center;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.title{
+  text-align: center;
+  height: 50;
+  margin: 20;
+}
+
+.nav{
+  text-align: center;
+  background-color: red;
+  padding: 20;
+
+}
+.link{
+  height: 50;
+  color: #fff;
+}
+
+
+</style>
