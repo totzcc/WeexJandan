@@ -14,6 +14,9 @@
 </style>
 
 <script>
+//	import router from 'weex-router'
+
+	require('../plugins/weex-router/js')
   export default {
     data: {
       logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
