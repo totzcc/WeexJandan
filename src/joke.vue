@@ -1,0 +1,94 @@
+<template >
+	<div class="container">
+		<waterfall column-count="2">
+			<cell v-for="item in datalist" @click="clickLike" :item="item">
+				<div class='item'>
+					<div v-if="item.imgs && item.imgs.length>0">
+						<image resize="cover" style="width: 335px; height: 430px;" :src="item.imgs[0]"></image>
+					</div>
+					<text>{{item.text}}</text>
+					<div style="justify-content:space-between; align-items: center; margin-top: 20px; flex-direction: row;">
+						<text>作者：{{item.author}}</text>
+						<image v-if="item.isLike" ref='like' class="like-item" src="/resources/like.png"></image>
+					</div>
+				</div>
+			</cell>
+			<loading class="loading" @loading="onloading" :display="showLoading">
+		      <text class="indicator">{{loadingTips}}</text>
+		    </loading>
+		</waterfall>
+		<div class="like-conver" v-if="showLike">
+			<image ref='like' class="like" src="/resources/like.png"></image>
+		</div>
+	</div>
+</template>
+<style>
+	.container{padding-left: 10px;background-color: #e3e3e3;}
+	.item{border-radius: 10px;background-color: #ffffff;padding: 10px;margin-top: 40px;}
+	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.like-conver {position: absolute;top: 0;right: 0;bottom: 0;left: 0;justify-content: center;align-items: center;}
+	.like{width: 300px; height: 300px;opacity: 0;}
+	.like-item{width: 50px; height: 50px;}
+</style>
+<script>
+	import jandan from './services/jandan'
+	import animation from './animation/animation'
+	export default {
+		data: {
+			datalist:[],
+			maxPage:0,
+			showLoading:'hide',
+			showLike:false,
+			lastClickObj:{item:null,timestamp:0},
+			type:'girl'
+		},
+		computed:{
+			loadingTips(){
+				if(!this.datalist || this.datalist.length == 0){
+					return '加载中...'
+				}
+				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
+			}
+		},
+		created() {
+			this.type = this.getUrlParam('type')
+			jandan.list(this.type).then((response)=>{
+				this.datalist = response.datalist
+				if(response.maxPage) {
+					this.maxPage = response.maxPage
+				}
+			})
+		},
+		methods: {
+			getUrlParam (key) {
+				var reg = new RegExp('[?|&]' + key + '=([^&]+)')
+				var match = weex.config.bundleUrl.match(reg)
+				return match && match[1]
+			},
+			onloading(){
+		        this.showLoading = 'show'
+		        jandan.list(this.type,this.maxPage - 1).then(response =>{
+		        		this.datalist = this.datalist.concat(response.datalist)
+		        		this.maxPage -= 1
+		        		this.showLoading = 'hide'
+		        })
+			},
+			clickLike(e){
+				const item = e.target.attr.item
+				if(!this.lastClickObj.item == item) {
+					this.lastClickObj = {item:item,timestamp:e.timestamp}
+				}
+				if(e.timestamp - this.lastClickObj.timestamp <= 200) {
+					e.target.attr.item.isLike=true
+					this.showLike = true
+					setTimeout(()=>{
+						animation.bounceScale(this.$refs.like).then(()=>{
+							this.showLike = false
+						})
+					},100)
+				}
+				this.lastClickObj = {item:item,timestamp:e.timestamp}
+			}
+		}
+	}
+</script>
