@@ -85,6 +85,12 @@ const webConfig = {
         exclude: /node_modules/
       },
       {
+        test: /\.we(\?[^?]+)?$/,
+        use: [{
+          loader: 'weex-loader'
+        }]
+      },
+      {
         test: /\.vue(\?[^?]+)?$/,
         use: [{
           loader: 'vue-loader'

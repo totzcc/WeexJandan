@@ -1,32 +1,63 @@
 <template>
-  <div class="wrapper" @click="update">
-    <image :src="logoUrl" class="logo"></image>
-    <text class="title">Hello {{target}}</text>
-    <text class="desc">Now, let's use vue to build your weex app.</text>
-  </div>
+	<div style="flex-direction: column;">
+		<tabbar :tabItems="tabItems" @tabBarOnClick="tabBarOnClick"></tabbar>
+	</div>
 </template>
 
-<style>
-  .wrapper { align-items: center; margin-top: 120px; }
-  .title { padding-top:40px; padding-bottom: 40px; font-size: 48px; }
-  .logo { width: 360px; height: 156px; }
-  .desc { padding-top: 20px; color:#888; font-size: 24px;}
-</style>
-
 <script>
-//	import router from 'weex-router'
-
-	require('../plugins/weex-router/js')
-  export default {
-    data: {
-      logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
-      target: 'World'
-    },
-    methods: {
-      update: function (e) {
-        this.target = 'Weex'
-        console.log('target:', this.target)
-      }
-    }
-  }
+	var getBaseURL = require('./include/base-url.js').getBaseURL
+	module.exports = {
+		data: function() {
+			return {
+				dir: 'examples',
+				tabItems: [{
+						index: 0,
+						title: '段子',
+						titleColor: '#000000',
+						icon: '',
+						image: 'http://gtms01.alicdn.com/tps/i1/TB1qw.hMpXXXXagXXXX9t7RGVXX-46-46.png',
+						selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB16jjPMpXXXXazXVXX9t7RGVXX-46-46.png',
+						src: 'duan.js',
+						visibility: 'visible',
+					},
+					{
+						index: 1,
+						title: '热榜',
+						titleColor: '#000000',
+						icon: '',
+						image: 'http://gtms03.alicdn.com/tps/i3/TB1LEn9MpXXXXaUXpXX9t7RGVXX-46-46.png',
+						selectedImage: 'http://gtms02.alicdn.com/tps/i2/TB1qysbMpXXXXcnXXXX9t7RGVXX-46-46.png',
+						src: 'component/tabbar/tabbar-item.js?itemId=tab2',
+						visibility: 'hidden',
+					},
+					{
+						index: 2,
+						title: 'tab3',
+						titleColor: '#000000',
+						icon: '',
+						image: 'http://gtms01.alicdn.com/tps/i1/TB1B0v5MpXXXXcvXpXX9t7RGVXX-46-46.png',
+						selectedImage: 'http://gtms04.alicdn.com/tps/i4/TB1NxY5MpXXXXcrXpXX9t7RGVXX-46-46.png',
+						src: 'component/tabbar/tabbar-item.js?itemId=tab3',
+						visibility: 'hidden',
+					}
+				],
+			}
+		},
+		components: {
+			tabbar: require('./include/tabbar.vue')
+		},
+		created: function() {
+			var baseURL = getBaseURL(this)
+			for(var i = 0; i < this.tabItems.length; i++) {
+				var tabItem = this.tabItems[i];
+				tabItem.src = baseURL + tabItem.src;
+				console.log(tabItem.src)
+			}
+		},
+		methods: {
+			tabBarOnClick: function(e) {
+				console.log('tabBarOnClick', e.index)
+			}
+		}
+	}
 </script>
