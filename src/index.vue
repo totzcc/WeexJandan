@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	var getBaseURL = require('./include/base-url.js').getBaseURL
+	import config from './config'
 	module.exports = {
 		data: function() {
 			return {
@@ -15,31 +15,24 @@
 					title: '段子',
 					titleColor: '#000000',
 					icon: '',
-					image: '/resources/joke-normal.png',
-					selectedImage: '/resources/joke-highlight.png',
-					src: 'joke.js?type=joke',
+					image: config.image('joke-normal.png'),
+					selectedImage: config.image('joke-highlight.png'),
+					src: config.js('joke.js?type=joke'),
 					visibility: 'visible',
 				},{
 					index: 1,
 					title: '妹子',
 					titleColor: '#000000',
 					icon: '',
-					image: '/resources/girl-normal.png',
-					selectedImage: '/resources/girl-highlight.png',
-					src: 'joke.js?type=girl',
+					image: config.image('girl-normal.png'),
+					selectedImage: config.image('girl-highlight.png'),
+					src: config.js('joke.js?type=girl'),
 					visibility: 'hidden',
 				}],
 			}
 		},
 		components: {
 			tabbar: require('./include/tabbar.vue')
-		},
-		created: function() {
-			var baseURL = getBaseURL(this)
-			for(var i = 0; i < this.tabItems.length; i++) {
-				var tabItem = this.tabItems[i];
-				tabItem.src = baseURL + tabItem.src;
-			}
 		}
 	}
 </script>

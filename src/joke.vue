@@ -9,7 +9,10 @@
 					<text>{{item.text}}</text>
 					<div style="justify-content:space-between; align-items: center; margin-top: 20px; flex-direction: row;">
 						<text>作者：{{item.author}}</text>
-						<image v-if="item.isLike" ref='like' class="like-item" src="/resources/like.png"></image>
+						<text v-if="item.imgs">({{item.imgs.length}})</text>
+					</div>
+					<div style="align-items: center;">
+						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
 					</div>
 				</div>
 			</cell>
@@ -18,7 +21,7 @@
 		    </loading>
 		</waterfall>
 		<div class="like-conver" v-if="showLike">
-			<image ref='like' class="like" src="/resources/like.png"></image>
+			<image ref='like' class="like" :src="config.image('like.png')"></image>
 		</div>
 	</div>
 </template>
@@ -31,15 +34,20 @@
 	.like-item{width: 50px; height: 50px;}
 </style>
 <script>
+	import girl from './girl-highlight.png'
+	import config from './config'
 	import jandan from './services/jandan'
 	import animation from './animation/animation'
+	const browser = weex.requireModule('browser')
 	export default {
 		data: {
+			config:config,
 			datalist:[],
 			maxPage:0,
 			showLoading:'hide',
 			showLike:false,
 			lastClickObj:{item:null,timestamp:0},
+			isSingleClick:true,
 			type:'girl'
 		},
 		computed:{
@@ -77,6 +85,7 @@
 				const item = e.target.attr.item
 				if(!this.lastClickObj.item == item) {
 					this.lastClickObj = {item:item,timestamp:e.timestamp}
+					this.isSingleClick = true
 				}
 				if(e.timestamp - this.lastClickObj.timestamp <= 200) {
 					e.target.attr.item.isLike=true
@@ -84,8 +93,29 @@
 					setTimeout(()=>{
 						animation.bounceScale(this.$refs.like).then(()=>{
 							this.showLike = false
+							this.isSingleClick = true
 						})
 					},100)
+					this.isSingleClick = false
+				} else {
+					setTimeout(()=>{
+						if(this.isSingleClick && item.imgs && item.imgs.length > 0) {
+							var imgs = [];
+							var currentIndex = 0;
+							var find = false
+							this.datalist.forEach((value) => {
+								if(value.imgs && value.imgs.length>0) {
+									imgs = imgs.concat(value.imgs);
+									if(!find && value != item) {
+										currentIndex += value.imgs.length;
+									} else {
+										find = true
+									}
+								}
+							})
+							browser.browserImages(imgs, currentIndex)
+						}
+					},300)
 				}
 				this.lastClickObj = {item:item,timestamp:e.timestamp}
 			}
