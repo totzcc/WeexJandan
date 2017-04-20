@@ -34,7 +34,6 @@
 	.like-item{width: 50px; height: 50px;}
 </style>
 <script>
-	import girl from './girl-highlight.png'
 	import config from './config'
 	import jandan from './services/jandan'
 	import animation from './animation/animation'

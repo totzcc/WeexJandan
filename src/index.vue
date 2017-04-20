@@ -7,7 +7,7 @@
 <script>
 	import config from './config'
 	module.exports = {
-		data: function() {
+		data() {
 			return {
 				dir: 'examples',
 				tabItems: [{
