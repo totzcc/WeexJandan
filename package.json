@@ -7,8 +7,8 @@
     "build": "webpack -p --config webpack.web.config.js && webpack -p --config webpack.dev.config.js",
     "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
     "dev:web": "webpack -w --config webpack.web.config.js & serve -p 12580",
-    "dev:native": "webpack -w --config webpack.dev.config.js & serve -p 12580",
-    "dev": "webpack -w --config webpack.dev.config.js & webpack -w --config webpack.web.config.js & serve -p 12580",
+    "dev": "webpack -w --config webpack.native.config.js & serve -p 12580",
+    "dev:all": "webpack -w --config webpack.native.config.js & webpack -w --config webpack.web.config.js & serve -p 12580",
     "serve": "serve -p 12580"
   },
   "keywords": [

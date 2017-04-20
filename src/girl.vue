@@ -1,9 +1,8 @@
 <template >
 	<div class="container">
-		<list>
-			<cell style="height: 30px;"></cell>
+		<waterfall column-count="2">
 			<cell v-for="item in datalist" @click="clickLike" :item="item">
-				<!--<div class='item'>
+				<div class='item'>
 					<div v-if="item.imgs && item.imgs.length>0">
 						<image resize="cover" style="width: 335px; height: 430px;" :src="item.imgs[0]"></image>
 					</div>
@@ -15,30 +14,12 @@
 					<div style="align-items: center;">
 						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
 					</div>
-				</div>-->
-				<div class="item">
-					<text style="color: #333333;">{{item.text}}</text>
-					<div style="flex-direction: row; align-items: center; justify-content: space-between; margin-top: 5px; padding: 5px;" class="item-box">
-						<text style='color: #666666; font-size: 28;'>{{item.author}}</text>
-						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
-					</div>
-					<div style="flex-direction: row;">
-						<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center">
-							<text style="color:#FF4D33;">OO  </text>
-							<text style="color:#FE0000;">{{item.support}}</text>
-						</div>
-						<div style="flex: 1;height: 55px;" class="item-box-center">
-							<text style="color: #999999;">XX  </text>
-							<text style="color: #666666;">{{item.unsupport}}</text>
-						</div>
-					</div>
 				</div>
 			</cell>
-			<cell style="height: 44px;"></cell>
 			<loading class="loading" @loading="onloading" :display="showLoading">
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>
-		</list>
+		</waterfall>
 		<div class="like-conver" v-if="showLike">
 			<image ref='like' class="like" :src="config.image('like.png')"></image>
 		</div>
@@ -46,10 +27,8 @@
 </template>
 <style>
 	.container{padding-left: 10px;background-color: #f3f3f3;}
-	.item{padding: 10px; padding-bottom: 0px; margin: 10px; background-color: #FFFFFF; border-width: 1px; border-color: #e3e3e3;}
-	.item-box{border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
-	.item-box-center{align-items: center;justify-content: center;flex-direction: row;border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
-	.loading{width: 750px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.item{border-radius: 10px;background-color: #ffffff;padding: 10px;margin-top: 40px;}
+	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
 	.like-conver {position: absolute;top: 0;right: 0;bottom: 0;left: 0;justify-content: center;align-items: center;}
 	.like{width: 300px; height: 300px;opacity: 0;}
 	.like-item{width: 50px; height: 50px;}
@@ -68,7 +47,7 @@
 			showLike:false,
 			lastClickObj:{item:null,timestamp:0},
 			isSingleClick:true,
-			type:'joke'
+			type:'girl'
 		},
 		computed:{
 			loadingTips(){
@@ -79,6 +58,7 @@
 			}
 		},
 		created() {
+			this.type = this.getUrlParam('type')
 			jandan.list(this.type).then((response)=>{
 				this.datalist = response.datalist
 				if(response.maxPage) {
@@ -107,9 +87,6 @@
 					this.isSingleClick = true
 				}
 				if(e.timestamp - this.lastClickObj.timestamp <= 200) {
-					if(!e.target.attr.item.isLike){
-						item.support += 1
-					}
 					e.target.attr.item.isLike=true
 					this.showLike = true
 					setTimeout(()=>{
@@ -121,21 +98,21 @@
 					this.isSingleClick = false
 				} else {
 					setTimeout(()=>{
-						if(this.isSingleClick && item.imgs && item.imgs.length > 0) {
-							var imgs = [];
+						if(this.isSingleClick && item.originImages && item.originImages.length > 0) {
+							var originImages = [];
 							var currentIndex = 0;
 							var find = false
 							this.datalist.forEach((value) => {
-								if(value.imgs && value.imgs.length>0) {
-									imgs = imgs.concat(value.imgs);
+								if(value.originImages && value.originImages.length>0) {
+									originImages = originImages.concat(value.originImages);
 									if(!find && value != item) {
-										currentIndex += value.imgs.length;
+										currentIndex += value.originImages.length;
 									} else {
 										find = true
 									}
 								}
 							})
-							browser.browserImages(imgs, currentIndex)
+							browser.browserImages(originImages, currentIndex)
 						}
 					},300)
 				}
