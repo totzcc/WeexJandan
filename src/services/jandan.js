@@ -231,8 +231,7 @@ module.exports = {
 					html.parse(find[0], function(data) {
 						var maxPage = data.text.replace('[', '')
 						maxPage = maxPage.replace(']', '')
-						//resolve(type == 'girl' ? maxPage - 1 : maxPage)
-						resolve(maxPage - 1)
+						resolve(maxPage)
 					})
 				})
 			});
