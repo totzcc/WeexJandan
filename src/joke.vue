@@ -3,31 +3,22 @@
 		<list>
 			<cell style="height: 30px;"></cell>
 			<cell v-for="item in datalist" @click="clickLike" :item="item">
-				<!--<div class='item'>
-					<div v-if="item.imgs && item.imgs.length>0">
-						<image resize="cover" style="width: 335px; height: 430px;" :src="item.imgs[0]"></image>
-					</div>
-					<text>{{item.text}}</text>
-					<div style="justify-content:space-between; align-items: center; margin-top: 20px; flex-direction: row;">
-						<text>作者：{{item.author}}</text>
-						<text v-if="item.imgs">({{item.imgs.length}})</text>
-					</div>
-					<div style="align-items: center;">
-						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
-					</div>
-				</div>-->
 				<div class="item">
 					<text style="color: #333333;">{{item.text}}</text>
 					<div style="flex-direction: row; align-items: center; justify-content: space-between; margin-top: 5px; padding: 5px;" class="item-box">
-						<text style='color: #666666; font-size: 28;'>{{item.author}}</text>
-						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
+						<div>
+							<text style='color: #666666; font-size: 28;'>{{item.author}}</text>
+							<text style='color: #999999; font-size: 24;'>{{item.time}}</text>
+						</div>
+						<image v-if="item.vote==1" class="like-item" :src="config.image('like.png')"></image>
+						<image v-if="item.vote==0"class="like-item" :src="config.image('dislike.png')"></image>
 					</div>
 					<div style="flex-direction: row;">
-						<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center">
+						<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="1">
 							<text style="color:#FF4D33;">OO  </text>
 							<text style="color:#FE0000;">{{item.support}}</text>
 						</div>
-						<div style="flex: 1;height: 55px;" class="item-box-center">
+						<div style="flex: 1;height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="0">
 							<text style="color: #999999;">XX  </text>
 							<text style="color: #666666;">{{item.unsupport}}</text>
 						</div>
@@ -39,9 +30,6 @@
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>
 		</list>
-		<div class="like-conver" v-if="showLike">
-			<image ref='like' class="like" :src="config.image('like.png')"></image>
-		</div>
 	</div>
 </template>
 <style>
@@ -59,13 +47,13 @@
 	import jandan from './services/jandan'
 	import animation from './animation/animation'
 	const browser = weex.requireModule('browser')
+	const modal = weex.requireModule('modal')
 	export default {
 		data: {
 			config:config,
 			datalist:[],
 			maxPage:0,
 			showLoading:'hide',
-			showLike:false,
 			lastClickObj:{item:null,timestamp:0},
 			isSingleClick:true,
 			type:'joke'
@@ -96,9 +84,27 @@
 		        this.showLoading = 'show'
 		        this.maxPage -= 1
 		        jandan.list(this.type,this.maxPage).then(response =>{
-		        		this.datalist = this.datalist.concat(response.datalist)
 		        		this.showLoading = 'hide'
+		        		setTimeout(()=>{
+		        			this.datalist = this.datalist.concat(response.datalist)
+		        		},500)
+		        		
 		        })
+			},
+			support(e){
+				const item = e.target.attr.item
+				const voteType = e.target.attr.voteType
+				if(item.vote) {
+					return
+				}
+				item.vote = voteType
+				jandan.vote(item.id, voteType).then(res=>{
+					if(voteType == 1) {
+						item.support += 1
+					} else {
+						item.unsupport += 1
+					}
+				})
 			},
 			clickLike(e){
 				const item = e.target.attr.item
@@ -107,18 +113,19 @@
 					this.isSingleClick = true
 				}
 				if(e.timestamp - this.lastClickObj.timestamp <= 200) {
-					if(!e.target.attr.item.isLike){
-						item.support += 1
+					if(item.vote) {
+						return
 					}
-					e.target.attr.item.isLike=true
-					this.showLike = true
-					setTimeout(()=>{
-						animation.bounceScale(this.$refs.like).then(()=>{
-							this.showLike = false
-							this.isSingleClick = true
+					if(item.vote != 1) {
+						item.vote = 1
+						jandan.vote(item.id, 1).then(res=>{
+							item.support += 1
 						})
-					},100)
-					this.isSingleClick = false
+						setTimeout(()=>{
+							this.isSingleClick = true
+						},200)
+						this.isSingleClick = false
+					}
 				} else {
 					setTimeout(()=>{
 						if(this.isSingleClick && item.imgs && item.imgs.length > 0) {
