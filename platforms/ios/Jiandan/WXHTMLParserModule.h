@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <WeexSDK/WeexSDK.h>
-#import <HTMLReader/HTMLReader.h>
 @interface WXHTMLParserModule : NSObject <WXModuleProtocol>
 - (void) css:(NSString *)html css:(NSString *)css callback:(WXModuleCallback) callback;
 - (void) parse:(NSString *)html callback:(WXModuleCallback) callback;
