@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</cell>
-			<cell style="height: 44px;"></cell>
+			<cell style="height: 80px;"></cell>
 			<loading class="loading" @loading="onloading" :display="showLoading">
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>

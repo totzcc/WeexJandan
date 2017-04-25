@@ -3,12 +3,15 @@
 		<waterfall column-count="2">
 			<cell v-for="item in datalist" @click="clickLike" :item="item">
 				<div class='item'>
-					<div v-if="item.imgs && item.imgs.length>0">
-						<image resize="cover" style="width: 335px; height: 430px;" :src="item.imgs[0]"></image>
+					<div v-if="item.imgs">
+						<image resize="cover" style="background-color: #e3e3e3; width: 335px; height: 430px;" :src="item.imgs[0]"></image>
+					</div>
+					<div v-if="!item.imgs">
+						<image resize="cover" style="background-color: #e3e3e3; width: 335px; height: 430px;" ></image>
 					</div>
 					<text>{{item.text}}</text>
 					<div style="justify-content:space-between; align-items: center; margin-top: 20px; flex-direction: row;">
-						<text>作者：{{item.author}}</text>
+						<text>{{item.author}}</text>
 						<text v-if="item.imgs">({{item.imgs.length}})</text>
 					</div>
 					<div style="align-items: center;">
@@ -16,6 +19,7 @@
 					</div>
 				</div>
 			</cell>
+			<cell style="height: 80px;"></cell>
 			<loading class="loading" @loading="onloading" :display="showLoading">
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>
@@ -41,7 +45,7 @@
 	export default {
 		data: {
 			config:config,
-			datalist:[],
+			datalist:[1,1,1,1,1,1,1,1,1,1,1],
 			maxPage:0,
 			showLoading:'hide',
 			showLike:false,
@@ -58,7 +62,6 @@
 			}
 		},
 		created() {
-			this.type = this.getUrlParam('type')
 			jandan.list(this.type).then((response)=>{
 				this.datalist = response.datalist
 				if(response.maxPage) {
@@ -76,8 +79,10 @@
 		        this.showLoading = 'show'
 		        this.maxPage -= 1
 		        jandan.list(this.type,this.maxPage).then(response =>{
-		        		this.datalist = this.datalist.concat(response.datalist)
 		        		this.showLoading = 'hide'
+		        		setTimeout(()=>{
+		        			this.datalist = this.datalist.concat(response.datalist)
+		        		},100)
 		        })
 			},
 			clickLike(e){

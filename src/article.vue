@@ -12,7 +12,7 @@
 				</div>
 			</cell>
 			<cell>
-				<div class="item" style="align-items: center;justify-content: center;">
+				<div class="item" style="align-items: center;justify-content: center;" @click="more">
 					<text>更多有趣文章</text>
 				</div>
 			</cell>
@@ -22,6 +22,9 @@
 
 <script>
 	const browser = weex.requireModule('browser')
+	const navigator = weex.requireModule('navigator')
+	
+	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {
 		data(){
@@ -39,7 +42,7 @@
 			}
 		},
 		created(){
-			jandan.article().then(datalist=>{
+			jandan.articleIndex().then(datalist=>{
 				this.datalist = datalist
 			})
 		},
@@ -55,7 +58,9 @@
 				if(item) {
 					browser.browserWeb(item.href,true)
 				}
-				
+			},
+			more(){
+				navigator.push({url:config.js('more.js')},()=>{})
 			}
 		}
 	}

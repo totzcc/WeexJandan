@@ -116,6 +116,12 @@
       onclickleftitem: function (e) {
         this.$emit('naviBarLeftItemClick');
       }
-    }
+    },
+    events:{
+			naviBarLeftItemClick(e){
+				//navigator.pop(()=>{})
+				console.log('pop')
+			}
+		}
   }
 </script>
