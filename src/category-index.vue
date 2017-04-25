@@ -27,6 +27,15 @@
 					<image class="item-image" :src="item.img"></image>
 					<text class="item-text">{{item.title}}</text>
 				</cell>
+				<header>
+					<div class="header">
+						<text>NSFW</text>
+					</div>
+				</header>
+				<cell class="item" v-for="item in nsfw" @click="click" :item="item">
+					<image class="item-image" :src="item.img"></image>
+					<text class="item-text">{{item.title}}</text>
+				</cell>
 			</waterfall>
 		</div>
 	</navpage>
@@ -55,6 +64,13 @@
 					{title:'3D打印',img:'http://tankr.net/s/custom/C3HK.jpg'},
 					{title:'数码产品',img:'http://tankr.net/s/custom/0DRF.jpg'},
 					{title:'虚拟现实',img:'http://tankr.net/s/custom/ZIOM.jpg'},
+				],
+				nsfw:[
+					{title:'SEX',img:'http://tankr.net/s/custom/6Y7A.jpg'},
+					{title:'WTF',img:'http://tankr.net/s/custom/2XLD.jpg'},
+					{title:'LGBT',img:'http://tankr.net/s/custom/RZTM.jpg'},
+					{title:'重口味',img:'http://tankr.net/s/custom/COVO.jpg'},
+					{title:'没品笑话集',img:'http://tankr.net/s/custom/GMC2.jpg'}
 				]
 			}
 		},
