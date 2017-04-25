@@ -7,16 +7,14 @@
 //
 #import <WeexSDK/WeexSDK.h>
 #import <AFNetworking/AFNetworking.h>
-#import <HTMLReader/HTMLReader.h>
-#import <HTMLReader/HTMLParser.h>
-#import <HTMLReader/HTMLTokenizer.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "WXEventModule.h"
 #import "WXHTMLParserModule.h"
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXBrowserImageModule.h"
 @interface AppDelegate ()
-
+    @property (nonatomic, strong) NSString *mainURL;
 @end
 
 @implementation AppDelegate
@@ -36,21 +34,31 @@
     [WXSDKEngine registerModule:@"browser" withClass:[WXBrowserImageModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
-    switch (0) {
-            case 0:
-            self.window.rootViewController = [[WXRootViewController alloc]
-                                              initWithSourceURL:[NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"]];
-            break;
-            
-        default:
-            self.window.rootViewController = [[WXRootViewController alloc]
-                                                  initWithSourceURL:
-                                              [NSURL URLWithString:@"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/dist/native/index.js"]];
-            break;
-    }
+#ifdef DEBUG
+    self.mainURL = @"http://192.168.199.200:12580/dist/native/index.js";
+#else
+    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/dist/native/index.js";
+#endif
+    
+    
+    self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
+    [self checkNetwork];
     return YES;
 }
-
+- (void) checkNetwork {
+    [SVProgressHUD show];
+    [[AFHTTPSessionManager manager] HEAD:self.mainURL parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+        [SVProgressHUD dismiss];
+        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+        [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            [self checkNetwork];
+        }]];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

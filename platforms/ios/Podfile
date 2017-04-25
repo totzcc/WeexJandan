@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
-target 'jiandan' do
+target 'Jiandan' do
+    pod 'SVProgressHUD', '~> 2.1.2'
 	pod 'WeexSDK', '~> 0.11.0'
     pod 'AFNetworking', '~> 3.1.0'
     pod 'HTMLReader', '~> 2.0.5'

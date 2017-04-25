@@ -16,19 +16,22 @@
 		8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECC1EA4735100B4894F /* LaunchScreen.storyboard */; };
 		8A9CFED71EA49DE700B4894F /* WXEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED61EA49DE700B4894F /* WXEventModule.m */; };
 		8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */; };
-		DD6F522F9D82D8912AC0BD54 /* Pods_jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A591C6F409486FC3104C757 /* Pods_jiandan.framework */; };
+		F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21EF9A3466E102F8080BD119 /* Pods-Jiandan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jiandan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan.debug.xcconfig"; sourceTree = "<group>"; };
+		4326974907A30B3FC4E8E929 /* Pods-Jiandan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jiandan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan.release.xcconfig"; sourceTree = "<group>"; };
 		6A591C6F409486FC3104C757 /* Pods_jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		790813696CFCFDEB0A96B786 /* Pods-jiandan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jiandan.release.xcconfig"; path = "Pods/Target Support Files/Pods-jiandan/Pods-jiandan.release.xcconfig"; sourceTree = "<group>"; };
+		87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		8A17DE1F1EA709B100847A88 /* WXImgLoaderDefaultImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderDefaultImpl.h; sourceTree = "<group>"; };
 		8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
 		8A17DE221EA76EED00847A88 /* WXBrowserImageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBrowserImageModule.h; sourceTree = "<group>"; };
 		8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBrowserImageModule.m; sourceTree = "<group>"; };
-		8A9CFEBB1EA4735100B4894F /* jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9CFEBF1EA4735100B4894F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A9CFEC11EA4735100B4894F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8A9CFEC21EA4735100B4894F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,7 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD6F522F9D82D8912AC0BD54 /* Pods_jiandan.framework in Frameworks */,
+				F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +70,7 @@
 		8A9CFEBC1EA4735100B4894F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A9CFEBB1EA4735100B4894F /* jiandan.app */,
+				8A9CFEBB1EA4735100B4894F /* Jiandan.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +112,8 @@
 			children = (
 				8AA9AE77E1C852D95CF40A9C /* Pods-jiandan.debug.xcconfig */,
 				790813696CFCFDEB0A96B786 /* Pods-jiandan.release.xcconfig */,
+				21EF9A3466E102F8080BD119 /* Pods-Jiandan.debug.xcconfig */,
+				4326974907A30B3FC4E8E929 /* Pods-Jiandan.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				6A591C6F409486FC3104C757 /* Pods_jiandan.framework */,
+				87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,9 +130,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8A9CFEBA1EA4735100B4894F /* jiandan */ = {
+		8A9CFEBA1EA4735100B4894F /* Jiandan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A9CFED21EA4735100B4894F /* Build configuration list for PBXNativeTarget "jiandan" */;
+			buildConfigurationList = 8A9CFED21EA4735100B4894F /* Build configuration list for PBXNativeTarget "Jiandan" */;
 			buildPhases = (
 				2D1E85D489D35333F61159D5 /* [CP] Check Pods Manifest.lock */,
 				8A9CFEB71EA4735100B4894F /* Sources */,
@@ -139,9 +145,9 @@
 			);
 			dependencies = (
 			);
-			name = jiandan;
+			name = Jiandan;
 			productName = jiandan;
-			productReference = 8A9CFEBB1EA4735100B4894F /* jiandan.app */;
+			productReference = 8A9CFEBB1EA4735100B4894F /* Jiandan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -173,7 +179,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A9CFEBA1EA4735100B4894F /* jiandan */,
+				8A9CFEBA1EA4735100B4894F /* Jiandan */,
 			);
 		};
 /* End PBXProject section */
@@ -203,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jiandan/Pods-jiandan-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D1E85D489D35333F61159D5 /* [CP] Check Pods Manifest.lock */ = {
@@ -218,7 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		780B2C5DBDB76B712698EF75 /* [CP] Embed Pods Frameworks */ = {
@@ -233,7 +239,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jiandan/Pods-jiandan-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -359,26 +365,26 @@
 		};
 		8A9CFED31EA4735100B4894F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8AA9AE77E1C852D95CF40A9C /* Pods-jiandan.debug.xcconfig */;
+			baseConfigurationReference = 21EF9A3466E102F8080BD119 /* Pods-Jiandan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3B9X46F744;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.totzcc.jiandan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.jandan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		8A9CFED41EA4735100B4894F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 790813696CFCFDEB0A96B786 /* Pods-jiandan.release.xcconfig */;
+			baseConfigurationReference = 4326974907A30B3FC4E8E929 /* Pods-Jiandan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3B9X46F744;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.totzcc.jiandan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.leo.jandan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -395,7 +401,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A9CFED21EA4735100B4894F /* Build configuration list for PBXNativeTarget "jiandan" */ = {
+		8A9CFED21EA4735100B4894F /* Build configuration list for PBXNativeTarget "Jiandan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A9CFED31EA4735100B4894F /* Debug */,

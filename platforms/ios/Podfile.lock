@@ -26,6 +26,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SocketRocket (0.5.1)
+  - SVProgressHUD (2.1.2)
   - WeexSDK (0.11.0):
     - SocketRocket
 
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - MWPhotoBrowser (~> 2.1.2)
   - NullSafe (~> 1.2.2)
   - SDWebImage (~> 3.8.2)
+  - SVProgressHUD (~> 2.1.2)
   - WeexSDK (~> 0.11.0)
 
 SPEC CHECKSUMS:
@@ -46,8 +48,9 @@ SPEC CHECKSUMS:
   NullSafe: cbf1f77a24558e49bc76e2673f31250d3087c792
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   WeexSDK: f9cfe6adc91fba3ca5e36bc9808bf1b6e8be2106
 
-PODFILE CHECKSUM: b6a841fef50e754b9a2072faf0e71313333bcb4f
+PODFILE CHECKSUM: baecdf82c21a7e089edaaa637d6ccc301477e93e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1
