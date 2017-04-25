@@ -1,11 +1,11 @@
 {
 	"pgyPrd":{
-		"pgyApiKey":"f86d2c653f43ba548d0ba4bfb98a0ebc",
-		"pgyUserKey":"08ec56f822c8fa26cd5dd6d988524bda"
+		"pgyApiKey":"64053a6ea3ed79c8dc979e62b90fac16",
+		"pgyUserKey":"81335fbe07ffb2f473945618f434b5ea"
 	},
 	"pgyStg":{
-		"pgyApiKey":"e93e76feff7f62fa37750ce0db8a65f8",
-		"pgyUserKey":"00668e68cf66d93f094310fa8a63ac27"
+		"pgyApiKey":"64053a6ea3ed79c8dc979e62b90fac16",
+		"pgyUserKey":"81335fbe07ffb2f473945618f434b5ea"
 	},
 	"targets": [
 		"Jiandan"

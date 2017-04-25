@@ -22,7 +22,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"7cb0390683867b5c77e805d9efd89d7f"];
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"68d83db068dcd3b78b266858f4682bdb"];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     [WXAppConfiguration setAppGroup:@"Leo Studio"];
