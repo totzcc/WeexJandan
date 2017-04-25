@@ -1,0 +1,13 @@
+{
+	"pgyPrd":{
+		"pgyApiKey":"f86d2c653f43ba548d0ba4bfb98a0ebc",
+		"pgyUserKey":"08ec56f822c8fa26cd5dd6d988524bda"
+	},
+	"pgyStg":{
+		"pgyApiKey":"e93e76feff7f62fa37750ce0db8a65f8",
+		"pgyUserKey":"00668e68cf66d93f094310fa8a63ac27"
+	},
+	"targets": [
+		"Jiandan"
+	]
+}
