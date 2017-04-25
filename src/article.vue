@@ -1,6 +1,11 @@
 <template>
 	<div class="container">
 		<list>
+			<cell>
+				<div class="item" style="align-items: center;justify-content: center;" @click="more">
+					<text>更多有趣文章</text>
+				</div>
+			</cell>
 			<cell v-for="item in datalist" @click="click" :item="item">
 				<div class="item">
 					<image resize="cover" :src='item.src' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>

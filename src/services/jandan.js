@@ -23,6 +23,45 @@ storage.getItem('jokeVoteMaps',(res)=>{
 	}
 });
 module.exports = {
+	catetory(category, page) {
+		category = encodeURI(category)
+		return new Promise((resolve) => {
+			var url = "http://jandan.net/tag/"+category+"/page/" + page
+			console.log(url)
+			stream.fetch({
+				method: 'GET',
+				url: url,
+				type: 'text'
+			}, function(ret) {
+				const datalist = []
+				html.css(ret.data,"#content .column",(find)=>{
+					find.forEach((value)=>{
+						const obj = {}
+						html.css(value,'.time_s a',(find)=>{
+							html.parse(find[0],(parse)=>{
+								obj['author'] = parse.text
+							})
+						})
+						html.css(value,'.thumbs_b img',(find)=>{
+							html.parse(find[0],(parse)=>{
+								obj['img'] = parse['data-original']
+							})
+						})
+						html.css(value,'.title2 a',(find)=>{
+							html.parse(find[0],(parse)=>{
+								obj['text'] = parse.text
+								obj['href'] = parse.href
+							})
+						})
+						datalist.push(obj)
+					})
+				})
+				setTimeout(()=>{
+					resolve(datalist)
+				},500)
+			})
+		})
+	},
 	article(page){
 		return new Promise((resolve)=>{
 			if(!page || page < 2) {

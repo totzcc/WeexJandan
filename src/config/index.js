@@ -8,5 +8,11 @@ module.exports = {
 		var bundleUrl = weex.config.bundleUrl;
 		var baseURL = bundleUrl.substring(0, bundleUrl.lastIndexOf("dist")) + "resources/"
 		return baseURL + imgURL
+	},
+	params(key) {
+		var bundleUrl = weex.config.bundleUrl;
+		var reg = new RegExp('[?|&]' + key + '=([^&]+)')
+		var match = bundleUrl.match(reg)
+		return match && match[1]
 	}
 }

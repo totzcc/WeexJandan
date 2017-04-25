@@ -6,7 +6,9 @@
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
 	    :leftItemSrc="backImg"
-	    @naviBarLeftItemClick="naviBarLeftItemClick">
+	    rightItemTitle="分类"
+	    @naviBarLeftItemClick="naviBarLeftItemClick"
+	    @naviBarRightItemClick="naviBarRightItemClick">
 		<div class="container">
 			<waterfall column-count="2">
 				<cell v-for="item in datalist" @click="click" :item="item">
@@ -76,6 +78,10 @@
 			},
 			naviBarLeftItemClick(e){
 				navigator.pop({},()=>{})
+			},
+			naviBarRightItemClick(e){
+				console.log('naviBarRightItemClick')
+				navigator.push({url:config.js('category-index.js')},()=>{})
 			}
 		}
 	}
