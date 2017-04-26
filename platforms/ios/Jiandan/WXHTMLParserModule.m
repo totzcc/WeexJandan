@@ -24,6 +24,9 @@ WX_EXPORT_METHOD(@selector(parse:callback:))
     HTMLDocument *document = [HTMLDocument documentWithString:html];
     HTMLElement *element = document.bodyElement.childElementNodes.firstObject;
     NSMutableDictionary *dictionary = element.attributes.mutableCopy;
+    if (dictionary == nil) {
+        dictionary = [NSMutableDictionary new];
+    }
     dictionary[@"text"] = [document textContent];
     callback(dictionary);
 }
