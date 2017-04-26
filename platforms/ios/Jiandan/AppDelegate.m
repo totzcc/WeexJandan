@@ -9,6 +9,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <PgyUpdate/PgyUpdateManager.h>
+#import <UMMobClick/MobClick.h>
 #import "AppDelegate.h"
 #import "WXEventModule.h"
 #import "WXHTMLParserModule.h"
@@ -22,6 +23,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
+    [MobClick startWithConfigure:UMConfigInstance];
+    [MobClick event:@"didFinishLaunchingWithOptions"];
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"68d83db068dcd3b78b266858f4682bdb"];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
@@ -36,8 +40,8 @@
     [WXSDKEngine registerModule:@"browser" withClass:[WXBrowserImageModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
-//    self.mainURL = @"http://192.168.199.200:12580/dist/native/index.js";
-    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/dist/native/index.js";
+    self.mainURL = @"http://192.168.199.200:12580/dist/native/index.js";
+//    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/dist/native/index.js";
     
     self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
     [self checkNetwork];
@@ -76,6 +80,7 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [MobClick event:@"applicationDidBecomeActive"];
 #ifdef DEBUG
     [[PgyUpdateManager sharedPgyManager] checkUpdate];
 #endif

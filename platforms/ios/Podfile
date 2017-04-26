@@ -9,4 +9,5 @@ target 'Jiandan' do
     pod 'MWPhotoBrowser', '~> 2.1.2'
     pod 'PgyUpdate', '~> 1.3'
     pod 'NullSafe', '~> 1.2.2'
+    pod 'UMengAnalytics-NO-IDFA'
 end
