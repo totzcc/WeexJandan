@@ -39,7 +39,7 @@
 			return {
 				showLoading:'hide',
 				page:2,
-				backImg:config.image('back-2.png'),
+				backImg:config.image('back.png'),
 				datalist:[1,1,1,1,1,1,1,1,1,1,1,1]
 			}
 		},

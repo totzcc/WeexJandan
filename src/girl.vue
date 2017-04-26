@@ -5,6 +5,9 @@
 				<div class='item'>
 					<div v-if="item.imgs">
 						<image resize="cover" style="background-color: #e3e3e3; width: 335px; height: 430px;" :src="item.imgs[0]"></image>
+						<div v-if="item.isGIF" style="position: absolute; top: 0; left: 0;right: 0; bottom: 0; background-color: #000000; opacity: 0.4; justify-content: center; align-items: center;">
+							<image :src="gif" style="width: 50px; height: 50px; margin-top: 215px;"></image>
+						</div>
 					</div>
 					<div v-if="!item.imgs">
 						<image resize="cover" style="background-color: #e3e3e3; width: 335px; height: 430px;" ></image>
@@ -51,7 +54,8 @@
 			showLike:false,
 			lastClickObj:{item:null,timestamp:0},
 			isSingleClick:true,
-			type:'girl'
+			type:'girl',
+			gif:config.image('gif.png'),
 		},
 		computed:{
 			loadingTips(){

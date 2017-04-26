@@ -38,7 +38,7 @@
 			return {
 				category:'走近科学',
 				page:1,
-				backImg:config.image('back-2.png'),
+				backImg:config.image('back.png'),
 				datalist:[1,1,1,1,1,1,1],
 				showLoading:'hide'
 			}
@@ -56,7 +56,7 @@
 		},
 		created(){
 			this.category = decodeURI(config.params('category'))
-			jandan.catetory(this.category, this.page).then(datalist=>{
+			jandan.category(this.category, this.page).then(datalist=>{
 				this.datalist = datalist
 			})
 		},
@@ -64,7 +64,7 @@
 			onloading(){
 				this.page += 1
 				this.showLoading = 'show'
-				jandan.catetory(this.category, this.page).then(datalist=>{
+				jandan.category(this.category, this.page).then(datalist=>{
 					this.showLoading = 'hide'
 					setTimeout(()=>{
 						this.datalist = this.datalist.concat(datalist);

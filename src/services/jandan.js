@@ -14,6 +14,8 @@ const girlPageURL = 'http://jandan.net/ooxx/page-{page}';
 const topURL = 'http://jandan.net/top';
 const topPageURL = 'http://jandan.net/top/page-{page}';
 
+const boringURL = "http://jandan.net/pic"
+const boringPageURL = "http://jandan.net/pic/page-{page}"
 var jokeVoteMaps = {};
 var readMaps = {};
 
@@ -47,7 +49,7 @@ module.exports = {
 	isRead(text){
 		isRead(text)
 	},
-	catetory(category, page) {
+	category(category, page) {
 		category = encodeURI(category)
 		return new Promise((resolve) => {
 			var url = "http://jandan.net/tag/"+category+"/page/" + page
@@ -277,6 +279,8 @@ module.exports = {
 			requestURL = girlPageURL
 		} else if(type == 'joke'){
 			requestURL = jokePageURL
+		} else if (type == 'boring'){
+			requestURL = boringPageURL
 		} else {
 			requestURL = topPageURL
 		}
@@ -306,40 +310,40 @@ module.exports = {
 							})
 						})
 						html.css(value, '.text .view_img_link', (list) => {
-							if(list.length == 0) {
-								html.css(value, '.text p', (list) => {
-									list.forEach((value, index) => {
-										obj['text'] = ''
-										html.parse(value, (value) => {
-											if(value.text) {
-												obj['text'] += value.text
-												if(index != list.length - 1) {
-													obj['text'] += "\n"
-												}
-											}
-										})
-									})
-								})
-							} else {
+							html.css(value, '.text p', (list) => {
 								list.forEach((value, index) => {
-									obj['originImages'] = []
+									obj['text'] = ''
 									html.parse(value, (value) => {
-										if(value.href) {
-											obj['originImages'].push(value.href)
+										if(value.text) {
+											obj['text'] += value.text.replace("[查看原图]","")
+											if(index != list.length - 1) {
+												obj['text'] += "\n"
+											}
 										}
 									})
 								})
-								html.css(value, '.text img', (list) => {
-									list.forEach((value, index) => {
-										obj['imgs'] = []
-										html.parse(value, (value) => {
-											if(value.src) {
-												obj['imgs'].push(value.src)
-											}
-										})
+							})
+							list.forEach((value, index) => {
+								obj['originImages'] = []
+								html.parse(value, (value) => {
+									if(value.href) {
+										obj['originImages'].push(value.href)
+									}
+								})
+							})
+							html.css(value, '.text img', (list) => {
+								list.forEach((value, index) => {
+									obj['imgs'] = []
+									html.parse(value, (value) => {
+										if(value.src) {
+											obj['imgs'].push(value.src)
+										}
+										if(!obj['isGIF']) {
+											obj['isGIF'] = value.src.toLowerCase().indexOf('.gif') > -1
+										}
 									})
-								});
-							}
+								})
+							});
 						})
 						html.css(value, '.vote span', (list) => {
 							html.parse(list[1], (value) => {
@@ -368,7 +372,9 @@ module.exports = {
 			requestURL = girlURL
 		} else if(type == 'joke'){
 			requestURL = jokeURL
-		}else {
+		} else if(type == 'boring'){
+			requestURL = boringURL
+		} else {
 			requestURL = topURL
 		}
 		return new Promise(function(resolve, reject) {

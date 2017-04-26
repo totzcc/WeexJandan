@@ -37,7 +37,7 @@
 	module.exports = {
 		data(){
 			return {
-				backImg:config.image('back-2.png'),
+				backImg:config.image('back.png'),
 				datalist:[
 					{
 						title:'',
@@ -66,7 +66,7 @@
 			navpage: require('./include/navpage.vue')
 		},
 		created(){
-			jandan.catetoryIndex().then((datalist)=>{
+			jandan.categoryIndex().then((datalist)=>{
 				this.datalist = datalist
 			})
 		},
