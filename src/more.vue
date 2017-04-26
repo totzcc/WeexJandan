@@ -15,7 +15,7 @@
 					<div class="item">
 						<image class="item-image" resize="cover" :src="item.img"></image>
 						<div class="item-text">
-							<text style="flex: 1; color: #333333; font-size: 28;">{{item.text}}</text>
+							<text style="flex: 1; font-size: 28;" v-bind:style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.text}}</text>
 							<text style="flex: 1; color: #999999; font-size: 24; margin-top: 5px;">{{item.category}}</text>
 						</div>
 					</div>
@@ -73,6 +73,8 @@
 			click(e){
 				const item = e.target.attr.item
 				if(item) {
+					item.isRead = true
+					jandan.makeRead(item.text)
 					browser.browserWeb(item.href,true)
 				}
 			},

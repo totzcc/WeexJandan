@@ -74,6 +74,7 @@ module.exports = {
 						html.css(value,'.title2 a',(find)=>{
 							html.parse(find[0],(parse)=>{
 								obj['text'] = parse.text
+								obj['isRead'] = isRead(parse.text)
 								obj['href'] = parse.href
 							})
 						})
@@ -86,7 +87,7 @@ module.exports = {
 			})
 		})
 	},
-	catetoryIndex(){
+	categoryIndex(){
 		return new Promise((resolve)=>{
 			stream.fetch({
 				method: 'GET',
@@ -158,6 +159,7 @@ module.exports = {
 							html.css(value,'.title2 a',(find)=>{
 								html.parse(find[0],(parse)=>{
 									obj['text'] = parse.text
+									obj['isRead'] = isRead(parse.text)
 									obj['href'] = parse.href
 								})
 							})
@@ -214,7 +216,6 @@ module.exports = {
 								obj['summary'] = html
 							}
 						})
-						datalist.push(obj)
 					})
 				})
 				setTimeout(()=>{
