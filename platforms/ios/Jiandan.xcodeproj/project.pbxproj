@@ -10,6 +10,7 @@
 		8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */; };
 		8A17DE211EA709B100847A88 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */; };
 		8A17DE241EA76EED00847A88 /* WXBrowserImageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */; };
+		8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */; };
 		8A9CFEC01EA4735100B4894F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEBF1EA4735100B4894F /* main.m */; };
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
 		8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECA1EA4735100B4894F /* Assets.xcassets */; };
@@ -31,6 +32,8 @@
 		8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
 		8A17DE221EA76EED00847A88 /* WXBrowserImageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBrowserImageModule.h; sourceTree = "<group>"; };
 		8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBrowserImageModule.m; sourceTree = "<group>"; };
+		8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Orientation.h"; path = "Jiandan/UIViewController+Orientation.h"; sourceTree = SOURCE_ROOT; };
+		8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Orientation.m"; path = "Jiandan/UIViewController+Orientation.m"; sourceTree = SOURCE_ROOT; };
 		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9CFEBF1EA4735100B4894F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A9CFEC11EA4735100B4894F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */,
 				8A17DE221EA76EED00847A88 /* WXBrowserImageModule.h */,
 				8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */,
+				8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */,
+				8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */,
 			);
 			name = Jiandan;
 			path = jiandan;
@@ -254,6 +259,7 @@
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
 				8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */,
 				8A9CFEC01EA4735100B4894F /* main.m in Sources */,
+				8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */,
 				8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */,
 				8A17DE211EA709B100847A88 /* WXImgLoaderDefaultImpl.m in Sources */,
 			);
