@@ -62,6 +62,50 @@ module.exports = {
 			})
 		})
 	},
+	catetoryIndex(){
+		return new Promise((resolve)=>{
+			stream.fetch({
+				method: 'GET',
+				url: 'http://jandan.net/',
+				type: 'text'
+			}, function(ret) {
+				
+				html.css(ret.data,'.tag-cloud thead tr th',(find) => {
+					const datalist = [];
+					const trs = []
+					html.css(ret.data,'.tag-cloud tbody tr',(find) => {
+						find.forEach((value)=>{
+							html.css(value,'a',(find)=>{
+								const tds = []
+								find.forEach((value)=>{
+									html.parse(value,(parse)=>{
+										tds.push(parse.text)
+									})
+								})
+								trs.push(tds)
+							})
+						})
+					})
+					setTimeout(()=>{
+						find.forEach((value,index)=>{
+							const obj = {}
+							html.parse(value,(parse)=>{
+								obj.title = parse.text
+								obj.categorys = []
+								trs.forEach((value)=>{
+									obj.categorys.push(value[index])
+								})
+								datalist.push(obj)
+							})
+						})
+						setTimeout(()=>{
+							resolve(datalist)
+						},200)
+					},200)
+				})
+			})
+		})
+	},
 	article(page){
 		return new Promise((resolve)=>{
 			if(!page || page < 2) {
