@@ -10,7 +10,7 @@
 				<div class="item">
 					<image resize="cover" :src='item.src' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>
 					<div style="flex: 1;margin-left: 20px;">
-						<text class="item-title font-small">{{item.title}}</text>
+						<text class="font-small" v-bind:style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.title}}</text>
 						<text class="item-author">{{item.author}}</text>
 						<text class="item-summary">{{item.summary}}</text>
 					</div>
@@ -61,6 +61,8 @@
 			click(e){
 				const item = e.target.attr.item
 				if(item) {
+					jandan.makeRead(item.title)
+					item.isRead = true
 					browser.browserWeb(item.href,true)
 				}
 			},
@@ -74,7 +76,6 @@
 <style>
 	.container{background-color: #f3f3f3;}
 	.item{background-color: #ffffff;margin-top: 40px; padding: 20px;flex-direction: row;}
-	.item-title{color: #dd3333;}
 	.item-author{color: #999999; font-size: 24;}
 	.item-summary{color: #333333; font-size: 26;}
 	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}

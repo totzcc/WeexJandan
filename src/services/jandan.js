@@ -15,6 +15,9 @@ const topURL = 'http://jandan.net/top';
 const topPageURL = 'http://jandan.net/top/page-{page}';
 
 var jokeVoteMaps = {};
+var readMaps = {};
+
+import md5 from './md5.js'
 storage.getItem('jokeVoteMaps',(res)=>{
 	if(res.result == 'success') {
 		jokeVoteMaps = JSON.parse(res.data)
@@ -22,7 +25,28 @@ storage.getItem('jokeVoteMaps',(res)=>{
 		jokeVoteMaps = {}
 	}
 });
+
+storage.getItem('readMaps',(res)=>{
+	if(res.result == 'success') {
+		readMaps = JSON.parse(res.data)
+	} else {
+		readMaps = {}
+	}
+});
+function makeRead(text){
+	readMaps[md5(text)] = true
+	storage.setItem('readMaps',JSON.stringify(readMaps))
+}
+function isRead(text){
+	return readMaps[md5(text)] == true
+}
 module.exports = {
+	makeRead(text){
+		makeRead(text)
+	},
+	isRead(text){
+		isRead(text)
+	},
 	catetory(category, page) {
 		category = encodeURI(category)
 		return new Promise((resolve) => {
@@ -171,6 +195,7 @@ module.exports = {
 						html.css(value, 'h2 a',(find) => {
 							html.parse(find[0], (result) => {
 								obj['title'] = result.text
+								obj['isRead'] = isRead(result.text)
 								obj['href'] = result.href
 							})
 						})
