@@ -25,7 +25,7 @@
 	.container{background-color: #f3f3f3; flex:1;}
 	.header{height: 100px; width: 750px; justify-content: center; align-items: center;}
 	.container-item{flex-direction: row;flex-wrap: wrap;}
-	.item{background-color: #ffffff; justify-content: center; align-items: center; margin: 10px; width: 230px; height: 88px;}
+	.item{background-color: #ffffff; justify-content: center; align-items: center; margin: 10px; width: 229px; height: 88px;}
 	.item-image{background-color: #e3e3e3;flex: 1; height:200px}
 	.item-text{padding: 10px; color: #333333;}
 	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}

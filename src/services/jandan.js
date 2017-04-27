@@ -16,8 +16,8 @@ const topPageURL = 'http://jandan.net/top/page-{page}';
 
 const boringURL = "http://jandan.net/pic"
 const boringPageURL = "http://jandan.net/pic/page-{page}"
-var jokeVoteMaps = {};
-var readMaps = {};
+var jokeVoteMaps = {}
+var readMaps = {}
 
 import md5 from './md5.js'
 storage.getItem('jokeVoteMaps',(res)=>{
