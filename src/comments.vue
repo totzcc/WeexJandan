@@ -7,7 +7,8 @@
 	    titleColor="#333333"
 	    :leftItemSrc="config.image('back.png')"
 	    :rightItemSrc="config.image('reply.png')"
-	    @naviBarLeftItemClick="naviBarLeftItemClick">
+	    @naviBarLeftItemClick="naviBarLeftItemClick"
+	    @naviBarRightItemClick="naviBarRightItemClick">
 	    <div class="container">
 	    		<list>
 	    			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
@@ -27,12 +28,12 @@
 		    				</div>
 		    				<div style="flex-direction: row; justify-content: space-between; border-top-width: 1; border-color: #e3e3e3; border-style: dashed; margin-top: 20px;">
 		    					<div style="flex-direction: row; justify-content: center; align-items: center;">
-		    						<text style="color: orangered;">OO</text>
-			    					<text style="color: #999999;">[{{item.support}}]</text>
-			    					<text style="color: #AAAAFF; margin-left: 10px;">XX</text>
-			    					<text style="color: #999999;">[{{item.unsupport}}]</text>
+		    						<text style="color: orangered;" @click="vote" type="1">OO</text>
+			    					<text style="color: #999999;" @click="vote" type="1">[{{item.support}}]</text>
+			    					<text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0">XX</text>
+			    					<text style="color: #999999;" @click="vote" type="0">[{{item.unsupport}}]</text>
 		    					</div>
-		    					<div style="flex-direction: row; justify-content: center; align-items: center;">
+		    					<div style="flex-direction: row; justify-content: center; align-items: center;" @click="reply" :item="item">
 			    					<image :src="config.image('reply.png')" style="width: 50px; height: 50px;"></image>
 		    					</div>
 		    				</div>
@@ -53,6 +54,7 @@
 <script>
 	const navigator = weex.requireModule('navigator')
 	const storage = weex.requireModule('storage')
+	const modal = weex.requireModule('modal')
 	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {
@@ -108,8 +110,17 @@
 					this.showLoading = 'hide'
 				})
 			},
+			vote(e){
+				modal.toast({message:'研发中',duration:1})
+			},
+			reply(e){
+				modal.toast({message:'研发中',duration:1})
+			},
 			naviBarLeftItemClick(){
 				navigator.pop({},()=>{})
+			},
+			naviBarRightItemClick(){
+				this.reply()
 			}
 		}
 	}
