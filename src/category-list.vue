@@ -33,7 +33,6 @@
 <script>
 	const browser = weex.requireModule('browser')
 	const navigator = weex.requireModule('navigator')
-	
 	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {

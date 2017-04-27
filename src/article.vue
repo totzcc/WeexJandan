@@ -19,9 +19,10 @@
 							<text class="item-summary">{{item.summary}}</text>
 						</div>
 					</div>
-					<div style="margin-top: 20px; height: 80px; border-top-width: 1;border-top-style: dashed; border-top-color: #e3e3e3; align-items: center; justify-content: center;  flex-direction: row; justify-content: flex-end;">
-						<image class="agree" :src="config.image('agree-normal.png')"></image>
-						<image class="agree" :src="config.image('agree-highlight.png')"></image>
+					<div class="opeart-bar" @click="comments" :item="item">
+						<text style="color: #999999; font-size: 24; margin-right: 5px;">{{item.commentTime}}</text>
+						<image class="agree" :src="config.image('comment.png')"></image>
+						<text style="color: #999999; font-size: 24; margin-left: 5px;">{{item.comments || 0}}</text>
 					</div>
 				</div>
 			</cell>
@@ -39,12 +40,13 @@
 	.item{background-color: #ffffff;margin-top: 40px; padding: 20px; padding-bottom: 0px;}
 	.item-author{color: #999999; font-size: 24;}
 	.item-summary{color: #333333; font-size: 26;}
+	.opeart-bar{margin-top: 20px; height: 80px; border-top-width: 1;border-top-style: dashed; border-top-color: #e3e3e3; align-items: center; justify-content: center;  flex-direction: row; justify-content: flex-end;}
 	.refresh{width: 750px; padding-top: 40px; padding-top: 80px; align-items: center;justify-content: center;}
 </style>
 <script>
 	const browser = weex.requireModule('browser')
 	const navigator = weex.requireModule('navigator')
-	
+	const storage = weex.requireModule('storage')
 	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {
@@ -77,6 +79,14 @@
 					jandan.makeRead(item.title)
 					item.isRead = true
 					browser.browserWeb(item.href,true)
+				}
+			},
+			comments(e){
+				const item = e.target.attr.item
+				if(item) {
+					storage.setItem('comment-detail',JSON.stringify({title:item.title,url:item.href}), ()=>{
+						navigator.push({url:config.js('comments.js')},()=>{})
+					})
 				}
 			},
 			more(){
