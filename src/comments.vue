@@ -2,7 +2,7 @@
 	<navpage
 	    dataRole="none"
 	    height="128"
-	    :title="detail.title"
+	    title="评论列表"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
 	    :leftItemSrc="config.image('back.png')"
