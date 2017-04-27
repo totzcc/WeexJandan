@@ -1,6 +1,9 @@
 <template>
 	<div class="container">
 		<list>
+			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
+		      	<text class="indicator">{{refreshTips}}</text>
+		    </refresh>
 			<cell>
 				<div class="item" style="align-items: center;justify-content: center;" @click="more">
 					<text>更多有趣文章</text>
@@ -35,28 +38,24 @@
 		data(){
 			return {
 				datalist:[1,1,1,1,1,1,1],
-				showLoading:'hide'
+				showRefresh:'hide'
 			}
 		},
 		computed:{
-			loadingTips(){
-				if(!this.datalist || this.datalist.length == 0){
-					return '加载中...'
-				}
-				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
+			refreshTips(){
+				return this.showRefresh == 'hide' ? '下拉获取最新数据' : '加载中...'
 			}
 		},
 		created(){
-			jandan.articleIndex().then(datalist=>{
-				this.datalist = datalist
-			})
+			this.onrefresh()
 		},
 		methods:{
-			onloading(){
-				this.showLoading = 'show'
-				setTimeout(()=>{
-					this.showLoading = 'hide'
-				},1000)
+			onrefresh(){
+				this.showRefresh = 'show'
+				jandan.articleIndex().then(datalist=>{
+					this.datalist = datalist
+					this.showRefresh = 'hide'
+				})
 			},
 			click(e){
 				const item = e.target.attr.item
@@ -78,5 +77,5 @@
 	.item{background-color: #ffffff;margin-top: 40px; padding: 20px;flex-direction: row;}
 	.item-author{color: #999999; font-size: 24;}
 	.item-summary{color: #333333; font-size: 26;}
-	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.refresh{width: 750px; padding-top: 40px; padding-top: 80px; align-items: center;justify-content: center;}
 </style>

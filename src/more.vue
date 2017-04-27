@@ -11,6 +11,9 @@
 	    @naviBarRightItemClick="naviBarRightItemClick">
 		<div class="container">
 			<waterfall column-count="2">
+				<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
+			      	<text class="indicator">{{refreshTips}}</text>
+			    </refresh>
 				<cell v-for="item in datalist" @click="click" :item="item">
 					<div class="item">
 						<image class="item-image" resize="cover" :src="item.img"></image>
@@ -38,6 +41,7 @@
 		data(){
 			return {
 				showLoading:'hide',
+				showRefresh:'hide',
 				page:2,
 				backImg:config.image('back.png'),
 				datalist:[1,1,1,1,1,1,1,1,1,1,1,1]
@@ -49,17 +53,26 @@
 					return '加载中...'
 				}
 				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
+			},
+			refreshTips(){
+				return this.showRefresh == 'hide' ? '下拉获取最新数据' : '加载中...'
 			}
 		},
 		created(){
-			jandan.article(this.page).then((datalist) => {
-				this.datalist = datalist
-			})
+			this.onrefresh()
 		},
 		components: {
 			navpage: require('./include/navpage.vue')
 		},
 		methods:{
+			onrefresh(){
+				this.showRefresh = 'show'
+				this.page = 1
+				jandan.article(this.page).then((datalist) => {
+					this.datalist = datalist
+					this.showRefresh = 'hide'
+				})
+			},
 			onloading(){
 		        this.showLoading = 'show'
 		        this.page += 1
@@ -95,4 +108,5 @@
 	.item-image{background-color: #e3e3e3;flex: 1; height:200px}
 	.item-text{padding: 10px;}
 	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.refresh{width: 750px; padding-top: 40px; padding-top: 40px; align-items: center;justify-content: center;}
 </style>

@@ -9,6 +9,9 @@
 	    @naviBarLeftItemClick="naviBarLeftItemClick">
 		<div class="container">
 			<list>
+				<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
+			      	<text class="indicator">{{refreshTips}}</text>
+			    </refresh>
 				<cell v-for="item in datalist" @click="click" :item="item">
 					<div class="item">
 						<image resize="cover" :src='item.img' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>
@@ -40,7 +43,8 @@
 				page:1,
 				backImg:config.image('back.png'),
 				datalist:[1,1,1,1,1,1,1],
-				showLoading:'hide'
+				showLoading:'hide',
+				showRefresh:'hide',
 			}
 		},
 		computed:{
@@ -49,6 +53,9 @@
 					return '加载中...'
 				}
 				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
+			},
+			refreshTips(){
+				return this.showRefresh == 'hide' ? '下拉获取最新数据' : '加载中...'
 			}
 		},
 		components: {
@@ -56,11 +63,17 @@
 		},
 		created(){
 			this.category = decodeURI(config.params('category'))
-			jandan.category(this.category, this.page).then(datalist=>{
-				this.datalist = datalist
-			})
+			this.onrefresh()
 		},
 		methods:{
+			onrefresh(){
+				this.page = 1
+				this.showRefresh = 'show'
+				jandan.category(this.category, this.page).then(datalist=>{
+					this.datalist = datalist
+					this.showRefresh = 'hide'
+				})
+			},
 			onloading(){
 				this.page += 1
 				this.showLoading = 'show'
@@ -95,4 +108,5 @@
 	.item-author{color: #999999; font-size: 24;}
 	.item-summary{color: #333333; font-size: 26;}
 	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.refresh{width: 750px; padding-top: 40px; padding-top: 40px; align-items: center;justify-content: center;}
 </style>
