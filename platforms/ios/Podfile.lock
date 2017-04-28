@@ -22,7 +22,6 @@ PODS:
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
   - NullSafe (1.2.2)
-  - PgyUpdate (1.3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -37,7 +36,6 @@ DEPENDENCIES:
   - HTMLReader (~> 2.0.5)
   - MWPhotoBrowser (~> 2.1.2)
   - NullSafe (~> 1.2.2)
-  - PgyUpdate (~> 1.3)
   - SDWebImage (~> 3.8.2)
   - SVProgressHUD (~> 2.1.2)
   - UMengAnalytics-NO-IDFA
@@ -50,13 +48,12 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   NullSafe: cbf1f77a24558e49bc76e2673f31250d3087c792
-  PgyUpdate: 38634295d19aca6c63dc4a87a595c92a13838e5b
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WeexSDK: f9cfe6adc91fba3ca5e36bc9808bf1b6e8be2106
 
-PODFILE CHECKSUM: db920bb5b0b1cacc838fa9411d07a1f76e23b313
+PODFILE CHECKSUM: 8c00e6c5eac90736c4fcfd878280539072a3c2bc
 
 COCOAPODS: 1.1.1
