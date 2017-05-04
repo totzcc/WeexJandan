@@ -1,0 +1,26 @@
+.comment-big,.time_s,h3,.shang,.star-rating,.jandan-zan {display: none;}
+img {
+	width: 100%;
+}
+
+p,
+a {
+	color: #333333;
+	margin-top: 50px;
+}
+
+em {
+	color: #999999;
+}
+
+strong {
+	color: #333333;
+}
+
+blockquote {
+	background-color: #f8f8f8;
+	border-left: 10px solid #EEE;
+	color: #444;
+	margin: 10px 0px;
+	padding: 10px 15px 5px 20px;
+}

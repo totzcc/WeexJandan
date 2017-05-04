@@ -21,7 +21,7 @@
 					</div>
 					<div class="opeart-bar" @click="comments" :item="item">
 						<text style="color: #999999; font-size: 24; margin-right: 5px;">{{item.commentTime}}</text>
-						<image class="agree" :src="config.image('comment.png')"></image>
+						<image class="comment" :src="config.image('comment.png')"></image>
 						<text style="color: #999999; font-size: 24; margin-left: 5px;">{{item.comments || 0}}</text>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 	</div>
 </template>
 <style>
-	.agree{width: 50px; height: 50px;}
+	.comment{width: 40px; height: 40px;}
 	.container{background-color: #f3f3f3;}
 	.item{background-color: #ffffff;margin-top: 40px; padding: 20px; padding-bottom: 0px;}
 	.item-author{color: #999999; font-size: 24;}
