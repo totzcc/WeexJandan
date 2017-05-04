@@ -94,7 +94,7 @@
 		methods:{
 			onrefresh(){
 				this.showRefresh = 'show'
-				jandan.comments(this.detail.url, this.page).then((result) =>{
+				jandan.comments(this.detail.href, this.page).then((result) =>{
 					if(result.maxPage) {
 						this.page = result.maxPage
 					}
@@ -105,7 +105,7 @@
 			onloading(){
 				this.page -= 1
 				this.showLoading = 'show'
-				jandan.comments(this.detail.url, this.page).then((result) =>{
+				jandan.comments(this.detail.href, this.page).then((result) =>{
 					this.datalist = this.datalist.concat(result.datalist)
 					this.showLoading = 'hide'
 				})

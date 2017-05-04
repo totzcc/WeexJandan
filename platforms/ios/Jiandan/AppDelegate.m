@@ -9,13 +9,19 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UMMobClick/MobClick.h>
+#import <GCDWebServer/GCDWebServer.h>
+#import <GCDWebServer/GCDWebServerDataResponse.h>
 #import "AppDelegate.h"
 #import "WXEventModule.h"
 #import "WXHTMLParserModule.h"
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXBrowserImageModule.h"
+
+#define HTMLServer @"http://svn.longxipu.cn:8090/?url=%@"
+//#define HTMLServer @"http://192.168.199.200:8090/?url=%@"
 @interface AppDelegate ()
-    @property (nonatomic, strong) NSString *mainURL;
+@property (nonatomic, strong) NSString *mainURL;
+@property (nonatomic, strong) GCDWebServer *webServer;
 @end
 
 @implementation AppDelegate
@@ -45,6 +51,22 @@
 #endif
     self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
     [self checkNetwork];
+    
+    self.webServer = [[GCDWebServer alloc] init];
+    [GCDWebServer setLogLevel:WXLogLevelError];
+    [self.webServer addDefaultHandlerForMethod:@"GET"
+                              requestClass:[GCDWebServerRequest class]
+                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
+                                  NSString *url = request.query[@"url"];
+                                  if (url == nil || [url isEqualToString:@"null"]) {
+                                      return [GCDWebServerDataResponse responseWithHTML:@""];
+                                  }
+                                  NSString *htmlURL = [NSString stringWithFormat:HTMLServer, url];
+                                  NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:htmlURL] encoding:NSUTF8StringEncoding error:nil];
+                                  html = html == nil ? @"网络错误，请稍后再试" : html;
+                                  return [GCDWebServerDataResponse responseWithHTML:html];
+                              }];
+    [self.webServer startWithPort:9090 bonjourName:nil];
     return YES;
 }
 - (void) checkNetwork {

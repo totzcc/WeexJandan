@@ -78,13 +78,15 @@
 				if(item) {
 					jandan.makeRead(item.title)
 					item.isRead = true
-					browser.browserWeb(item.href,true)
+					storage.setItem('comment-detail',JSON.stringify(item), ()=>{
+						navigator.push({url:config.js('article-detail.js')})
+					})
 				}
 			},
 			comments(e){
 				const item = e.target.attr.item
 				if(item) {
-					storage.setItem('comment-detail',JSON.stringify({title:item.title,url:item.href}), ()=>{
+					storage.setItem('comment-detail',JSON.stringify(item), ()=>{
 						navigator.push({url:config.js('comments.js')},()=>{})
 					})
 				}

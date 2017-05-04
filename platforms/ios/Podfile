@@ -8,5 +8,6 @@ target 'Jiandan' do
     pod 'SDWebImage', '~> 3.8.2'
     pod 'MWPhotoBrowser', '~> 2.1.2'
     pod 'NullSafe', '~> 1.2.2'
+    pod 'GCDWebServer', '~> 3.3.3'
     pod 'UMengAnalytics-NO-IDFA'
 end

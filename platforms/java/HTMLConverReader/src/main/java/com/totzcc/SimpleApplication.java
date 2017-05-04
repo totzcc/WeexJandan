@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
@@ -18,10 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class SimpleApplication implements EmbeddedServletContainerCustomizer {
-	public static void main(String[] args) {
-		SpringApplication.run(SimpleApplication.class, args);
-	}
-
 	@GetMapping("/")
 	public void conver(String url, HttpServletResponse response) throws MalformedURLException, IOException {
 		response.setContentType("text/html;charset=utf8");
@@ -32,11 +27,16 @@ public class SimpleApplication implements EmbeddedServletContainerCustomizer {
 	}
 	
 	public static String conver(String url) throws MalformedURLException, IOException {
+		if (url.indexOf("i.jandan.net") == -1) {
+			url = url.replace("http://www.jandan.net", "http://i.jandan.net");
+			url = url.replace("http://jandan.net", "http://i.jandan.net");
+		}
 		StringBuffer html = new StringBuffer();
 		html.append("<!DOCTYPE html>\n");
 		html.append("<html>\n");
 		html.append("<head>\n");
 		html.append("<meta charset=\"UTF-8\">\n");
+		html.append("<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;\">\n");
 		html.append(
 				"<link rel=\"stylesheet\" href=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.css\" />\n");
 		html.append("<script src=\"https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js\"></script>\n");
@@ -45,8 +45,8 @@ public class SimpleApplication implements EmbeddedServletContainerCustomizer {
 		html.append("<body>\n");
 
 		Document document = Jsoup.connect(url).get();
-		Elements selects = document.select("#content .post");
-		html.append(selects.get(0).html());
+		html.append(document.select(".postinfo").get(0).html());
+		html.append(document.select(".entry").get(0).html());
 		html.append("\n");
 		html.append(
 				"<script src=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.js\"></script>\n");
@@ -58,5 +58,11 @@ public class SimpleApplication implements EmbeddedServletContainerCustomizer {
 	@Override
 	public void customize(ConfigurableEmbeddedServletContainer container) {
 		container.setPort(8090);
+	}
+	public static void main(String[] args) {
+		SpringApplication.run(SimpleApplication.class, args);
+	}
+	public static void main1(String[] args) throws IOException {
+		System.out.println(conver("http://i.jandan.net/2017/05/04/powerpoint-projector.html"));
 	}
 }

@@ -15,6 +15,9 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
+  - GCDWebServer (3.3.3):
+    - GCDWebServer/Core (= 3.3.3)
+  - GCDWebServer/Core (3.3.3)
   - HTMLReader (2.0.5)
   - MBProgressHUD (0.9.2)
   - MWPhotoBrowser (2.1.2):
@@ -33,6 +36,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - GCDWebServer (~> 3.3.3)
   - HTMLReader (~> 2.0.5)
   - MWPhotoBrowser (~> 2.1.2)
   - NullSafe (~> 1.2.2)
@@ -44,6 +48,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
   HTMLReader: 979c66cd2b23c67e0b45a4b3e0ab8ce933a3e71a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
@@ -54,6 +59,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WeexSDK: f9cfe6adc91fba3ca5e36bc9808bf1b6e8be2106
 
-PODFILE CHECKSUM: 6b0fec01d2f7df2732a876be8463248fa9bc90e4
+PODFILE CHECKSUM: 09d5bef6ac4c530efcbda34f0bc2a45b751ccb34
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1
