@@ -5,10 +5,14 @@
 			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('back.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
 		</div>
-		<div @click="seeComments" style="position: fixed; right: 25; top: 65;">
+		<div @click="seeComments" style="position: fixed; right: 40; top: 65;">
 			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('comment.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
 			<text style="position: absolute; right: -20; top: 0; font-size: 24px; color: #666666;">{{detail.comments || 0}}</text>
+		</div>
+		<div @click="more" style="position: fixed; right: 40; bottom: 65;">
+			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
+			<image :src="config.image('share.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
 		</div>
 	</div>
 </template>
@@ -36,7 +40,6 @@
 			storage.getItem('comment-detail',(ret)=>{
 				this.detail = JSON.parse(ret.data)
 				this.src = "http://localhost:9090/?url=" + this.detail.href
-				console.log(JSON.stringify(this.detail))
 			})
 		},
 		methods:{
@@ -46,6 +49,9 @@
 			seeComments(e){
 				navigator.push({url:config.js('comments.js')},()=>{})
 			},
+			more(e){
+				
+			}
 		}
 	}
 </script>
