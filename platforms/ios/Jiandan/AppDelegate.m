@@ -47,8 +47,9 @@
 #ifdef DEBUG
     self.mainURL = @"http://192.168.199.200:12580/dist/native/index.js";
 #else
-    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/dist/native/index.js";
+    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/1.0.1/dist/native/index.js";
 #endif
+//    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/1.0.1/dist/native/index.js";
     self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
     [self checkNetwork];
     

@@ -7,8 +7,8 @@ module.exports = {
 	image(imgURL) {
 		var bundleUrl = weex.config.bundleUrl;
 		var baseURL = bundleUrl.substring(0, bundleUrl.lastIndexOf("dist")) + "resources/"
-		return baseURL + imgURL + '?t=' + new Date().getTime()
-//		return baseURL + imgURL
+//		return baseURL + imgURL + '?t=' + new Date().getTime()
+		return baseURL + imgURL
 	},
 	params(key) {
 		var bundleUrl = weex.config.bundleUrl;
