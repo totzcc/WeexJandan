@@ -17,6 +17,7 @@
 		8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECC1EA4735100B4894F /* LaunchScreen.storyboard */; };
 		8A9CFED71EA49DE700B4894F /* WXEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED61EA49DE700B4894F /* WXEventModule.m */; };
 		8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */; };
+		8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3BBC31EBC1DF800637983 /* DataUtil.m */; };
 		8AFF9D301EBB338100D25F8E /* WXShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */; };
 		F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,8 @@
 		8A9CFED81EA4CABF00B4894F /* WXHTMLParserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHTMLParserModule.h; sourceTree = "<group>"; };
 		8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHTMLParserModule.m; sourceTree = "<group>"; };
 		8AA9AE77E1C852D95CF40A9C /* Pods-jiandan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jiandan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jiandan/Pods-jiandan.debug.xcconfig"; sourceTree = "<group>"; };
+		8AD3BBC21EBC1DF800637983 /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
+		8AD3BBC31EBC1DF800637983 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		8AFF9D2E1EBB338100D25F8E /* WXShareModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareModule.h; sourceTree = "<group>"; };
 		8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareModule.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +107,8 @@
 				8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */,
 				8AFF9D2E1EBB338100D25F8E /* WXShareModule.h */,
 				8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */,
+				8AD3BBC21EBC1DF800637983 /* DataUtil.h */,
+				8AD3BBC31EBC1DF800637983 /* DataUtil.m */,
 			);
 			name = Jiandan;
 			path = jiandan;
@@ -260,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A9CFED71EA49DE700B4894F /* WXEventModule.m in Sources */,
+				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
 				8A17DE241EA76EED00847A88 /* WXBrowserImageModule.m in Sources */,
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
 				8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */,
