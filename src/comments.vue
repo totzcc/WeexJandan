@@ -86,7 +86,7 @@
 			navpage: require('./include/navpage.vue')
 		},
 		created(){
-			storage.getItem('comment-detail',(ret)=>{
+			storage.getItem('article-detail',(ret)=>{
 				this.detail = JSON.parse(ret.data)
 				this.onrefresh()
 			})

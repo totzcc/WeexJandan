@@ -33,6 +33,7 @@
 <script>
 	const browser = weex.requireModule('browser')
 	const navigator = weex.requireModule('navigator')
+	const storage = weex.requireModule('storage')
 	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {
@@ -88,7 +89,10 @@
 				if(item) {
 					item.isRead = true
 					jandan.makeRead(item.text)
-					browser.browserWeb(item.href,true)
+//					browser.browserWeb(item.href,true)
+					storage.setItem('article-detail',JSON.stringify(item), ()=>{
+						navigator.push({url:config.js('article-detail.js')})
+					})
 				}
 			},
 			more(){

@@ -27,7 +27,7 @@
 		data(){
 			return {
 				config:config,
-				src:"",
+				src:"http://localhost:9090/",
 				detail:{
 					url:''
 				}
@@ -37,7 +37,7 @@
 			navpage: require('./include/navpage.vue')
 		},
 		created(){
-			storage.getItem('comment-detail',(ret)=>{
+			storage.getItem('article-detail',(ret)=>{
 				this.detail = JSON.parse(ret.data)
 				this.src = "http://localhost:9090/?url=" + this.detail.href
 			})
