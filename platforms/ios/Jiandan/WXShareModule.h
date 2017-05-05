@@ -9,4 +9,5 @@
 #import <Foundation/Foundation.h>
 #import <WeexSDK/WeexSDK.h>
 @interface WXShareModule : NSObject
+- (void) share:(NSString*) url title:(NSString *) title;
 @end

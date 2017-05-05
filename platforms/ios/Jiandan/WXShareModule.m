@@ -7,9 +7,12 @@
 //
 
 #import "WXShareModule.h"
-#import <OpenShare/OpenShare.h>
+#import "AppDelegate.h"
 @implementation WXShareModule
+WX_EXPORT_METHOD(@selector(share:title:))
 - (void) share:(NSString*) url title:(NSString *) title {
-//    [OpenShare shareto];
+    UIActivityViewController *shareController = [[UIActivityViewController alloc] initWithActivityItems:@[[NSURL URLWithString:url], title] applicationActivities:nil];
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.window.rootViewController presentViewController:shareController animated:YES completion:nil];
 }
 @end

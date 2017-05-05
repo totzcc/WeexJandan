@@ -18,6 +18,7 @@
 #import "WXHTMLParserModule.h"
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXBrowserImageModule.h"
+#import "WXShareModule.h"
 
 #define HTMLServer @"http://svn.longxipu.cn:8090/?url=%@"
 //#define HTMLServer @"http://192.168.199.200:8090/?url=%@"
@@ -44,6 +45,7 @@
     [WXSDKEngine registerModule:@"event" withClass:[WXEventModule class]];
     [WXSDKEngine registerModule:@"html" withClass:[WXHTMLParserModule class]];
     [WXSDKEngine registerModule:@"browser" withClass:[WXBrowserImageModule class]];
+    [WXSDKEngine registerModule:@"share" withClass:[WXShareModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
 #ifdef DEBUG

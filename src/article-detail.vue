@@ -22,6 +22,7 @@
 	const navigator = weex.requireModule('navigator')
 	const storage = weex.requireModule('storage')
 	const modal = weex.requireModule('modal')
+	const share = weex.requireModule('share')
 	import config from './config'
 	module.exports = {
 		data(){
@@ -50,7 +51,7 @@
 				navigator.push({url:config.js('comments.js')},()=>{})
 			},
 			more(e){
-				
+				share.share(this.detail.href,this.detail.title)
 			}
 		}
 	}
