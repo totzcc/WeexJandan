@@ -10,4 +10,5 @@ target 'Jiandan' do
     pod 'NullSafe', '~> 1.2.2'
     pod 'GCDWebServer', '~> 3.3.3'
     pod 'UMengAnalytics-NO-IDFA'
+    pod 'GrowingIO'
 end

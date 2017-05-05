@@ -12,6 +12,7 @@
 #import <HTMLReader/HTMLReader.h>
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
+#import <GrowingIO/Growing.h>
 #import "DataUtil.h"
 #import "AppDelegate.h"
 #import "WXEventModule.h"
@@ -19,6 +20,7 @@
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXBrowserImageModule.h"
 #import "WXShareModule.h"
+#import "WXLogModule.h"
 
 #define HTMLServer @"http://svn.longxipu.cn:8090/?url=%@"
 //#define HTMLServer @"http://192.168.199.200:8090/?url=%@"
@@ -34,6 +36,9 @@
     UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
     [MobClick startWithConfigure:UMConfigInstance];
     [MobClick event:@"didFinishLaunchingWithOptions"];
+    
+    [Growing startWithAccountId:@"809b5650755a1813"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     [WXAppConfiguration setAppGroup:@"Leo Studio"];
@@ -46,6 +51,7 @@
     [WXSDKEngine registerModule:@"html" withClass:[WXHTMLParserModule class]];
     [WXSDKEngine registerModule:@"browser" withClass:[WXBrowserImageModule class]];
     [WXSDKEngine registerModule:@"share" withClass:[WXShareModule class]];
+    [WXSDKEngine registerModule:@"log" withClass:[WXLogModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
 #ifdef DEBUG
@@ -64,37 +70,18 @@
                               processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
                                   NSString *url = request.query[@"url"];
                                   return [GCDWebServerDataResponse responseWithHTML:[DataUtil convertToReaderHTML:url]];
-//                                  if (url == nil || [url isEqualToString:@"null"]) {
-//                                      return [GCDWebServerDataResponse responseWithHTML:@""];
-//                                  }
-//                                  url = [url stringByReplacingOccurrencesOfString:@"http://www.jandan.net" withString:@"http://i.jandan.net"];
-//                                  url = [url stringByReplacingOccurrencesOfString:@"http://jandan.net" withString:@"http://i.jandan.net"];
-//                                  NSMutableString *html = [[NSMutableString alloc] init];
-//                                  [html appendString:@"<!DOCTYPE html>\n"];
-//                                  [html appendString:@"<html>\n"];
-//                                  [html appendString:@"<head>\n"];
-//                                  [html appendString:@"<meta charset=\"UTF-8\">\n"];
-//                                  [html appendString:@"<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;\">\n"];
-//                                  [html appendString:@"<link rel=\"stylesheet\" href=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.css\" />\n"];
-//                                  [html appendString:@"<script src=\"https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js\"></script>\n"];
-//                                  [html appendString:@"<script src=\"//cdn.jandan.net/static/js/jquery.lazyload.min.js?v=201603020\"></script>\n"];
-//                                  [html appendString:@"</head>\n"];
-//                                  [html appendString:@"<body>\n"];
-//                                  HTMLDocument *document =  [HTMLDocument documentWithString:[NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]];
-//                                  HTMLElement *postInfo = [document nodesMatchingSelector:@".postinfo"][0];
-//                                  HTMLElement *entry = [document nodesMatchingSelector:@".entry"][0];
-//                                  
-//                                  [html appendString:[postInfo innerHTML]];
-//                                  [html appendString:[entry innerHTML]];
-//                                  [html appendString:@"\n"];
-//                                  [html appendString:@"<script src=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.js\"></script>\n"];
-//                                  [html appendString:@"</body>\n"];
-//                                  [html appendString:@"</html>\n"];
-//                                  return [GCDWebServerDataResponse responseWithHTML:html];
                               }];
     [self.webServer startWithPort:9090 bonjourName:nil];
     return YES;
 }
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if ([Growing handleUrl:url]) // 请务必确保该函数被调用
+    {
+        return YES;
+    }
+    return NO;
+}
+
 - (void) checkNetwork {
     [SVProgressHUD show];
     [[AFHTTPSessionManager manager] HEAD:self.mainURL parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
