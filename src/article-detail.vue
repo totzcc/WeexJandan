@@ -42,6 +42,7 @@
 				this.detail = JSON.parse(ret.data)
 				this.src = "http://localhost:9090/?url=" + this.detail.href
 			})
+			config.event('article-detail')
 		},
 		methods:{
 			naviBarLeftItemClick(e){

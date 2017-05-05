@@ -61,6 +61,7 @@
 		},
 		created(){
 			this.onrefresh()
+			config.event('more')
 		},
 		components: {
 			navpage: require('./include/navpage.vue')

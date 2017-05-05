@@ -90,6 +90,7 @@
 				this.detail = JSON.parse(ret.data)
 				this.onrefresh()
 			})
+			config.event('comments')
 		},
 		methods:{
 			onrefresh(){

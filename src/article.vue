@@ -64,6 +64,7 @@
 		},
 		created(){
 			this.onrefresh()
+			config.event('article')
 		},
 		methods:{
 			onrefresh(){

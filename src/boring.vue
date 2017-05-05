@@ -68,6 +68,7 @@
 					this.maxPage = response.maxPage
 				}
 			})
+			config.event('boring')
 		},
 		methods: {
 			getUrlParam (key) {

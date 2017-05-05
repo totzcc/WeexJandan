@@ -1,3 +1,4 @@
+const log = weex.requireModule('log');
 module.exports = {
 	js(jsURL) {
 		var bundleUrl = weex.config.bundleUrl;
@@ -15,5 +16,8 @@ module.exports = {
 		var reg = new RegExp('[?|&]' + key + '=([^&]+)')
 		var match = bundleUrl.match(reg)
 		return match && match[1]
-	}
+	},
+	event(id) {
+		log.event(id)
+	},
 }

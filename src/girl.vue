@@ -62,6 +62,7 @@
 					this.maxPage = response.maxPage
 				}
 			})
+			config.event('girl')
 		},
 		methods: {
 			getUrlParam (key) {

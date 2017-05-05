@@ -69,6 +69,7 @@
 			jandan.categoryIndex().then((datalist)=>{
 				this.datalist = datalist
 			})
+			config.event('category-index')
 		},
 		methods:{
 			click(e){
