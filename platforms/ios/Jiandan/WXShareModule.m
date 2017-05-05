@@ -7,7 +7,9 @@
 //
 
 #import "WXShareModule.h"
-
+#import <OpenShare/OpenShare.h>
 @implementation WXShareModule
-
+- (void) share:(NSString*) url title:(NSString *) title {
+//    [OpenShare shareto];
+}
 @end

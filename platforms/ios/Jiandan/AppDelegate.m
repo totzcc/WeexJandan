@@ -9,6 +9,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UMMobClick/MobClick.h>
+#import <HTMLReader/HTMLReader.h>
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import "AppDelegate.h"
@@ -62,9 +63,29 @@
                                   if (url == nil || [url isEqualToString:@"null"]) {
                                       return [GCDWebServerDataResponse responseWithHTML:@""];
                                   }
-                                  NSString *htmlURL = [NSString stringWithFormat:HTMLServer, url];
-                                  NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:htmlURL] encoding:NSUTF8StringEncoding error:nil];
-                                  html = html == nil ? @"网络错误，请稍后再试" : html;
+                                  url = [url stringByReplacingOccurrencesOfString:@"http://www.jandan.net" withString:@"http://i.jandan.net"];
+                                  url = [url stringByReplacingOccurrencesOfString:@"http://jandan.net" withString:@"http://i.jandan.net"];
+                                  NSMutableString *html = [[NSMutableString alloc] init];
+                                  [html appendString:@"<!DOCTYPE html>\n"];
+                                  [html appendString:@"<html>\n"];
+                                  [html appendString:@"<head>\n"];
+                                  [html appendString:@"<meta charset=\"UTF-8\">\n"];
+                                  [html appendString:@"<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;\">\n"];
+                                  [html appendString:@"<link rel=\"stylesheet\" href=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.css\" />\n"];
+                                  [html appendString:@"<script src=\"https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js\"></script>\n"];
+                                  [html appendString:@"<script src=\"//cdn.jandan.net/static/js/jquery.lazyload.min.js?v=201603020\"></script>\n"];
+                                  [html appendString:@"</head>\n"];
+                                  [html appendString:@"<body>\n"];
+                                  HTMLDocument *document =  [HTMLDocument documentWithString:[NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]];
+                                  HTMLElement *postInfo = [document nodesMatchingSelector:@".postinfo"][0];
+                                  HTMLElement *entry = [document nodesMatchingSelector:@".entry"][0];
+                                  
+                                  [html appendString:[postInfo innerHTML]];
+                                  [html appendString:[entry innerHTML]];
+                                  [html appendString:@"\n"];
+                                  [html appendString:@"<script src=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.js\"></script>\n"];
+                                  [html appendString:@"</body>\n"];
+                                  [html appendString:@"</html>\n"];
                                   return [GCDWebServerDataResponse responseWithHTML:html];
                               }];
     [self.webServer startWithPort:9090 bonjourName:nil];
