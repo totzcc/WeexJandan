@@ -8,18 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */; };
-		8A17DE211EA709B100847A88 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */; };
-		8A17DE241EA76EED00847A88 /* WXBrowserImageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */; };
 		8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */; };
 		8A9CFEC01EA4735100B4894F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEBF1EA4735100B4894F /* main.m */; };
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
 		8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECA1EA4735100B4894F /* Assets.xcassets */; };
 		8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECC1EA4735100B4894F /* LaunchScreen.storyboard */; };
-		8A9CFED71EA49DE700B4894F /* WXEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED61EA49DE700B4894F /* WXEventModule.m */; };
-		8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */; };
 		8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3BBC31EBC1DF800637983 /* DataUtil.m */; };
-		8AD3BBC71EBC2AFD00637983 /* WXLogModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3BBC61EBC2AFD00637983 /* WXLogModule.m */; };
-		8AFF9D301EBB338100D25F8E /* WXShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */; };
+		B31124CA1EBE1353006B7F87 /* WXBrowserImageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124BF1EBE1353006B7F87 /* WXBrowserImageModule.m */; };
+		B31124CB1EBE1353006B7F87 /* WXEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C11EBE1353006B7F87 /* WXEventModule.m */; };
+		B31124CC1EBE1353006B7F87 /* WXHTMLParserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C31EBE1353006B7F87 /* WXHTMLParserModule.m */; };
+		B31124CD1EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C51EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m */; };
+		B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C71EBE1353006B7F87 /* WXLogModule.m */; };
+		B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C91EBE1353006B7F87 /* WXShareModule.m */; };
+		B31124D11EBE1368006B7F87 /* jandan.zip in Resources */ = {isa = PBXBuildFile; fileRef = B31124D01EBE1368006B7F87 /* jandan.zip */; };
 		F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +32,6 @@
 		87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
-		8A17DE1F1EA709B100847A88 /* WXImgLoaderDefaultImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderDefaultImpl.h; sourceTree = "<group>"; };
-		8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
-		8A17DE221EA76EED00847A88 /* WXBrowserImageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBrowserImageModule.h; sourceTree = "<group>"; };
-		8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBrowserImageModule.m; sourceTree = "<group>"; };
 		8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Orientation.h"; path = "Jiandan/UIViewController+Orientation.h"; sourceTree = SOURCE_ROOT; };
 		8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Orientation.m"; path = "Jiandan/UIViewController+Orientation.m"; sourceTree = SOURCE_ROOT; };
 		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,17 +41,22 @@
 		8A9CFECA1EA4735100B4894F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A9CFECD1EA4735100B4894F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A9CFECF1EA4735100B4894F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A9CFED51EA49DE700B4894F /* WXEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXEventModule.h; path = Jiandan/WXEventModule.h; sourceTree = SOURCE_ROOT; };
-		8A9CFED61EA49DE700B4894F /* WXEventModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXEventModule.m; path = Jiandan/WXEventModule.m; sourceTree = SOURCE_ROOT; };
-		8A9CFED81EA4CABF00B4894F /* WXHTMLParserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHTMLParserModule.h; sourceTree = "<group>"; };
-		8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHTMLParserModule.m; sourceTree = "<group>"; };
 		8AA9AE77E1C852D95CF40A9C /* Pods-jiandan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jiandan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jiandan/Pods-jiandan.debug.xcconfig"; sourceTree = "<group>"; };
 		8AD3BBC21EBC1DF800637983 /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
 		8AD3BBC31EBC1DF800637983 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
-		8AD3BBC51EBC2AFD00637983 /* WXLogModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXLogModule.h; sourceTree = "<group>"; };
-		8AD3BBC61EBC2AFD00637983 /* WXLogModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLogModule.m; sourceTree = "<group>"; };
-		8AFF9D2E1EBB338100D25F8E /* WXShareModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareModule.h; sourceTree = "<group>"; };
-		8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareModule.m; sourceTree = "<group>"; };
+		B31124BE1EBE1353006B7F87 /* WXBrowserImageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBrowserImageModule.h; sourceTree = "<group>"; };
+		B31124BF1EBE1353006B7F87 /* WXBrowserImageModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBrowserImageModule.m; sourceTree = "<group>"; };
+		B31124C01EBE1353006B7F87 /* WXEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXEventModule.h; sourceTree = "<group>"; };
+		B31124C11EBE1353006B7F87 /* WXEventModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXEventModule.m; sourceTree = "<group>"; };
+		B31124C21EBE1353006B7F87 /* WXHTMLParserModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHTMLParserModule.h; sourceTree = "<group>"; };
+		B31124C31EBE1353006B7F87 /* WXHTMLParserModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHTMLParserModule.m; sourceTree = "<group>"; };
+		B31124C41EBE1353006B7F87 /* WXImgLoaderDefaultImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImgLoaderDefaultImpl.h; sourceTree = "<group>"; };
+		B31124C51EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImgLoaderDefaultImpl.m; sourceTree = "<group>"; };
+		B31124C61EBE1353006B7F87 /* WXLogModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXLogModule.h; sourceTree = "<group>"; };
+		B31124C71EBE1353006B7F87 /* WXLogModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLogModule.m; sourceTree = "<group>"; };
+		B31124C81EBE1353006B7F87 /* WXShareModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareModule.h; sourceTree = "<group>"; };
+		B31124C91EBE1353006B7F87 /* WXShareModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareModule.m; sourceTree = "<group>"; };
+		B31124D01EBE1368006B7F87 /* jandan.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = jandan.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		8A9CFEB21EA4735100B4894F = {
 			isa = PBXGroup;
 			children = (
+				B31124D01EBE1368006B7F87 /* jandan.zip */,
 				8A9CFEBD1EA4735100B4894F /* Jiandan */,
 				8A9CFEBC1EA4735100B4894F /* Products */,
 				AFAEDDCE6A63F112E812FF61 /* Pods */,
@@ -90,28 +93,17 @@
 		8A9CFEBD1EA4735100B4894F /* Jiandan */ = {
 			isa = PBXGroup;
 			children = (
+				B31124BD1EBE1353006B7F87 /* WeexModule */,
+				8A9CFEBE1EA4735100B4894F /* Supporting Files */,
 				8A9CFEC11EA4735100B4894F /* AppDelegate.h */,
 				8A9CFEC21EA4735100B4894F /* AppDelegate.m */,
 				8A9CFECA1EA4735100B4894F /* Assets.xcassets */,
 				8A9CFECC1EA4735100B4894F /* LaunchScreen.storyboard */,
 				8A9CFECF1EA4735100B4894F /* Info.plist */,
-				8A9CFEBE1EA4735100B4894F /* Supporting Files */,
-				8A17DE1F1EA709B100847A88 /* WXImgLoaderDefaultImpl.h */,
-				8A17DE201EA709B100847A88 /* WXImgLoaderDefaultImpl.m */,
-				8A9CFED51EA49DE700B4894F /* WXEventModule.h */,
-				8A9CFED61EA49DE700B4894F /* WXEventModule.m */,
-				8A9CFED81EA4CABF00B4894F /* WXHTMLParserModule.h */,
-				8A9CFED91EA4CABF00B4894F /* WXHTMLParserModule.m */,
 				8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */,
 				8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */,
-				8A17DE221EA76EED00847A88 /* WXBrowserImageModule.h */,
-				8A17DE231EA76EED00847A88 /* WXBrowserImageModule.m */,
 				8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */,
 				8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */,
-				8AFF9D2E1EBB338100D25F8E /* WXShareModule.h */,
-				8AFF9D2F1EBB338100D25F8E /* WXShareModule.m */,
-				8AD3BBC51EBC2AFD00637983 /* WXLogModule.h */,
-				8AD3BBC61EBC2AFD00637983 /* WXLogModule.m */,
 				8AD3BBC21EBC1DF800637983 /* DataUtil.h */,
 				8AD3BBC31EBC1DF800637983 /* DataUtil.m */,
 			);
@@ -137,6 +129,26 @@
 			);
 			name = Pods;
 			sourceTree = "<group>";
+		};
+		B31124BD1EBE1353006B7F87 /* WeexModule */ = {
+			isa = PBXGroup;
+			children = (
+				B31124BE1EBE1353006B7F87 /* WXBrowserImageModule.h */,
+				B31124BF1EBE1353006B7F87 /* WXBrowserImageModule.m */,
+				B31124C01EBE1353006B7F87 /* WXEventModule.h */,
+				B31124C11EBE1353006B7F87 /* WXEventModule.m */,
+				B31124C21EBE1353006B7F87 /* WXHTMLParserModule.h */,
+				B31124C31EBE1353006B7F87 /* WXHTMLParserModule.m */,
+				B31124C41EBE1353006B7F87 /* WXImgLoaderDefaultImpl.h */,
+				B31124C51EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m */,
+				B31124C61EBE1353006B7F87 /* WXLogModule.h */,
+				B31124C71EBE1353006B7F87 /* WXLogModule.m */,
+				B31124C81EBE1353006B7F87 /* WXShareModule.h */,
+				B31124C91EBE1353006B7F87 /* WXShareModule.m */,
+			);
+			name = WeexModule;
+			path = Jiandan/WeexModule;
+			sourceTree = SOURCE_ROOT;
 		};
 		D6D7771A93FFA3B2847A8354 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -211,6 +223,7 @@
 			files = (
 				8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */,
 				8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */,
+				B31124D11EBE1368006B7F87 /* jandan.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,17 +282,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A9CFED71EA49DE700B4894F /* WXEventModule.m in Sources */,
 				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
-				8A17DE241EA76EED00847A88 /* WXBrowserImageModule.m in Sources */,
+				B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */,
+				B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */,
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
-				8A9CFEDA1EA4CABF00B4894F /* WXHTMLParserModule.m in Sources */,
-				8AFF9D301EBB338100D25F8E /* WXShareModule.m in Sources */,
 				8A9CFEC01EA4735100B4894F /* main.m in Sources */,
+				B31124CA1EBE1353006B7F87 /* WXBrowserImageModule.m in Sources */,
 				8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */,
+				B31124CB1EBE1353006B7F87 /* WXEventModule.m in Sources */,
+				B31124CC1EBE1353006B7F87 /* WXHTMLParserModule.m in Sources */,
 				8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */,
-				8A17DE211EA709B100847A88 /* WXImgLoaderDefaultImpl.m in Sources */,
-				8AD3BBC71EBC2AFD00637983 /* WXLogModule.m in Sources */,
+				B31124CD1EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3B9X46F744;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leo.jandan;

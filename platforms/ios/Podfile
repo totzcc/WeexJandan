@@ -9,6 +9,7 @@ target 'Jiandan' do
     pod 'MWPhotoBrowser', '~> 2.1.2'
     pod 'NullSafe', '~> 1.2.2'
     pod 'GCDWebServer', '~> 3.3.3'
+    pod 'SSZipArchive', '~> 1.8.1'
     pod 'UMengAnalytics-NO-IDFA'
     pod 'GrowingIO'
 end

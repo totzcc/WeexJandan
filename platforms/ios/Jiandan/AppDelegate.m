@@ -13,6 +13,7 @@
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <GrowingIO/Growing.h>
+#import <SSZipArchive/SSZipArchive.h>
 #import "DataUtil.h"
 #import "AppDelegate.h"
 #import "WXEventModule.h"
@@ -22,10 +23,10 @@
 #import "WXShareModule.h"
 #import "WXLogModule.h"
 
-#define HTMLServer @"http://svn.longxipu.cn:8090/?url=%@"
-//#define HTMLServer @"http://192.168.199.200:8090/?url=%@"
+#define ZIPFileOnline @"http://app-file-us.oss-us-west-1.aliyuncs.com/weex/jandan/1.0.1/jandan.zip"
+#define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
-@property (nonatomic, strong) NSString *mainURL;
+@property (nonatomic, strong) NSURL *mainURL;
 @property (nonatomic, strong) GCDWebServer *webServer;
 @end
 
@@ -54,15 +55,9 @@
     [WXSDKEngine registerModule:@"log" withClass:[WXLogModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
-#ifdef DEBUG
-    self.mainURL = @"http://192.168.199.200:12580/dist/native/index.js";
-#else
-    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/1.0.1/dist/native/index.js";
-#endif
-//    self.mainURL = @"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/1.0.1/dist/native/index.js";
-    self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
-    [self checkNetwork];
     
+    
+    [self loadMainBundleJS];
     self.webServer = [[GCDWebServer alloc] init];
     [GCDWebServer setLogLevel:WXLogLevelError];
     [self.webServer addDefaultHandlerForMethod:@"GET"
@@ -81,20 +76,66 @@
     }
     return NO;
 }
-
-- (void) checkNetwork {
+- (void) loadMainBundleJS{
+    if (self.window.rootViewController == nil) {
+        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:nil];
+    }
+#if DEBUG
+    self.mainURL = [NSURL URLWithString:@"http://127.0.0.1:12580/dist/native/index.js"];
     [SVProgressHUD show];
-    [[AFHTTPSessionManager manager] HEAD:self.mainURL parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+    [[AFHTTPSessionManager manager] HEAD:self.mainURL.absoluteString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
         [SVProgressHUD dismiss];
-        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:[NSURL URLWithString:self.mainURL]];
+        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
         [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            [self checkNetwork];
+            [self loadMainBundleJS];
         }]];
         [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
     }];
+#else
+    
+    NSString *weexFileDir = [NSString stringWithFormat:@"%@/Documents/weex", NSHomeDirectory()];
+    self.mainURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/index.js", weexFileDir]];
+    
+    [SVProgressHUD show];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+        
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
+        NSDictionary *headers =  response.allHeaderFields;
+        NSString *contentLength = headers[@"Content-Length"];
+        NSString *zipSize = [[NSUserDefaults standardUserDefaults] objectForKey:ZIPFileOnlineSize];
+        if (![zipSize isEqualToString:contentLength]) {
+            [[manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ZIPFileOnline]] progress:^(NSProgress * _Nonnull downloadProgress) {
+                //
+            } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+                NSString *cachePath= NSTemporaryDirectory();
+                NSString *fileName= [cachePath stringByAppendingPathComponent:response.suggestedFilename];
+                return [NSURL fileURLWithPath:fileName];
+            } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+                [[NSUserDefaults standardUserDefaults] setObject:contentLength forKey:ZIPFileOnlineSize];
+                
+                
+                [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:nil];
+                [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
+                [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
+                [SVProgressHUD dismiss];
+                [self loadMainBundleJS];
+            }] resume];
+        } else {
+            self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+        [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            [self loadMainBundleJS];
+        }]];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    }];
+#endif
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -6,10 +6,7 @@ module.exports = {
 		return baseURL + jsURL
 	},
 	image(imgURL) {
-		var bundleUrl = weex.config.bundleUrl;
-		var baseURL = bundleUrl.substring(0, bundleUrl.lastIndexOf("dist")) + "resources/"
-		return baseURL + imgURL + '?t=' + new Date().getTime()
-//		return baseURL + imgURL
+		return "http://app-file-us.oss-us-west-1.aliyuncs.com/weex/jandan/1.0.1/resources/" + imgURL;
 	},
 	params(key) {
 		var bundleUrl = weex.config.bundleUrl;
