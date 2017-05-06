@@ -20,7 +20,6 @@
 		B31124CD1EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C51EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m */; };
 		B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C71EBE1353006B7F87 /* WXLogModule.m */; };
 		B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C91EBE1353006B7F87 /* WXShareModule.m */; };
-		B31124D11EBE1368006B7F87 /* jandan.zip in Resources */ = {isa = PBXBuildFile; fileRef = B31124D01EBE1368006B7F87 /* jandan.zip */; };
 		F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		B31124C71EBE1353006B7F87 /* WXLogModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLogModule.m; sourceTree = "<group>"; };
 		B31124C81EBE1353006B7F87 /* WXShareModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareModule.h; sourceTree = "<group>"; };
 		B31124C91EBE1353006B7F87 /* WXShareModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareModule.m; sourceTree = "<group>"; };
-		B31124D01EBE1368006B7F87 /* jandan.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = jandan.zip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,6 @@
 		8A9CFEB21EA4735100B4894F = {
 			isa = PBXGroup;
 			children = (
-				B31124D01EBE1368006B7F87 /* jandan.zip */,
 				8A9CFEBD1EA4735100B4894F /* Jiandan */,
 				8A9CFEBC1EA4735100B4894F /* Products */,
 				AFAEDDCE6A63F112E812FF61 /* Pods */,
@@ -223,7 +220,6 @@
 			files = (
 				8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */,
 				8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */,
-				B31124D11EBE1368006B7F87 /* jandan.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
