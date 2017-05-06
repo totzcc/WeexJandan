@@ -101,7 +101,7 @@
     
     [SVProgressHUD show];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+    [manager HEAD:ZIPFileOnline parameters:@{@"t":[NSString stringWithFormat:@"%f", [[NSDate new] timeIntervalSinceNow]]} success:^(NSURLSessionDataTask * _Nonnull task) {
         
         NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
         NSDictionary *headers =  response.allHeaderFields;
