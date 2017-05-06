@@ -23,7 +23,7 @@
 #import "WXShareModule.h"
 #import "WXLogModule.h"
 
-#define ZIPFileOnline @"http://app-file-us.oss-us-west-1.aliyuncs.com/weex/jandan/1.0.1/jandan.zip"
+#define ZIPFileOnline @"http://images-file.oss-cn-hangzhou.aliyuncs.com/jandan.zip"
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
 @property (nonatomic, strong) NSURL *mainURL;
