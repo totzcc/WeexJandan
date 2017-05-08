@@ -23,7 +23,7 @@
 #import "WXShareModule.h"
 #import "WXLogModule.h"
 
-#define ZIPFileOnline @"http://images-file.oss-cn-hangzhou.aliyuncs.com/jandan.zip"
+#define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
 @property (nonatomic, strong) NSURL *mainURL;
@@ -34,6 +34,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"%@", ZIPFileOnline);
     UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
     [MobClick startWithConfigure:UMConfigInstance];
     [MobClick event:@"didFinishLaunchingWithOptions"];
@@ -101,7 +102,7 @@
     
     [SVProgressHUD show];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager HEAD:ZIPFileOnline parameters:@{@"t":[NSString stringWithFormat:@"%f", [[NSDate new] timeIntervalSinceNow]]} success:^(NSURLSessionDataTask * _Nonnull task) {
+    [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
         
         NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
         NSDictionary *headers =  response.allHeaderFields;
@@ -113,16 +114,17 @@
             } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
                 NSString *cachePath= NSTemporaryDirectory();
                 NSString *fileName= [cachePath stringByAppendingPathComponent:response.suggestedFilename];
+                [[NSFileManager defaultManager] removeItemAtPath:fileName error:nil];
                 return [NSURL fileURLWithPath:fileName];
             } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
                 [[NSUserDefaults standardUserDefaults] setObject:contentLength forKey:ZIPFileOnlineSize];
                 
-                
-                [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:nil];
+                NSError *deleteFileError = nil;
+                [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:&deleteFileError];
                 [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
                 [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
                 [SVProgressHUD dismissWithDelay:1 completion:^{
-                    [self loadMainBundleJS];
+                    self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
                 }];
             }] resume];
         } else {
