@@ -69,7 +69,7 @@
 		methods:{
 			onrefresh(){
 				this.showRefresh = 'show'
-				this.page = 1
+				this.page = 2
 				jandan.article(this.page).then((datalist) => {
 					this.datalist = datalist
 					this.showRefresh = 'hide'
