@@ -121,8 +121,9 @@
                 [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:nil];
                 [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
                 [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
-                [SVProgressHUD dismiss];
-                [self loadMainBundleJS];
+                [SVProgressHUD dismissWithDelay:1 completion:^{
+                    [self loadMainBundleJS];
+                }];
             }] resume];
         } else {
             self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];

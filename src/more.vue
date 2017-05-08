@@ -90,7 +90,6 @@
 				if(item) {
 					item.isRead = true
 					jandan.makeRead(item.text)
-//					browser.browserWeb(item.href,true)
 					storage.setItem('article-detail',JSON.stringify(item), ()=>{
 						navigator.push({url:config.js('article-detail.js')})
 					})
@@ -100,7 +99,6 @@
 				navigator.pop({},()=>{})
 			},
 			naviBarRightItemClick(e){
-				console.log('naviBarRightItemClick')
 				navigator.push({url:config.js('category-index.js')},()=>{})
 			}
 		}
