@@ -27,7 +27,7 @@
 				</div>
 			</cell>
 			<cell>
-				<div class="item" style="align-items: center;justify-content: center;" @click="more">
+				<div style="align-items: center;justify-content: center; padding: 20px; background-color: #FFFFFF; margin-top: 44px; margin-bottom: 44px;" @click="more">
 					<text>更多有趣文章</text>
 				</div>
 			</cell>
