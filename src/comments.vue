@@ -28,14 +28,14 @@
 		    				</div>
 		    				<div style="flex-direction: row; justify-content: space-between; border-top-width: 1; border-color: #e3e3e3; border-style: dashed; margin-top: 20px;">
 		    					<div style="flex-direction: row; justify-content: center; align-items: center;">
-		    						<text style="color: orangered;" @click="vote" type="1">OO</text>
-			    					<text style="color: #999999;" @click="vote" type="1">[{{item.support}}]</text>
-			    					<text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0">XX</text>
-			    					<text style="color: #999999;" @click="vote" type="0">[{{item.unsupport}}]</text>
+		    						<text style="color: orangered;" @click="vote" type="1" :item="item">OO</text>
+			    					<text style="color: #999999;" @click="vote" type="1" :item="item">[{{item.support}}]</text>
+			    					<text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0" :item="item">XX</text>
+			    					<text style="color: #999999;" @click="vote" type="0" :item="item">[{{item.unsupport}}]</text>
 		    					</div>
-		    					<div style="flex-direction: row; justify-content: center; align-items: center;" @click="reply" :item="item">
+		    					<!--<div style="flex-direction: row; justify-content: center; align-items: center;" @click="reply" :item="item">
 			    					<image :src="config.image('reply.png')" style="width: 50px; height: 50px;"></image>
-		    					</div>
+		    					</div>-->
 		    				</div>
 	    				</div>
 	    			</cell>
@@ -56,7 +56,7 @@
 	const storage = weex.requireModule('storage')
 	const modal = weex.requireModule('modal')
 	import config from './config'
-	import jandan from './services/jandan'
+	import jandanComments from './services/jandan-comments'
 	module.exports = {
 		data(){
 			return{
@@ -66,7 +66,8 @@
 				datalist:[],
 				detail:{
 					title:'',
-					url:''
+					href:'',
+					postId:''
 				},
 				page:undefined
 			}
@@ -95,27 +96,46 @@
 		methods:{
 			onrefresh(){
 				this.showRefresh = 'show'
-				jandan.comments(this.detail.href, this.page).then((result) =>{
+				jandanComments.comments(this.detail.href, this.page).then((result) =>{
 					if(result.maxPage) {
 						this.page = result.maxPage
 					}
 					this.datalist = result.datalist
+					this.detail.postId = result.postId
 					this.showRefresh = 'hide'
+					console.log('postId=' + this.detail.postId)
 				})
 			},
 			onloading(){
 				this.page -= 1
 				this.showLoading = 'show'
-				jandan.comments(this.detail.href, this.page).then((result) =>{
+				jandanComments.comments(this.detail.href, this.page).then((result) =>{
 					this.datalist = this.datalist.concat(result.datalist)
 					this.showLoading = 'hide'
 				})
 			},
 			vote(e){
-				modal.toast({message:'研发中',duration:1})
+				var item = e.target.attr.item
+				const voteType = e.target.attr.type
+				jandanComments.vote(item.id, voteType).then((res) => {
+					if(res.error == 0) {
+						if(voteType == 1) {
+							item.support = parseInt(item.support) + 1
+						} else {
+							item.unsupport += parseInt(item.unsupport) + 1
+						}
+					} else {
+						modal.toast({message:res.msg,duration:1})		
+					}
+				})
 			},
 			reply(e){
-				modal.toast({message:'研发中',duration:1})
+				storage.setItem('REPLY_COMMENTS',JSON.stringify({
+					postId:this.detail.postId,
+					placeholder:'回复主题：' + this.detail.title
+				}),()=>{
+					navigator.push({url:config.js('comment-submit.js')})
+				})
 			},
 			naviBarLeftItemClick(){
 				navigator.pop({},()=>{})

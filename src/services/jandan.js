@@ -25,16 +25,12 @@ import config from '../config'
 storage.getItem('jokeVoteMaps',(res)=>{
 	if(res.result == 'success') {
 		jokeVoteMaps = JSON.parse(res.data)
-	} else {
-		jokeVoteMaps = {}
 	}
 })
 
 storage.getItem('readMaps',(res)=>{
 	if(res.result == 'success') {
 		readMaps = JSON.parse(res.data)
-	} else {
-		readMaps = {}
 	}
 })
 function makeRead(text){
@@ -58,86 +54,7 @@ module.exports = {
 			navigator.push({url:config.js('article-detail.js')})
 		})
 	},
-	comments(url, page){
-		return new Promise((resolve) => {
-			if(!page) {
-				this.commentsMaxPage(url).then((page)=>{
-					page = page.trim()
-					if(page) {
-						url = url + "/page-"+page+"#comments"
-					}
-					this.commentsList(url).then((datalist)=>{
-						resolve({maxPage:page,datalist:datalist})
-					})
-				})
-			} else {
-				this.commentsList(url + "/page-"+page+"#comments").then((datalist)=>{
-					resolve({datalist:datalist})
-				})
-			}
-		})
-	},
-	commentsList(url){
-		return new Promise((resolve)=>{
-			stream.fetch({
-				method: 'GET',
-				url: url,
-				type: 'text'
-			}, function(ret) {
-				html.css(ret.data,'.commentlist .row',(find) =>{
-					const datalist = []
-					find.forEach((value) => {
-						const obj = {}
-						html.css(value,'.author strong',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['author'] = parse.text
-							})
-						})
-						html.css(value,'.author small',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['time'] = parse.text
-							})
-						})
-						
-						html.css(value,'.text p',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['title'] = parse.text
-							})
-						})
-						html.css(value,'.vote span',(find) => {
-							html.parse(find[1], (parse) => {
-								obj['support'] = parse.text
-							})
-							html.parse(find[2], (parse) => {
-								obj['unsupport'] = parse.text
-							})
-						})
-						datalist.push(obj)
-					})
-					setTimeout(()=>{
-						resolve(datalist)
-					},200)
-				})
-			})
-		})
-	},
-	commentsMaxPage(url){
-		return new Promise((resolve) =>{
-			stream.fetch({
-				method: 'GET',
-				url: url,
-				type: 'text'
-			}, function(ret) {
-				html.css(ret.data,'.current-comment-page',(find) =>{
-					html.parse(find[0], function(data) {
-						var maxPage = data.text.replace('[', '')
-						maxPage = maxPage.replace(']', '')
-						resolve(maxPage)
-					})
-				})
-			})
-		})
-	},
+	
 	category(category, page) {
 		category = encodeURI(category)
 		return new Promise((resolve) => {
@@ -318,20 +235,6 @@ module.exports = {
 				setTimeout(()=>{
 					resolve(datalist)
 				},1000)
-			})
-		})
-	},
-	vote(jokeId, voteType){
-		jokeVoteMaps[jokeId] = voteType
-		storage.setItem('jokeVoteMaps',JSON.stringify(jokeVoteMaps))
-		return new Promise((resolve)=>{
-			stream.fetch({
-				method: 'POST',
-				url: 'http://jandan.net/jandan-vote.php',
-				type: 'json',
-				body:'id='+jokeId+'&vote_type='+ voteType
-			}, (ret) => {
-				resolve(ret.data)
 			})
 		})
 	},

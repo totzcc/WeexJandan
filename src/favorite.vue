@@ -15,7 +15,7 @@
 				<div class="item">
 					<image resize="cover" :src='item.img' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>
 					<div style="flex: 1;margin-left: 20px;justify-content: space-between;">
-						<text class="font-small" v-bind:style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.title}}</text>
+						<text style="color: #333333;">{{item.title}}</text>
 						<text class="item-author">{{item.author}}</text>
 					</div>
 				</div>

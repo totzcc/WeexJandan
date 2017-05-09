@@ -24,7 +24,7 @@ module.exports = {
 				}
 			}
 		} else {
-			favortesData.favortes.push({
+			favortesData.favortes.unshift({
 				href:href,
 				title:title,
 				img:img

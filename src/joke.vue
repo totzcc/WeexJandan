@@ -45,6 +45,7 @@
 <script>
 	import config from './config'
 	import jandan from './services/jandan'
+	import jandanComments from './services/jandan-comments'
 	import animation from './animation/animation'
 	const browser = weex.requireModule('browser')
 	const modal = weex.requireModule('modal')
@@ -99,7 +100,7 @@
 					return
 				}
 				item.vote = voteType
-				jandan.vote(item.id, voteType).then(res=>{
+				jandanComments.vote(item.id, voteType).then(res=>{
 					if(voteType == 1) {
 						item.support += 1
 					} else {
@@ -119,7 +120,7 @@
 					}
 					if(item.vote != 1) {
 						item.vote = 1
-						jandan.vote(item.id, 1).then(res=>{
+						jandanComments.vote(item.id, 1).then(res=>{
 							item.support += 1
 						})
 						setTimeout(()=>{
