@@ -12,7 +12,7 @@
 					<div v-if="!item.imgs">
 						<image resize="cover" style="background-color: #e3e3e3; width: 335px; height: 430px;" ></image>
 					</div>
-					<text>{{item.text}}</text>
+					<text>{{item.title}}</text>
 					<div style="justify-content:space-between; align-items: center; margin-top: 20px; flex-direction: row;">
 						<text>{{item.author}}</text>
 						<text v-if="item.imgs">({{item.imgs.length}})</text>

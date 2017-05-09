@@ -23,7 +23,7 @@
 		    						<text style="color: #999999; font-size: 20; margin-left: 20px;">{{item.time}}</text>
 		    					</div>
 		    					<div>
-		    						<text style="color: #333333; font-size: 30;">{{item.text}}</text>
+		    						<text style="color: #333333; font-size: 30;">{{item.title}}</text>
 		    					</div>
 		    				</div>
 		    				<div style="flex-direction: row; justify-content: space-between; border-top-width: 1; border-color: #e3e3e3; border-style: dashed; margin-top: 20px;">

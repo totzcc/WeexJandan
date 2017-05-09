@@ -4,7 +4,7 @@
 			<cell style="height: 30px;"></cell>
 			<cell v-for="item in datalist" @click="clickLike" :item="item">
 				<div class="item">
-					<text style="color: #333333;">{{item.text}}</text>
+					<text style="color: #333333;">{{item.title}}</text>
 					<div style="flex-direction: row; align-items: center; justify-content: space-between; margin-top: 5px; padding: 5px;" class="item-box">
 						<div>
 							<text style='color: #666666; font-size: 28;'>{{item.author}}</text>

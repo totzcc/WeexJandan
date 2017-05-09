@@ -1,32 +1,33 @@
-const stream = weex.requireModule('stream');
-const storage = weex.requireModule('storage');
-const html = weex.requireModule('html');
+const stream = weex.requireModule('stream')
+const storage = weex.requireModule('storage')
+const html = weex.requireModule('html')
+const navigator = weex.requireModule('navigator')
 
-const duanURL = 'http://jandan.net/duan';
-const duanPageURL = 'http://jandan.net/duan/page-{page}';
+const duanURL = 'http://jandan.net/duan'
+const duanPageURL = 'http://jandan.net/duan/page-{page}'
 
-const jokeURL = 'http://jandan.net/duan';
-const jokePageURL = 'http://jandan.net/duan/page-{page}';
+const jokeURL = 'http://jandan.net/duan'
+const jokePageURL = 'http://jandan.net/duan/page-{page}'
 
-const girlURL = 'http://jandan.net/ooxx';
-const girlPageURL = 'http://jandan.net/ooxx/page-{page}';
+const girlURL = 'http://jandan.net/ooxx'
+const girlPageURL = 'http://jandan.net/ooxx/page-{page}'
 
-const topURL = 'http://jandan.net/top';
-const topPageURL = 'http://jandan.net/top/page-{page}';
+const topURL = 'http://jandan.net/top'
+const topPageURL = 'http://jandan.net/top/page-{page}'
 
 const boringURL = "http://jandan.net/pic"
 const boringPageURL = "http://jandan.net/pic/page-{page}"
 var jokeVoteMaps = {}
 var readMaps = {}
-
 import md5 from './md5.js'
+import config from '../config'
 storage.getItem('jokeVoteMaps',(res)=>{
 	if(res.result == 'success') {
 		jokeVoteMaps = JSON.parse(res.data)
 	} else {
 		jokeVoteMaps = {}
 	}
-});
+})
 
 storage.getItem('readMaps',(res)=>{
 	if(res.result == 'success') {
@@ -34,7 +35,7 @@ storage.getItem('readMaps',(res)=>{
 	} else {
 		readMaps = {}
 	}
-});
+})
 function makeRead(text){
 	readMaps[md5(text)] = true
 	storage.setItem('readMaps',JSON.stringify(readMaps))
@@ -48,6 +49,11 @@ module.exports = {
 	},
 	isRead(text){
 		isRead(text)
+	},
+	toDetail(item){
+		storage.setItem('article-detail',JSON.stringify(item), ()=>{
+			navigator.push({url:config.js('article-detail.js')})
+		})
 	},
 	comments(url, page){
 		return new Promise((resolve) => {
@@ -92,7 +98,7 @@ module.exports = {
 						
 						html.css(value,'.text p',(find) => {
 							html.parse(find[0], (parse) => {
-								obj['text'] = parse.text
+								obj['title'] = parse.text
 							})
 						})
 						html.css(value,'.vote span',(find) => {
@@ -155,7 +161,7 @@ module.exports = {
 						})
 						html.css(value,'.title2 a',(find)=>{
 							html.parse(find[0],(parse)=>{
-								obj['text'] = parse.text
+								obj['title'] = parse.text
 								obj['isRead'] = isRead(parse.text)
 								obj['href'] = parse.href
 							})
@@ -178,7 +184,7 @@ module.exports = {
 			}, function(ret) {
 				
 				html.css(ret.data,'.tag-cloud thead tr th',(find) => {
-					const datalist = [];
+					const datalist = []
 					const trs = []
 					html.css(ret.data,'.tag-cloud tbody tr',(find) => {
 						find.forEach((value)=>{
@@ -240,7 +246,7 @@ module.exports = {
 							})
 							html.css(value,'.title2 a',(find)=>{
 								html.parse(find[0],(parse)=>{
-									obj['text'] = parse.text
+									obj['title'] = parse.text
 									obj['isRead'] = isRead(parse.text)
 									obj['href'] = parse.href
 								})
@@ -269,9 +275,9 @@ module.exports = {
 						html.css(value, '.thumbs_b img',(find) => {
 							html.parse(find[0], (result) => {
 								if(result.src) {
-									obj['src'] = result.src
+									obj['img'] = result.src
 								} else {
-									obj['src'] = result['data-original']
+									obj['img'] = result['data-original']
 								}
 								datalist.push(obj)
 							})
@@ -309,7 +315,7 @@ module.exports = {
 				setTimeout(()=>{
 					resolve(datalist)
 				},1000)
-			});
+			})
 		})
 	},
 	vote(jokeId, voteType){
@@ -353,7 +359,7 @@ module.exports = {
 									maxPage: maxPage
 								})
 							}
-						});
+						})
 					})
 				}
 			},500)
@@ -398,12 +404,12 @@ module.exports = {
 						html.css(value, '.text .view_img_link', (list) => {
 							html.css(value, '.text p', (list) => {
 								list.forEach((value, index) => {
-									obj['text'] = ''
+									obj['title'] = ''
 									html.parse(value, (value) => {
 										if(value.text) {
-											obj['text'] += value.text.replace("[查看原图]","")
+											obj['title'] += value.text.replace("[查看原图]","")
 											if(index != list.length - 1) {
-												obj['text'] += "\n"
+												obj['title'] += "\n"
 											}
 										}
 									})
@@ -429,7 +435,7 @@ module.exports = {
 										}
 									})
 								})
-							});
+							})
 						})
 						html.css(value, '.vote span', (list) => {
 							html.parse(list[1], (value) => {
@@ -449,7 +455,7 @@ module.exports = {
 						resolve(datalist)
 					}, 500)
 				})
-			});
+			})
 		})
 	},
 	maxPage(type) {
@@ -476,8 +482,8 @@ module.exports = {
 						resolve(maxPage)
 					})
 				})
-			});
+			})
 
-		});
+		})
 	}
 }

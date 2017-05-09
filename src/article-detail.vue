@@ -10,6 +10,10 @@
 			<image :src="config.image('comment.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
 			<text style="position: absolute; right: -20; top: 0; font-size: 24px; color: #666666;">{{detail.comments || 0}}</text>
 		</div>
+		<div @click="like" style="position: fixed; left: 25; bottom: 65;">
+			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
+			<image :src="likePng" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
+		</div>
 		<div @click="more" style="position: fixed; right: 40; bottom: 65;">
 			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('share.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
@@ -24,13 +28,17 @@
 	const modal = weex.requireModule('modal')
 	const share = weex.requireModule('share')
 	import config from './config'
+	import favorite from './services/jandan-favorite'
 	module.exports = {
 		data(){
 			return {
 				config:config,
 				src:"http://localhost:9090/",
+				likePng:config.image('like-gray.png'),
 				detail:{
-					url:''
+					href:'',
+					title:'',
+					isLike:false
 				}
 			}
 		},
@@ -41,6 +49,8 @@
 			storage.getItem('article-detail',(ret)=>{
 				this.detail = JSON.parse(ret.data)
 				this.src = "http://localhost:9090/?url=" + this.detail.href
+				this.detail.isLike = favorite.isLike(this.detail.href)
+				this.like()
 			})
 			config.event('article-detail')
 		},
@@ -54,7 +64,17 @@
 			more(e){
 				share.share(this.detail.href,this.detail.title)
 				config.log('share')
-			}
+			},
+			like(e){
+				if(e) {
+					this.detail.isLike = favorite.toggleLike(this.detail.href, this.detail.title, this.detail.img)
+				}
+				if(this.detail.isLike == true) {
+					this.likePng = config.image('like.png')
+				} else {
+					this.likePng = config.image('like-gray.png')
+				}
+			},
 		}
 	}
 </script>
