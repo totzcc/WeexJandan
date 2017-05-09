@@ -145,7 +145,7 @@ module.exports = {
 		storage.setItem(JANDAN_USER_INFO,JSON.stringify(userInfo))
 	},
 	getUserInfo(){
-		return Promise((resolve)=>{
+		return new Promise((resolve)=>{
 			setTimeout(()=>{
 				resolve(userInfo)
 			},500)
