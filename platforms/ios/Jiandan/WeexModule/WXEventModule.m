@@ -14,19 +14,19 @@
 WX_EXPORT_METHOD(@selector(openURL:))
 WX_EXPORT_METHOD(@selector(openURL:params:))
 - (void)openURL:(NSString *)url {
-    NSString *newURL = url;
-    if ([url hasPrefix:@"//"]) {
-        newURL = [NSString stringWithFormat:@"http:%@", url];
-    } else if (![url hasPrefix:@"http"]) {
-        // relative path
-        newURL = [NSURL URLWithString:url relativeToURL:weexInstance.scriptURL].absoluteString;
-    }
-    WXBaseViewController *controller = [[WXBaseViewController alloc] initWithSourceURL:[NSURL URLWithString:newURL]];
-    [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];
+    [self openURL:url params:nil];
 }
 
 - (void) openURL:(NSString *)url params:(NSDictionary *) params {
-    NSLog(@"%@", url);
-    NSLog(@"%@", params);
+    NSString *newURL = url;
+    if ([url hasPrefix:@"//"]) {
+        newURL = [NSString stringWithFormat:@"http:%@", url];
+    }
+    if ([url hasPrefix:@"http"]) {
+        WXBaseViewController *controller = [[WXBaseViewController alloc] initWithSourceURL:[NSURL URLWithString:newURL]];
+        [[weexInstance.viewController navigationController] pushViewController:controller animated:YES];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
 }
 @end
