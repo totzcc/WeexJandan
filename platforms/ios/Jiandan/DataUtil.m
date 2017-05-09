@@ -25,7 +25,7 @@
     [html appendString:@"<head>\n"];
     [html appendString:@"<meta charset=\"UTF-8\">\n"];
     [html appendString:@"<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;\">\n"];
-    [html appendString:@"<link rel=\"stylesheet\" href=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.css\" />\n"];
+    [html appendString:@"<link rel=\"stylesheet\" href=\"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/resources/read.css\" />\n"];
     [html appendString:@"<script src=\"https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js\"></script>\n"];
     [html appendString:@"<script src=\"//cdn.jandan.net/static/js/jquery.lazyload.min.js?v=201603020\"></script>\n"];
     [html appendString:@"</head>\n"];
@@ -37,7 +37,7 @@
     [html appendString:[postInfo innerHTML]];
     [html appendString:[entry innerHTML]];
     [html appendString:@"\n"];
-    [html appendString:@"<script src=\"http://wl-store-0001.oss-cn-beijing.aliyuncs.com/html/weex/jandan/resources/read.js\"></script>\n"];
+    [html appendString:@"<script src=\"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/resources/read.js\"></script>\n"];
     [html appendString:@"</body>\n"];
     [html appendString:@"</html>\n"];
     [self writeCache:url html:html];
