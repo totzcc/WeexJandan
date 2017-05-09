@@ -69,7 +69,7 @@
 					href:'',
 					postId:''
 				},
-				page:undefined
+				page:null
 			}
 		},
 		computed:{
@@ -113,6 +113,9 @@
 					this.datalist = this.datalist.concat(result.datalist)
 					this.showLoading = 'hide'
 				})
+				if(this.page <= 1) {
+					this.page = null
+				}
 			},
 			vote(e){
 				var item = e.target.attr.item

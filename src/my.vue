@@ -1,11 +1,11 @@
 <template>
-	<list>
+	<list @viewappear="viewappear">
 		<cell style="height: 40px;"></cell>
 		<cell>
 			<div style="align-items: center; justify-content: center; margin: 50px;">
 				<image style="width: 200px; height: 200px; border-radius: 100px;" :src="config.image('icon.png')"></image>
 				<text style="margin-top: 20px; color: #999999; font-size: 28;">v1.0.1</text>
-				<div v-if="userInfo" style="margin-top: 10px;">
+				<div v-if="userInfoStatus == 1" style="margin-top: 10px;" @click="setUserInfo">
 					<div style="flex-direction: row;">
 						<text class="left-title">昵称: </text>
 						<text class="right-title">{{userInfo.author}}</text>
@@ -14,6 +14,9 @@
 						<text class="left-title">邮箱: </text>
 						<text class="right-title">{{userInfo.email}}</text>
 					</div>
+				</div>
+				<div style="margin-top: 20px;" v-if="userInfoStatus == 2" @click="setUserInfo">
+					<text class="left-title">点击设置昵称</text>
 				</div>
 			</div>
 		</cell>
@@ -52,13 +55,12 @@
 				cells:['我的收藏','反馈Bug & 和我联系'],
 				config:config,
 				userInfo:null,
+				userInfoStatus:0,
 				right:config.image('right.png')
 			}
 		},
 		created(){
-			jandanComments.getUserInfo().then((userInfo)=>{
-				this.userInfo = userInfo
-			})
+			this.viewappear()
 		},
 		methods:{
 			click(e){
@@ -70,6 +72,21 @@
 						browser.browserWeb('http://m.weibo.cn/status/4105460950805404')
 					break;
 				}
+			},
+			setUserInfo(e){
+				navigator.push({url:config.js('my-info.js')},()=>{})
+			},
+			viewappear(e){
+				console.log('viewappear')
+				jandanComments.getUserInfo().then((userInfo)=>{
+					this.userInfo = userInfo
+					if(this.userInfo.author == "") {
+						this.userInfoStatus = 2;
+					} else {
+						this.userInfoStatus = 1
+					}
+					console.log(this.userInfo)
+				})
 			}
 		}
 	}

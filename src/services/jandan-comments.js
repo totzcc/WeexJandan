@@ -4,7 +4,7 @@ const storage = weex.requireModule('storage')
 const html = weex.requireModule('html')
 import config from '../config'
 
-var userInfo = {author:'小小小不点',email:'totzcc@163.com'}
+var userInfo = {author:'',email:''}
 storage.getItem(JANDAN_USER_INFO,(res)=>{
 	if(res.result == 'success') {
 		userInfo = JSON.parse(res.data)
@@ -14,96 +14,96 @@ module.exports = {
 	comments(url, page){
 		return new Promise((resolve) => {
 			if(!page) {
-				this.commentsMaxPage(url).then((page)=>{
-					page = page.trim()
-					if(page) {
-						url = url + "/page-"+page+"#comments"
-					}
-					this.commentsList(url).then((result)=>{
-						resolve({maxPage:page,datalist:result.comments, postId:result.postId})
+				this.request(url).then((html)=>{
+					this.commentsMaxPage(html).then((page)=>{
+						page = page.trim()
+						this.commentsList(html).then((result)=>{
+							resolve({maxPage:page,datalist:result.comments, postId:result.postId})
+						})
 					})
 				})
 			} else {
-				this.commentsList(url + "/page-"+page+"#comments").then((result)=>{
-					resolve({datalist:result.comments, postId:result.postId})
+				this.request(url + "/page-"+page+"#comments").then((html)=>{
+					this.commentsList(html).then((result)=>{
+						resolve({datalist:result.comments, postId:result.postId})
+					})
 				})
 			}
 		})
 	},
-	commentsList(url){
+	commentsList(htmlString){
 		return new Promise((resolve)=>{
-			stream.fetch({
-				method: 'GET',
-				url: url,
-				type: 'text'
-			}, function(ret) {
-				var result = {
-					postId:'',
-					comments:[]
-				}
-				html.css(ret.data, '.current-post', (find) => {
-					html.parse(find[0], (parse) => {
-						result.postId = parse.id
-					})
+			var result = {
+				postId:'',
+				comments:[]
+			}
+			html.css(htmlString, '.current-post', (find) => {
+				html.parse(find[0], (parse) => {
+					result.postId = parse.id
 				})
-				html.css(ret.data,'.commentlist .row',(find) =>{
-					const datalist = []
-					find.forEach((value) => {
-						const obj = {}
-						html.css(value,'.author strong',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['author'] = parse.text
-							})
+			})
+			html.css(htmlString,'.commentlist .row',(find) =>{
+				const datalist = []
+				find.forEach((value) => {
+					const obj = {}
+					html.css(value,'.author strong',(find) => {
+						html.parse(find[0], (parse) => {
+							obj['author'] = parse.text
 						})
-						html.css(value,'.author small',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['time'] = parse.text
-							})
-						})
-						
-						html.css(value,'.text p',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['title'] = parse.text
-							})
-						})
-						html.css(value,'.righttext a',(find) => {
-							html.parse(find[0], (parse) => {
-								obj['id'] = parse.text
-							})
-						})
-						
-						html.css(value,'.vote span',(find) => {
-							html.parse(find[1], (parse) => {
-								obj['support'] = parse.text
-							})
-							html.parse(find[2], (parse) => {
-								obj['unsupport'] = parse.text
-							})
-						})
-						datalist.push(obj)
 					})
-					setTimeout(()=>{
-						result.comments = datalist;
-						resolve(result)
-					},200)
+					html.css(value,'.author small',(find) => {
+						html.parse(find[0], (parse) => {
+							obj['time'] = parse.text
+						})
+					})
+					
+					html.css(value,'.text p',(find) => {
+						html.parse(find[0], (parse) => {
+							obj['title'] = parse.text
+						})
+					})
+					html.css(value,'.righttext a',(find) => {
+						html.parse(find[0], (parse) => {
+							obj['id'] = parse.text
+						})
+					})
+					
+					html.css(value,'.vote span',(find) => {
+						html.parse(find[1], (parse) => {
+							obj['support'] = parse.text
+						})
+						html.parse(find[2], (parse) => {
+							obj['unsupport'] = parse.text
+						})
+					})
+					datalist.push(obj)
+				})
+				setTimeout(()=>{
+					result.comments = datalist;
+					resolve(result)
+				},200)
+			})
+		})
+	},
+	commentsMaxPage(htmlString){
+		return new Promise((resolve) =>{
+			html.css(htmlString,'.current-comment-page',(find) =>{
+				html.parse(find[0], function(data) {
+					var maxPage = data.text.replace('[', '')
+					maxPage = maxPage.replace(']', '')
+					resolve(maxPage)
 				})
 			})
 		})
 	},
-	commentsMaxPage(url){
+	request(url){
 		return new Promise((resolve) =>{
 			stream.fetch({
 				method: 'GET',
 				url: url,
 				type: 'text'
 			}, function(ret) {
-				html.css(ret.data,'.current-comment-page',(find) =>{
-					html.parse(find[0], function(data) {
-						var maxPage = data.text.replace('[', '')
-						maxPage = maxPage.replace(']', '')
-						resolve(maxPage)
-					})
-				})
+				resolve(ret.data)
 			})
 		})
 	},
@@ -146,9 +146,12 @@ module.exports = {
 	},
 	getUserInfo(){
 		return new Promise((resolve)=>{
-			setTimeout(()=>{
+			storage.getItem(JANDAN_USER_INFO,(res)=>{
+				if(res.result == 'success') {
+					userInfo = JSON.parse(res.data)
+				}
 				resolve(userInfo)
-			},500)
+			})
 		})
 	}
 }
