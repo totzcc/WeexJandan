@@ -1,5 +1,6 @@
 const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
+const browser = weex.requireModule('browser')
 const html = weex.requireModule('html')
 const navigator = weex.requireModule('navigator')
 
@@ -51,6 +52,8 @@ module.exports = {
 		isRead(text)
 	},
 	toDetail(item){
+//		item.href = item.href.replace("http://jandan.net","http://i.jandan.net")
+//		browser.browserWeb(item.href,true)
 		storage.setItem('article-detail',JSON.stringify(item), ()=>{
 			navigator.push({url:config.js('article-detail.js')})
 		})
