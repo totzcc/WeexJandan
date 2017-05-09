@@ -126,8 +126,6 @@ module.exports = {
 		})
 	},
 	vote(jokeId, voteType){
-		jokeVoteMaps[jokeId] = voteType
-		storage.setItem('jokeVoteMaps',JSON.stringify(jokeVoteMaps))
 		return new Promise((resolve)=>{
 			stream.fetch({
 				method: 'POST',
