@@ -34,8 +34,10 @@ npm run dev
 ```
 pod install
 ```
+
 ## 小技巧
   - Debug 模式下采用在线的 js 地址，按 option + command + z (摇一摇) 可以重新加载当前 weex 页面
+  
   - Release 模式下采用 CDN weex压缩包，启动 App 时下载到本地并解压到 document 目录，加载本地的 weex文件
 
 ![项目演示](http://i2.muimg.com/588926/68762976de9614db.gif)
