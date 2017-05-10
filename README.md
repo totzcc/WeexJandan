@@ -36,3 +36,57 @@ pod install
 ```
 
 ![项目演示](http://i2.muimg.com/588926/68762976de9614db.gif)
+
+
+
+
+
+### 上架中遇到的问题
+- 2017年5月10日 我将js文件打包成了zip 但是因为我的资源zip压缩包是在国内，苹果人员审核的时候下载资源文件失败了？？这怪我咯？？我没修改代码直接又提交了一次。让他再试试
+
+```
+2017年5月10日 上午10:16
+发件人 Apple
+2. 1 Performance: App Completeness
+Guideline 2.1 - Performance
+
+
+We discovered one or more bugs in your app when reviewed on iPhone running iOS 10.3.1 on Wi-Fi connected to an IPv6 network.
+
+Specifically, the app was unable to load contents after launch.
+
+Please see attached screenshots for details.
+
+Next Steps
+
+To resolve this issue, please run your app on a device while connected to an IPv6 network (all apps must support IPv6) to identify any issues, then revise and resubmit your app for review.
+
+If we misunderstood the intended behavior of your app, please reply to this message in Resolution Center to provide information on how these features were intended to work.
+
+For new apps, uninstall all previous versions of your app from a device, then install and follow the steps to reproduce the issue. For updates, install the new version as an update to the previous version, then follow the steps to reproduce the issue.
+
+Resources
+
+For information about supporting IPv6 Networks, please review Supporting IPv6 DNS64/NAT64 Networks and About Networking.
+
+```
+
+- 2017年5月9日 说我的App 和Web应用没啥区别，没用到原生的东西？怀疑是因为js文件是在线的。所以看起来像Web应用
+
+```
+2017年5月9日 上午6:24
+发件人 Apple
+4. 2 Design: Minimum Functionality
+Guideline 4.2.2 - Design
+
+
+We noticed that your app only includes links, images, or content aggregated from the Internet with limited or no native iOS functionality. We understand that this content may be curated from the web specifically for your users, but since it does not sufficiently differ from a mobile web browsing experience, it is not appropriate for the App Store.
+
+Next Steps
+
+Please revise your app concept to provide a more robust user experience by including native iOS features and functionality.
+
+We understand that there are no hard and fast rules to define useful or entertaining, but Apple and Apple customers expect apps to provide a really great user experience. Apps should provide valuable utility or entertainment, draw people in by offering compelling capabilities or content, or enable people to do something they couldn't do before or in a way they couldn't do it before.
+
+
+```
