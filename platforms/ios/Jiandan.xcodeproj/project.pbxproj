@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */; };
+		8A2D782E1EC53A8800D81AF2 /* jandan.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8A2D782D1EC53A8800D81AF2 /* jandan.zip */; };
 		8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */; };
 		8A9CFEC01EA4735100B4894F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEBF1EA4735100B4894F /* main.m */; };
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
@@ -31,6 +32,7 @@
 		87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
+		8A2D782D1EC53A8800D81AF2 /* jandan.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = jandan.zip; sourceTree = "<group>"; };
 		8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Orientation.h"; path = "Jiandan/UIViewController+Orientation.h"; sourceTree = SOURCE_ROOT; };
 		8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Orientation.m"; path = "Jiandan/UIViewController+Orientation.m"; sourceTree = SOURCE_ROOT; };
 		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 		8A9CFEB21EA4735100B4894F = {
 			isa = PBXGroup;
 			children = (
+				8A2D782D1EC53A8800D81AF2 /* jandan.zip */,
 				8A9CFEBD1EA4735100B4894F /* Jiandan */,
 				8A9CFEBC1EA4735100B4894F /* Products */,
 				AFAEDDCE6A63F112E812FF61 /* Pods */,
@@ -218,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A2D782E1EC53A8800D81AF2 /* jandan.zip in Resources */,
 				8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */,
 				8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */,
 			);
