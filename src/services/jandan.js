@@ -18,6 +18,10 @@ const topPageURL = 'http://jandan.net/top/page-{page}'
 
 const boringURL = "http://jandan.net/pic"
 const boringPageURL = "http://jandan.net/pic/page-{page}"
+
+const drawingsURL = "http://jandan.net/drawings"
+const drawingsPageURL = "http://jandan.net/drawings/page-{page}"
+
 var jokeVoteMaps = {}
 var readMaps = {}
 import md5 from './md5.js'
@@ -48,8 +52,6 @@ module.exports = {
 		isRead(text)
 	},
 	toDetail(item){
-//		item.href = item.href.replace("http://jandan.net","http://i.jandan.net")
-//		browser.browserWeb(item.href,true)
 		storage.setItem('article-detail',JSON.stringify(item), ()=>{
 			navigator.push({url:config.js('article-detail.js')})
 		})
@@ -279,6 +281,8 @@ module.exports = {
 			requestURL = jokePageURL
 		} else if (type == 'boring'){
 			requestURL = boringPageURL
+		} else if (type == 'huashi'){
+			requestURL = drawingsPageURL;
 		} else {
 			requestURL = topPageURL
 		}
@@ -372,7 +376,9 @@ module.exports = {
 			requestURL = jokeURL
 		} else if(type == 'boring'){
 			requestURL = boringURL
-		} else {
+		} else if(type == 'huashi'){
+			requestURL = drawingsURL
+		}else {
 			requestURL = topURL
 		}
 		return new Promise(function(resolve, reject) {

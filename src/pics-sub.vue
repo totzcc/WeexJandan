@@ -62,6 +62,7 @@
 			}
 		},
 		created() {
+			this.type = config.params('type')
 			jandan.list(this.type).then((response)=>{
 				this.datalist = response.datalist
 				if(response.maxPage) {
