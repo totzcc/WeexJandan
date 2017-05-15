@@ -10,6 +10,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UMMobClick/MobClick.h>
 #import <HTMLReader/HTMLReader.h>
+#import <BaiduMobStat/BaiduMobStat.h>
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <GrowingIO/Growing.h>
@@ -23,7 +24,7 @@
 #import "WXShareModule.h"
 #import "WXLogModule.h"
 
-#define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
+#define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
 @property (nonatomic, strong) NSURL *mainURL;
@@ -34,7 +35,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"%@", ZIPFileOnline);
+    [[BaiduMobStat defaultStat] startWithAppId:@"fd52db7f54"];
+    [[BaiduMobStat defaultStat] logEvent:@"didFinishLaunchingWithOptions" eventLabel:@"启动"];
+    
     UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
     [MobClick startWithConfigure:UMConfigInstance];
     [MobClick event:@"didFinishLaunchingWithOptions"];
@@ -167,6 +170,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [MobClick event:@"applicationDidBecomeActive"];
+    [[BaiduMobStat defaultStat] logEvent:@"applicationDidBecomeActive" eventLabel:@"后台恢复"];
 }
 
 

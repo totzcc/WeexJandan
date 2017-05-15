@@ -62,7 +62,7 @@
 					this.maxPage = response.maxPage
 				}
 			})
-			config.event('girl')
+			config.event('girl','美女图')
 		},
 		methods: {
 			getUrlParam (key) {

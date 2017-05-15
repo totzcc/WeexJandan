@@ -12,4 +12,5 @@ target 'Jiandan' do
     pod 'SSZipArchive', '~> 1.8.1'
     pod 'UMengAnalytics-NO-IDFA'
     pod 'GrowingIO'
+    pod 'BaiduMobStat'
 end

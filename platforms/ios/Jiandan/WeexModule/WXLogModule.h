@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface WXLogModule : NSObject
-- (void) event:(NSString *) string;
+- (void) event:(NSString *) string label:(NSString *) label;
 @end

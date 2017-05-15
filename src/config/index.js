@@ -14,8 +14,8 @@ module.exports = {
 		var match = bundleUrl.match(reg)
 		return match && match[1]
 	},
-	event(id) {
-		log.event(id)
+	event(id,label) {
+		log.event(id,label)
 	},
 	toParams(obj) {
 		var param = ""
