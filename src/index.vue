@@ -17,7 +17,7 @@
 					icon: '',
 					image: config.image('article-normal.png'),
 					selectedImage: config.image('article-highlight.png'),
-//					src: config.js('my.js'),
+//					src: config.js('pics.js'),
 					src: config.js('article.js'),
 					visibility: 'visible',
 				},{

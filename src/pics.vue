@@ -1,7 +1,9 @@
 <template>
 	<div class="container">
 		<div style="margin-top: 40px; flex-direction: row; background-color: white;">
-			<div v-for="(v,i) in pics" :index="i" @click="click" style="flex: 1; align-items: center; justify-content: center; height: 88px; border-width: 1; border-color: #E3E3E3;"><text>{{v.title}}</text></div>
+			<div v-for="(v,i) in pics" :index="i" @click="click" style="flex: 1; align-items: center; justify-content: center; height: 88px; border-width: 1; border-color: #E3E3E3;">
+				<text :style="{color: v.visibility == 'hidden' ? '#000000' : '#D62119'}">{{v.title}}</text>
+			</div>
 		</div>
 		<embed v-for="(v,i) in pics" :src="v.src" :key="i" :style="{ visibility: v.visibility }" class="content"></embed>
 	</div>
@@ -23,11 +25,11 @@
 						src: config.js('pics-sub.js?type=huashi'),
 						visibility: 'hidden'
 					},
-//					{
-//						title: '妹子图',
-//						src: config.js('pics-sub.js?type=girl'),
-//						visibility: 'hidden'
-//					}
+					//					{
+					//						title: '妹子图',
+					//						src: config.js('pics-sub.js?type=girl'),
+					//						visibility: 'hidden'
+					//					}
 				]
 			}
 		},
@@ -36,7 +38,7 @@
 				this.select(e.target.attr.index)
 			},
 			select: function(index) {
-				for (var i=0; i < this.pics.length; i++) {
+				for(var i = 0; i < this.pics.length; i++) {
 					var item = this.pics[i];
 					if(index == i) {
 						item.visibility = 'visible'
