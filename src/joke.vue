@@ -74,7 +74,7 @@
 					this.maxPage = response.maxPage
 				}
 			})
-			config.event('joke')
+			config.event('joke','笑话')
 		},
 		methods: {
 			getUrlParam (key) {

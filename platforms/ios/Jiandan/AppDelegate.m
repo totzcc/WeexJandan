@@ -10,6 +10,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <UMMobClick/MobClick.h>
 #import <HTMLReader/HTMLReader.h>
+#import <BaiduMobStat/BaiduMobStat.h>
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <GrowingIO/Growing.h>
@@ -34,7 +35,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"%@", ZIPFileOnline);
+    [[BaiduMobStat defaultStat] startWithAppId:@"fd52db7f54"];
+    [[BaiduMobStat defaultStat] logEvent:@"didFinishLaunchingWithOptions" eventLabel:@"启动"];
+    
     UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
     [MobClick startWithConfigure:UMConfigInstance];
     [MobClick event:@"didFinishLaunchingWithOptions"];
@@ -82,7 +85,8 @@
         self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:nil];
     }
 #if DEBUG
-    self.mainURL = [NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"];
+//    self.mainURL = [NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"];
+    self.mainURL = [NSURL URLWithString:@"http://127.0.0.1:12580/dist/native/index.js"];
     [SVProgressHUD show];
     [[AFHTTPSessionManager manager] HEAD:self.mainURL.absoluteString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
         [SVProgressHUD dismiss];
@@ -99,45 +103,52 @@
     
     NSString *weexFileDir = [NSString stringWithFormat:@"%@/Documents/weex", NSHomeDirectory()];
     self.mainURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/index.js", weexFileDir]];
-    
-    [SVProgressHUD show];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
-        
-        NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
-        NSDictionary *headers =  response.allHeaderFields;
-        NSString *contentLength = headers[@"Content-Length"];
-        NSString *zipSize = [[NSUserDefaults standardUserDefaults] objectForKey:ZIPFileOnlineSize];
-        if (![zipSize isEqualToString:contentLength]) {
-            [[manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ZIPFileOnline]] progress:^(NSProgress * _Nonnull downloadProgress) {
-                //
-            } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-                NSString *cachePath= NSTemporaryDirectory();
-                NSString *fileName= [cachePath stringByAppendingPathComponent:response.suggestedFilename];
-                [[NSFileManager defaultManager] removeItemAtPath:fileName error:nil];
-                return [NSURL fileURLWithPath:fileName];
-            } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-                [[NSUserDefaults standardUserDefaults] setObject:contentLength forKey:ZIPFileOnlineSize];
-                
-                NSError *deleteFileError = nil;
-                [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:&deleteFileError];
-                [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
-                [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
-                [SVProgressHUD dismissWithDelay:1 completion:^{
-                    self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
-                }];
-            }] resume];
-        } else {
-            self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
-        [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-            [self loadMainBundleJS];
-        }]];
-        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
-    }];
+    NSString *zipSize = [[NSUserDefaults standardUserDefaults] objectForKey:ZIPFileOnlineSize];
+    if (zipSize == nil) {
+        [SSZipArchive unzipFileAtPath:[[NSBundle mainBundle] pathForResource:@"jandan" ofType:@"zip"] toDestination:weexFileDir];
+        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:ZIPFileOnlineSize];
+    } else {
+        [SVProgressHUD show];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
+            
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
+            NSDictionary *headers =  response.allHeaderFields;
+            NSString *contentLength = headers[@"Content-Length"];
+            
+            if (![zipSize isEqualToString:contentLength]) {
+                [[manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ZIPFileOnline]] progress:^(NSProgress * _Nonnull downloadProgress) {
+                    //
+                } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+                    NSString *cachePath= NSTemporaryDirectory();
+                    NSString *fileName= [cachePath stringByAppendingPathComponent:response.suggestedFilename];
+                    [[NSFileManager defaultManager] removeItemAtPath:fileName error:nil];
+                    return [NSURL fileURLWithPath:fileName];
+                } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+                    [[NSUserDefaults standardUserDefaults] setObject:contentLength forKey:ZIPFileOnlineSize];
+                    
+                    NSError *deleteFileError = nil;
+                    [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:&deleteFileError];
+                    [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
+                    [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
+                    [SVProgressHUD dismissWithDelay:1 completion:^{
+                        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
+                    }];
+                }] resume];
+            } else {
+                self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [SVProgressHUD dismiss];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
+            [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+                [self loadMainBundleJS];
+            }]];
+            [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        }];
+    }
+   
 #endif
 }
 
@@ -160,6 +171,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     [MobClick event:@"applicationDidBecomeActive"];
+    [[BaiduMobStat defaultStat] logEvent:@"applicationDidBecomeActive" eventLabel:@"后台恢复"];
 }
 
 

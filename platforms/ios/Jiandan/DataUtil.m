@@ -30,7 +30,11 @@
     [html appendString:@"<script src=\"//cdn.jandan.net/static/js/jquery.lazyload.min.js?v=201603020\"></script>\n"];
     [html appendString:@"</head>\n"];
     [html appendString:@"<body>\n"];
-    HTMLDocument *document =  [HTMLDocument documentWithString:[NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil]];
+    NSString *originHTML = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+    if (originHTML == nil) {
+        return @"";
+    }
+    HTMLDocument *document =  [HTMLDocument documentWithString:originHTML];
     HTMLElement *postInfo = [document nodesMatchingSelector:@".postinfo"][0];
     HTMLElement *entry = [document nodesMatchingSelector:@".entry"][0];
     

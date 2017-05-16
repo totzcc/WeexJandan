@@ -62,13 +62,14 @@
 			}
 		},
 		created() {
+			this.type = config.params('type')
 			jandan.list(this.type).then((response)=>{
 				this.datalist = response.datalist
 				if(response.maxPage) {
 					this.maxPage = response.maxPage
 				}
 			})
-			config.event('boring')
+			config.event('boring','无聊图')
 		},
 		methods: {
 			getUrlParam (key) {
@@ -103,6 +104,21 @@
 						}
 					})
 					browser.browserImages(originImages, currentIndex)
+				} else if(item.imgs && item.imgs.length > 0) {
+					var imgs = [];
+					var currentIndex = 0;
+					var find = false
+					this.datalist.forEach((value) => {
+						if(value.imgs && value.imgs.length>0) {
+							imgs = imgs.concat(value.imgs);
+							if(!find && value != item) {
+								currentIndex += value.imgs.length;
+							} else {
+								find = true
+							}
+						}
+					})
+					browser.browserImages(imgs, currentIndex)
 				}
 			}
 		}

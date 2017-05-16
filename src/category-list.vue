@@ -64,7 +64,7 @@
 		created(){
 			this.category = decodeURI(config.params('category'))
 			this.onrefresh()
-			config.event('category-list')
+			config.event('category-list','分类文章列表')
 		},
 		methods:{
 			onrefresh(){

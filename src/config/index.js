@@ -6,7 +6,7 @@ module.exports = {
 		return baseURL + jsURL
 	},
 	image(imgURL) {
-		return "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/resources/" + imgURL;
+		return "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/resources/" + imgURL;
 	},
 	params(key) {
 		var bundleUrl = weex.config.bundleUrl;
@@ -14,8 +14,8 @@ module.exports = {
 		var match = bundleUrl.match(reg)
 		return match && match[1]
 	},
-	event(id) {
-		log.event(id)
+	event(id,label) {
+		log.event(id,label)
 	},
 	toParams(obj) {
 		var param = ""

@@ -91,7 +91,7 @@
 				this.detail = JSON.parse(ret.data)
 				this.onrefresh()
 			})
-			config.event('comments')
+			config.event('comments','评论列表')
 		},
 		methods:{
 			onrefresh(){
