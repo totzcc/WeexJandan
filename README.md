@@ -5,6 +5,12 @@ https://itunes.apple.com/us/app/煎蛋-有趣/id1230079100?l=zh&ls=1&mt=8
 Github地址
 https://github.com/totzcc/WeexJandan
 
+与我联系：
+
+  http://weibo.com/3092381507/F2i3Z3nwo?type=comment
+
+  https://m.weibo.cn/status/4105460950805404
+
 采用Weex 做的iOS煎蛋客户端，
 iOS拓展解析HTML 的基础能力。所有的业务逻辑代码都用Weex 实现
 Android 客户端待研发
