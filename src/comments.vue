@@ -125,7 +125,7 @@
 						if(voteType == 1) {
 							item.support = parseInt(item.support) + 1
 						} else {
-							item.unsupport += parseInt(item.unsupport) + 1
+							item.unsupport = parseInt(item.unsupport) + 1
 						}
 					} else {
 						modal.toast({message:res.msg,duration:1})		

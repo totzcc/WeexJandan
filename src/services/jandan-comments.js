@@ -13,22 +13,24 @@ storage.getItem(JANDAN_USER_INFO,(res)=>{
 module.exports = {
 	comments(url, page){
 		return new Promise((resolve) => {
-			if(!page) {
-				this.request(url).then((html)=>{
-					this.commentsMaxPage(html).then((page)=>{
-						page = page.trim()
-						this.commentsList(html).then((result)=>{
-							resolve({maxPage:page,datalist:result.comments, postId:result.postId})
+			setTimeout(()=>{
+				if(!page) {
+					this.request(url).then((html)=>{
+						this.commentsMaxPage(html).then((page)=>{
+							page = page.trim()
+							this.commentsList(html).then((result)=>{
+								resolve({maxPage:page,datalist:result.comments, postId:result.postId})
+							})
 						})
 					})
-				})
-			} else {
-				this.request(url + "/page-"+page+"#comments").then((html)=>{
-					this.commentsList(html).then((result)=>{
-						resolve({datalist:result.comments, postId:result.postId})
+				} else {
+					this.request(url + "/page-"+page+"#comments").then((html)=>{
+						this.commentsList(html).then((result)=>{
+							resolve({datalist:result.comments, postId:result.postId})
+						})
 					})
-				})
-			}
+				}
+			},300)
 		})
 	},
 	commentsList(htmlString){
