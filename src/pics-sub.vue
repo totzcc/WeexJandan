@@ -104,6 +104,21 @@
 						}
 					})
 					browser.browserImages(originImages, currentIndex)
+				} else if(item.imgs && item.imgs.length > 0) {
+					var imgs = [];
+					var currentIndex = 0;
+					var find = false
+					this.datalist.forEach((value) => {
+						if(value.imgs && value.imgs.length>0) {
+							imgs = imgs.concat(value.imgs);
+							if(!find && value != item) {
+								currentIndex += value.imgs.length;
+							} else {
+								find = true
+							}
+						}
+					})
+					browser.browserImages(imgs, currentIndex)
 				}
 			}
 		}

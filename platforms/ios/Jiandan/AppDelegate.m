@@ -85,7 +85,7 @@
         self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:nil];
     }
 #if DEBUG
-    self.mainURL = [NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"];
+//    self.mainURL = [NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"];
     self.mainURL = [NSURL URLWithString:@"http://127.0.0.1:12580/dist/native/index.js"];
     [SVProgressHUD show];
     [[AFHTTPSessionManager manager] HEAD:self.mainURL.absoluteString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {

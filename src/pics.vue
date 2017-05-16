@@ -25,11 +25,11 @@
 						src: config.js('pics-sub.js?type=huashi'),
 						visibility: 'hidden'
 					},
-					//					{
-					//						title: '妹子图',
-					//						src: config.js('pics-sub.js?type=girl'),
-					//						visibility: 'hidden'
-					//					}
+					{
+						title: '妹子图',
+						src: config.js('pics-sub.js?type=girl'),
+						visibility: 'hidden'
+					}
 				]
 			}
 		},
