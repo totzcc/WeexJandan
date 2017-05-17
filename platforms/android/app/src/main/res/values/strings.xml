@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WeexJandan</string>
+    <string name="weex_main_url">http://192.168.2.22:12580/dist/native/index.js</string>
+</resources>
