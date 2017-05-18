@@ -12,6 +12,7 @@ storage.getItem(JANDAN_USER_INFO,(res)=>{
 })
 module.exports = {
 	comments(url, page){
+		console.log(url)
 		return new Promise((resolve) => {
 			setTimeout(()=>{
 				if(!page) {
@@ -90,11 +91,15 @@ module.exports = {
 	commentsMaxPage(htmlString){
 		return new Promise((resolve) =>{
 			html.css(htmlString,'.current-comment-page',(find) =>{
-				html.parse(find[0], function(data) {
-					var maxPage = data.text.replace('[', '')
-					maxPage = maxPage.replace(']', '')
-					resolve(maxPage)
-				})
+				if(find.length > 0) {
+					html.parse(find[0], function(data) {
+						var maxPage = data.text.replace('[', '')
+						maxPage = maxPage.replace(']', '')
+						resolve(maxPage)
+					})
+				} else {
+					resolve('1')
+				}
 			})
 		})
 	},

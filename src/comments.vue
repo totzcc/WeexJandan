@@ -11,9 +11,14 @@
 	    @naviBarRightItemClick="naviBarRightItemClick">
 	    <div class="container">
 	    		<list>
-	    			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
+	    			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh" v-if="datalist">
 			      	<text class="indicator">{{refreshTips}}</text>
 			    </refresh>
+			    <cell v-if="!datalist">
+					<div v-if="!datalist" style="width: 750px; height: 100px; align-items:center;justify-content: center;">
+						<text>Loading...</text>
+					</div>
+				</cell>
 	    			<cell v-for="(item,index) in datalist">
 	    				<div style="background-color: #FFFFFF; margin-top: 20px;padding: 20px; padding-bottom: 0px;">
 	    					<div>
@@ -39,7 +44,8 @@
 		    				</div>
 	    				</div>
 	    			</cell>
-	    			<loading class="loading" @loading="onloading" :display="showLoading" v-if="page">
+	    			<cell style="height: 20px;"></cell>
+	    			<loading class="loading" @loading="onloading" :display="showLoading" v-if="page && datalist">
 					<text class="indicator">{{loadingTips}}</text>
 			    </loading>
 	    		</list>
@@ -63,7 +69,7 @@
 				config:config,
 				showLoading:'hide',
 				showRefresh:'hide',
-				datalist:[],
+				datalist:null,
 				detail:{
 					title:'',
 					href:'',
