@@ -24,7 +24,7 @@ public class JandanApplication extends Application {
         super.onCreate();
         InitConfig config = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
         WXSDKEngine.initialize(this, config);
-        WXEnvironment.sLogLevel = LogLevel.INFO;
+//        WXEnvironment.sLogLevel = LogLevel.ALL;
 
         try {
             WXSDKEngine.registerModule("html", WXHTMLModule.class);
