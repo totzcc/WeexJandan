@@ -22,7 +22,7 @@ import java.util.Iterator;
  */
 
 public class WXHTMLModule extends WXModule {
-    @JSMethod(uiThread = true)
+    @JSMethod(uiThread = false)
     public void css(String html, String css, JSCallback callback) {
         if (html == null || html.isEmpty()) {
             callback.invoke(new ArrayList<>());
@@ -36,7 +36,7 @@ public class WXHTMLModule extends WXModule {
         }
         callback.invoke(strings);
     }
-    @JSMethod(uiThread = true)
+    @JSMethod(uiThread = false)
     public void parse(String html, JSCallback callback) {
         if (html == null || html.isEmpty()) {
             callback.invoke(new HashMap<String,String>());

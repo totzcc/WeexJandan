@@ -8,7 +8,7 @@ import com.taobao.weex.common.WXModule;
  */
 
 public class WXLogModule extends WXModule {
-    @JSMethod(uiThread = true)
+    @JSMethod(uiThread = false)
     public void event(String string, String label) {
 
     }
