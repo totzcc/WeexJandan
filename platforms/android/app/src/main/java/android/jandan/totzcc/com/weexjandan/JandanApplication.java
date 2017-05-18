@@ -8,8 +8,10 @@ import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.taobao.weex.InitConfig;
+import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;
+import com.taobao.weex.utils.LogLevel;
 import com.taobao.weex.utils.WXLogUtils;
 
 /**
@@ -22,6 +24,8 @@ public class JandanApplication extends Application {
         super.onCreate();
         InitConfig config = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
         WXSDKEngine.initialize(this, config);
+        WXEnvironment.sLogLevel = LogLevel.INFO;
+
         try {
             WXSDKEngine.registerModule("html", WXHTMLModule.class);
             WXSDKEngine.registerModule("log", WXLogModule.class);
