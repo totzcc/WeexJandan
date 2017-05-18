@@ -24,6 +24,8 @@ const drawingsPageURL = "http://jandan.net/drawings/page-{page}"
 
 var jokeVoteMaps = {}
 var readMaps = {}
+
+var callbackSleepTime = 1000
 import md5 from './md5.js'
 import config from '../config'
 storage.getItem('jokeVoteMaps',(res)=>{
@@ -93,7 +95,7 @@ module.exports = {
 				})
 				setTimeout(()=>{
 					resolve(datalist)
-				},500)
+				},callbackSleepTime)
 			})
 		})
 	},
@@ -178,7 +180,7 @@ module.exports = {
 					})
 					setTimeout(()=>{
 						resolve(datalist)
-					},500)
+					},callbackSleepTime)
 				}
 			)
 		})
@@ -236,7 +238,7 @@ module.exports = {
 				})
 				setTimeout(()=>{
 					resolve(datalist)
-				},1000)
+				},callbackSleepTime)
 			})
 		})
 	},
@@ -363,7 +365,7 @@ module.exports = {
 					})
 					setTimeout(() => {
 						resolve(datalist)
-					}, 500)
+					}, callbackSleepTime)
 				})
 			})
 		})

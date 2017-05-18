@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    title="设置个人信息"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"

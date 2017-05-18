@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    :title="category"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
@@ -39,6 +39,7 @@
 	module.exports = {
 		data(){
 			return {
+				config:config,
 				category:'走近科学',
 				page:1,
 				backImg:config.image('back.png'),
