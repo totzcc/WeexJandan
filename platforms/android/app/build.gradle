@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "android.jandan.totzcc.com.weexjandan"
-        minSdkVersion 19
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.32'
     compile 'com.taobao.android:weex_sdk:0.11.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
 
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
