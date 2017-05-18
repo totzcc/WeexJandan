@@ -3,27 +3,31 @@ package android.jandan.totzcc.com.weexjandan;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
+import com.taobao.weex.utils.WXLogUtils;
 
 public class MainActivity extends AppCompatActivity implements IWXRenderListener{
 
     WXSDKInstance instance;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String weexURL = getIntent().getDataString();
+
         setContentView(R.layout.activity_main);
-        instance = new WXSDKInstance(this);
-        instance.registerRenderListener(this);
+
+        recreateInstace();
+
+        String weexURL = getIntent().getDataString();
         if (weexURL != null) {
-            instance.renderByUrl(getString(R.string.app_name), weexURL ,null, null, WXRenderStrategy.APPEND_ASYNC);
+            renderByURL(weexURL);
         } else {
-            instance.renderByUrl(getString(R.string.app_name), getString(R.string.weex_main_url) ,null, null, WXRenderStrategy.APPEND_ASYNC);
+            renderByURL(getString(R.string.weex_main_url));
         }
     }
 
@@ -75,5 +79,29 @@ public class MainActivity extends AppCompatActivity implements IWXRenderListener
     protected void onPause() {
         super.onPause();
         instance.onActivityPause();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            String bundleUrl = instance.getBundleUrl();
+            recreateInstace();
+            renderByURL(bundleUrl);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void recreateInstace(){
+        if (instance != null) {
+            instance.registerRenderListener(null);
+            instance.destroy();
+            instance = null;
+        }
+        instance = new WXSDKInstance(this);
+        instance.registerRenderListener(this);
+    }
+    public void renderByURL(String weexURL){
+        instance.renderByUrl(getString(R.string.app_name), weexURL ,null, null, WXRenderStrategy.APPEND_ASYNC);
     }
 }
