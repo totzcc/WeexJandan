@@ -10,7 +10,7 @@
 	    @naviBarLeftItemClick="naviBarLeftItemClick"
 	    @naviBarRightItemClick="naviBarRightItemClick">
 		<div class="container">
-			<waterfall column-count="2">
+			<waterfall column-count="2" style="width: 750px;">
 				<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
 			      	<text class="indicator">{{refreshTips}}</text>
 			    </refresh>
