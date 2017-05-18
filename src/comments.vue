@@ -114,14 +114,16 @@
 			},
 			onloading(){
 				this.page -= 1
+				if(this.page < 1) {
+					this.page = null
+					return;
+				}
 				this.showLoading = 'show'
 				jandanComments.comments(this.detail.href, this.page).then((result) =>{
 					this.datalist = this.datalist.concat(result.datalist)
 					this.showLoading = 'hide'
 				})
-				if(this.page <= 1) {
-					this.page = null
-				}
+				
 			},
 			vote(e){
 				var item = e.target.attr.item
