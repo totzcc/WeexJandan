@@ -25,11 +25,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile fileTree(dir:'libs',include:['*.jar'])
+
     compile 'com.alibaba:fastjson:1.2.32'
     compile 'com.taobao.android:weex_sdk:0.11.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
     compile group: 'org.nanohttpd', name: 'nanohttpd', version: '2.3.1'
+
 
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'

@@ -37,12 +37,6 @@ public class JandanWebService extends NanoHTTPD {
         return instance;
     }
 
-//    public static void main(String[] args) throws IOException {
-//        JandanWebService service = new JandanWebService();
-//        service.start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
-//        System.out.println("Start JandanWebService Success Visit http://127.0.0.1:" + PORT);
-//    }
-
     @Override
     public Response serve(IHTTPSession session) {
         List<String> urls = session.getParameters().get("url");

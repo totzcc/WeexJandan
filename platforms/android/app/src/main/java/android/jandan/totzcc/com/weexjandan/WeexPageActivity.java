@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.baidu.mobstat.StatService;
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXLogUtils;
 
-public class MainActivity extends BaseActivity implements IWXRenderListener{
+import java.io.IOException;
+
+public class WeexPageActivity extends AppCompatActivity implements IWXRenderListener{
 
     WXSDKInstance instance;
 
@@ -55,12 +58,19 @@ public class MainActivity extends BaseActivity implements IWXRenderListener{
     protected void onStart() {
         super.onStart();
         instance.onActivityStart();
+        try {
+            JandanWebService.getInstance(this).onActivityStart();
+        } catch (IOException e) {
+            WXLogUtils.e("启动Web服务失败", e);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         instance.onActivityResume();
+        StatService.onResume(this);
+        StatService.onPageStart(this, getBundleJSName());
     }
 
     @Override
@@ -79,6 +89,9 @@ public class MainActivity extends BaseActivity implements IWXRenderListener{
     protected void onPause() {
         super.onPause();
         instance.onActivityPause();
+        JandanWebService.getInstance(this).onActivityPause();
+        StatService.onPause(this);
+        StatService.onPageEnd(this, getBundleJSName());
     }
 
     @Override
@@ -103,5 +116,9 @@ public class MainActivity extends BaseActivity implements IWXRenderListener{
     }
     public void renderByURL(String weexURL){
         instance.renderByUrl(getString(R.string.app_name), weexURL ,null, null, WXRenderStrategy.APPEND_ASYNC);
+    }
+    public String getBundleJSName(){
+        String url = instance.getBundleUrl();
+        return url.substring(url.lastIndexOf("/") + 1);
     }
 }

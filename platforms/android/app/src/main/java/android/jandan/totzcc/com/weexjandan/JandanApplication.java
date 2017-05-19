@@ -5,6 +5,7 @@ import android.jandan.totzcc.com.weexjandan.weex.WXHTMLModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXImageAdapter;
 import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
 
+import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.taobao.weex.InitConfig;
@@ -35,5 +36,12 @@ public class JandanApplication extends Application {
         }
         ImageLoaderConfiguration imageLoaderConfiguration = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(imageLoaderConfiguration);
+
+        initBaiduStat();
+    }
+    public void initBaiduStat(){
+        StatService.setAppKey("fd9494003d");
+        StatService.setOn(this, StatService.EXCEPTION_LOG);
+        StatService.setDebugOn(true);
     }
 }
