@@ -11,7 +11,7 @@ import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXLogUtils;
 
-public class MainActivity extends AppCompatActivity implements IWXRenderListener{
+public class MainActivity extends BaseActivity implements IWXRenderListener{
 
     WXSDKInstance instance;
 
