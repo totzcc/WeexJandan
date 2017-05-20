@@ -4,6 +4,7 @@ import android.app.Application;
 import android.jandan.totzcc.com.weexjandan.weex.WXHTMLModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXImageAdapter;
 import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
+import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 
 import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -31,6 +32,7 @@ public class JandanApplication extends Application {
         try {
             WXSDKEngine.registerModule("html", WXHTMLModule.class);
             WXSDKEngine.registerModule("log", WXLogModule.class);
+            WXSDKEngine.registerModule("share", WXShareModule.class);
         } catch (WXException e) {
             WXLogUtils.e(e.getMessage(), e);
         }

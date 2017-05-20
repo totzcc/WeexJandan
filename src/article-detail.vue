@@ -64,7 +64,7 @@
 			},
 			more(e){
 				share.share(this.detail.href,this.detail.title)
-				config.log('share')
+				console.log('share')
 			},
 			like(e){
 				if(e) {
