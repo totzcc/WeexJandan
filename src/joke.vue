@@ -1,7 +1,16 @@
 <template >
 	<div class="container">
+		
 		<list>
+			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh" v-if="datalist">
+		      	<text class="indicator">{{refreshTips}}</text>
+		    </refresh>
 			<cell style="height: 30px;"></cell>
+		    <cell v-if="!datalist">
+				<div v-if="!datalist" style="width: 750px; height: 100px; align-items:center;justify-content: center;">
+					<text>Loading...</text>
+				</div>
+			</cell>
 			<cell v-for="item in datalist" @click="clickLike" :item="item">
 				<div class="item">
 					<text style="color: #333333;">{{item.title}}</text>
@@ -24,9 +33,10 @@
 						</div>
 					</div>
 				</div>
+				<div style="height: 10px; background-color: #f3f3f3;"></div>
 			</cell>
-			<cell style="height: 80px;"></cell>
-			<loading class="loading" @loading="onloading" :display="showLoading">
+			<cell style="height: 20px;"></cell>
+			<loading class="loading" @loading="onloading" :display="showLoading" v-if="datalist">
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>
 		</list>
@@ -34,10 +44,11 @@
 </template>
 <style>
 	.container{padding-left: 10px;background-color: #f3f3f3;}
-	.item{padding: 10px; padding-bottom: 0px; margin: 10px; background-color: #FFFFFF; border-width: 1px; border-color: #e3e3e3;}
+	.item{padding: 10px;padding-bottom: 0px; background-color: #FFFFFF; border-width: 1px; border-color: #e3e3e3;}
 	.item-box{border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
 	.item-box-center{align-items: center;justify-content: center;flex-direction: row;border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
-	.loading{width: 750px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.refresh{width: 750px; height: 100px; align-items: center;justify-content: center;}
+	.loading{width: 750px; height: 100px;  align-items: center;justify-content: center;}
 	.like-conver {position: absolute;top: 0;right: 0;bottom: 0;left: 0;justify-content: center;align-items: center;}
 	.like{width: 300px; height: 300px;opacity: 0;}
 	.like-item{width: 50px; height: 50px;}
@@ -52,8 +63,9 @@
 	export default {
 		data: {
 			config:config,
-			datalist:[],
+			datalist:null,
 			maxPage:0,
+			showRefresh:'hide',
 			showLoading:'hide',
 			lastClickObj:{item:null,timestamp:0},
 			isSingleClick:true,
@@ -65,15 +77,13 @@
 					return '加载中...'
 				}
 				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
+			},
+			refreshTips(){
+				return this.showRefresh == 'hide' ? '下拉获取最新数据' : '加载中...'
 			}
 		},
 		created() {
-			jandan.list(this.type).then((response)=>{
-				this.datalist = response.datalist
-				if(response.maxPage) {
-					this.maxPage = response.maxPage
-				}
-			})
+			this.onrefresh()
 			config.event('joke','笑话')
 		},
 		methods: {
@@ -81,6 +91,16 @@
 				var reg = new RegExp('[?|&]' + key + '=([^&]+)')
 				var match = weex.config.bundleUrl.match(reg)
 				return match && match[1]
+			},
+			onrefresh(showRefresh){
+				this.showRefresh = 'show'
+		        jandan.list(this.type).then((response)=>{
+		        		this.showRefresh = 'hide'
+					this.datalist = response.datalist
+					if(response.maxPage) {
+						this.maxPage = response.maxPage
+					}
+				})
 			},
 			onloading(){
 		        this.showLoading = 'show'
@@ -90,7 +110,6 @@
 		        		setTimeout(()=>{
 		        			this.datalist = this.datalist.concat(response.datalist)
 		        		},500)
-		        		
 		        })
 			},
 			support(e){

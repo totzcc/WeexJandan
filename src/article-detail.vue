@@ -2,21 +2,22 @@
 	<div class="container">
 		<web style="flex: 1;" :src="src"></web>
 		<div @click="naviBarLeftItemClick" style="position: fixed; left: 25; top: 65;">
-			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
-			<image :src="config.image('back.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
+			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
+			<image :src="config.image('back.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
 		<div @click="seeComments" style="position: fixed; right: 40; top: 65;">
-			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
-			<image :src="config.image('comment.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
-			<text style="position: absolute; right: -20; top: 0; font-size: 24px; color: #666666;">{{detail.comments}}</text>
+			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
+			<image :src="config.image('comment.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
+			<text style="position: absolute; right: 0; top: 0; font-size: 24px; color: #666666;">{{detail.comments}}</text>
 		</div>
 		<div @click="like" style="position: fixed; left: 25; bottom: 65;">
-			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
-			<image :src="likePng" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
+			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
+			<image :src="likePng" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
+		
 		<div @click="more" style="position: fixed; right: 40; bottom: 65;">
-			<div style="width: 80px;height: 80px; border-radius: 80px; position: absolute; left: 0; top: 0;  background-color: #000000; opacity: 0.1;"></div>
-			<image :src="config.image('share.png')" style=" width: 50px;height: 50px; margin-left: 15px; margin-top: 15px;"></image>
+			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
+			<image :src="config.image('share.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
 	</div>
 </template>
@@ -63,7 +64,7 @@
 			},
 			more(e){
 				share.share(this.detail.href,this.detail.title)
-				config.log('share')
+				console.log('share')
 			},
 			like(e){
 				if(e) {

@@ -1,6 +1,6 @@
 <template >
 	<div class="container">
-		<waterfall column-count="2">
+		<waterfall column-count="2" style="width: 750px;">
 			<cell v-for="item in datalist" @click="click" :item="item">
 				<div class='item'>
 					<div v-if="item.imgs">

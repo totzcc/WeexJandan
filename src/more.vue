@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    title="精彩文章"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
@@ -10,7 +10,7 @@
 	    @naviBarLeftItemClick="naviBarLeftItemClick"
 	    @naviBarRightItemClick="naviBarRightItemClick">
 		<div class="container">
-			<waterfall column-count="2">
+			<waterfall column-count="2" style="width: 750px;">
 				<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
 			      	<text class="indicator">{{refreshTips}}</text>
 			    </refresh>
@@ -41,6 +41,7 @@
 	module.exports = {
 		data(){
 			return {
+				config:config,
 				showLoading:'hide',
 				showRefresh:'hide',
 				page:2,
@@ -71,8 +72,8 @@
 				this.showRefresh = 'show'
 				this.page = 2
 				jandan.article(this.page).then((datalist) => {
-					this.datalist = datalist
 					this.showRefresh = 'hide'
+					this.datalist = datalist
 				})
 			},
 			onloading(){
@@ -80,9 +81,7 @@
 		        this.page += 1
 		        jandan.article(this.page).then((datalist) => {
 		        		this.showLoading = 'hide'
-			        	 setTimeout(()=>{
-		        			this.datalist = this.datalist.concat(datalist)
-		        		},100)
+			        	 this.datalist = this.datalist.concat(datalist)
 				})
 			},
 			click(e){

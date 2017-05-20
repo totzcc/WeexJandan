@@ -13,7 +13,7 @@ platforms/ios/build_ipa
 .mtj.tmp/
 
 # Package Files #
-*.jar
+.jar
 *.war
 *.ear
 
@@ -21,3 +21,4 @@ platforms/ios/build_ipa
 hs_err_pid*
 
 ios.py
+*.apk

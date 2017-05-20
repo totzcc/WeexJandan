@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    title="我的收藏"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"

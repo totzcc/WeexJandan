@@ -2,7 +2,7 @@
 	<div @viewappear="viewappear">
 		<navpage
 		    dataRole="none"
-		    height="128"
+		    :height="config.barHeight()"
 		    title="发表评论"
 		    backgroundColor="#ffffff"
 		    titleColor="#333333"

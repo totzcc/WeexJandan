@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    title="评论列表"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
@@ -11,9 +11,14 @@
 	    @naviBarRightItemClick="naviBarRightItemClick">
 	    <div class="container">
 	    		<list>
-	    			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh">
+	    			<refresh class="refresh" @refresh="onrefresh" :display="showRefresh" v-if="datalist">
 			      	<text class="indicator">{{refreshTips}}</text>
 			    </refresh>
+			    <cell v-if="!datalist">
+					<div v-if="!datalist" style="width: 750px; height: 100px; align-items:center;justify-content: center;">
+						<text>Loading...</text>
+					</div>
+				</cell>
 	    			<cell v-for="(item,index) in datalist">
 	    				<div style="background-color: #FFFFFF; margin-top: 20px;padding: 20px; padding-bottom: 0px;">
 	    					<div>
@@ -39,7 +44,8 @@
 		    				</div>
 	    				</div>
 	    			</cell>
-	    			<loading class="loading" @loading="onloading" :display="showLoading" v-if="page">
+	    			<cell style="height: 20px;"></cell>
+	    			<loading class="loading" @loading="onloading" :display="showLoading" v-if="page && datalist">
 					<text class="indicator">{{loadingTips}}</text>
 			    </loading>
 	    		</list>
@@ -63,7 +69,7 @@
 				config:config,
 				showLoading:'hide',
 				showRefresh:'hide',
-				datalist:[],
+				datalist:null,
 				detail:{
 					title:'',
 					href:'',
@@ -108,14 +114,16 @@
 			},
 			onloading(){
 				this.page -= 1
+				if(this.page < 1) {
+					this.page = null
+					return;
+				}
 				this.showLoading = 'show'
 				jandanComments.comments(this.detail.href, this.page).then((result) =>{
 					this.datalist = this.datalist.concat(result.datalist)
 					this.showLoading = 'hide'
 				})
-				if(this.page <= 1) {
-					this.page = null
-				}
+				
 			},
 			vote(e){
 				var item = e.target.attr.item
@@ -125,7 +133,7 @@
 						if(voteType == 1) {
 							item.support = parseInt(item.support) + 1
 						} else {
-							item.unsupport += parseInt(item.unsupport) + 1
+							item.unsupport = parseInt(item.unsupport) + 1
 						}
 					} else {
 						modal.toast({message:res.msg,duration:1})		

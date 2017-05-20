@@ -18,7 +18,7 @@
 				pics: [{
 						title: '无聊图',
 						src: config.js('pics-sub.js?type=boring'),
-						visibility: 'visibility'
+						visibility: 'visible'
 					},
 					{
 						title: '煎蛋画师',

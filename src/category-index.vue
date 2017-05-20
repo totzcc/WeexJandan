@@ -1,7 +1,7 @@
 <template>
 	<navpage
 	    dataRole="none"
-	    height="128"
+	    :height="config.barHeight()"
 	    title="分类"
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
@@ -37,6 +37,7 @@
 	module.exports = {
 		data(){
 			return {
+				config:config,
 				backImg:config.image('back.png'),
 				datalist:[
 					{

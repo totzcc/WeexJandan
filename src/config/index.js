@@ -25,5 +25,11 @@ module.exports = {
 			}
 		}
 		return param.substring(1)
+	},
+	barHeight(){
+		if (weex.config.env.platform == 'android') {
+			return 98
+		}
+		return 128
 	}
 }
