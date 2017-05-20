@@ -21,3 +21,4 @@ platforms/ios/build_ipa
 hs_err_pid*
 
 ios.py
+*.apk

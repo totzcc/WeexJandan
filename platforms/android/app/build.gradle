@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'keystore'
+            keyPassword '123456'
+            storeFile file('/Users/leo/Git/Weex/WeexHTMLParse/platforms/android/keystore.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -10,33 +18,36 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     lintOptions {
         abortOnError false
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-    compile fileTree(dir:'libs',include:['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.alibaba:fastjson:1.2.32'
     compile 'com.taobao.android:weex_sdk:0.11.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
-    compile group: 'org.nanohttpd', name: 'nanohttpd', version: '2.3.1'
-
-
+    compile 'org.jsoup:jsoup:1.8.3'
+    compile 'org.nanohttpd:nanohttpd:2.3.1'
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:design:25.1.1'

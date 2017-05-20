@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.baidu.mobstat.StatService;
 import com.taobao.weex.IWXRenderListener;
+import com.taobao.weex.WXEnvironment;
+import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXLogUtils;
@@ -30,7 +32,12 @@ public class WeexPageActivity extends AppCompatActivity implements IWXRenderList
         if (weexURL != null) {
             renderByURL(weexURL);
         } else {
-            renderByURL(getString(R.string.weex_main_url));
+            if (WXEnvironment.isApkDebugable()) {
+                renderByURL(getString(R.string.weex_main_url_debug));
+            } else {
+                renderByURL(getString(R.string.weex_main_url_release));
+            }
+
         }
     }
 
