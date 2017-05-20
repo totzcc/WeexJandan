@@ -8,6 +8,11 @@ import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 
 import com.baidu.mobstat.StatService;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.animated.factory.AnimatedImageFactoryImpl;
+import com.facebook.imagepipeline.animated.impl.AnimatedDrawableBackendProvider;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pgyersdk.Pgy;
@@ -26,8 +31,9 @@ public class JandanApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InitConfig config = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
-        WXSDKEngine.initialize(this, config);
+        Fresco.initialize(this);
+        InitConfig weexConfig = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
+        WXSDKEngine.initialize(this, weexConfig);
         if (!WXEnvironment.isApkDebugable()) {
             WXEnvironment.sLogLevel = LogLevel.WARN;
         }
