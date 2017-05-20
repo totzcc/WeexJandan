@@ -1,6 +1,5 @@
 package android.jandan.totzcc.com.weexjandan;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.taobao.weex.utils.WXLogUtils;
@@ -9,15 +8,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import fi.iki.elonen.NanoHTTPD;
 

@@ -1,7 +1,5 @@
 package android.jandan.totzcc.com.weexjandan;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -9,14 +7,13 @@ import android.view.View;
 import com.baidu.mobstat.StatService;
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXEnvironment;
-import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 import com.taobao.weex.utils.WXLogUtils;
 
 import java.io.IOException;
 
-public class WeexPageActivity extends AppCompatActivity implements IWXRenderListener{
+public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
 
     WXSDKInstance instance;
 

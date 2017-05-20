@@ -3,7 +3,6 @@ package android.jandan.totzcc.com.weexjandan.weex;
 import com.taobao.weex.annotation.JSMethod;
 import com.taobao.weex.bridge.JSCallback;
 import com.taobao.weex.common.WXModule;
-import com.taobao.weex.utils.WXLogUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
@@ -12,7 +11,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

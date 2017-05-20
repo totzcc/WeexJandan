@@ -1,6 +1,7 @@
 package android.jandan.totzcc.com.weexjandan;
 
 import android.app.Application;
+import android.jandan.totzcc.com.weexjandan.weex.WXBrowserModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXHTMLModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXImageAdapter;
 import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
@@ -9,6 +10,7 @@ import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 import com.baidu.mobstat.StatService;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.pgyersdk.Pgy;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKEngine;
@@ -33,6 +35,7 @@ public class JandanApplication extends Application {
             WXSDKEngine.registerModule("html", WXHTMLModule.class);
             WXSDKEngine.registerModule("log", WXLogModule.class);
             WXSDKEngine.registerModule("share", WXShareModule.class);
+            WXSDKEngine.registerModule("browser", WXBrowserModule.class);
         } catch (WXException e) {
             WXLogUtils.e(e.getMessage(), e);
         }
@@ -40,10 +43,11 @@ public class JandanApplication extends Application {
         ImageLoader.getInstance().init(imageLoaderConfiguration);
 
         initBaiduStat();
+        Pgy.init(this, "c9d38faacab3e0dbbabbd94e5faceee6");
     }
-    public void initBaiduStat(){
+
+    public void initBaiduStat() {
         StatService.setAppKey("fd9494003d");
         StatService.setOn(this, StatService.EXCEPTION_LOG);
-        StatService.setDebugOn(true);
     }
 }

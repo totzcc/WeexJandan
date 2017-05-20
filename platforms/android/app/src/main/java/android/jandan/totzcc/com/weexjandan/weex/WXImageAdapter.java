@@ -1,16 +1,11 @@
 package android.jandan.totzcc.com.weexjandan.weex;
 
-import android.graphics.Bitmap;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.taobao.weex.adapter.IWXImgLoaderAdapter;
 import com.taobao.weex.common.WXImageStrategy;
 import com.taobao.weex.dom.WXImageQuality;
-import com.taobao.weex.utils.WXLogUtils;
 
 /**
  * Created by zhoucheng on 2017/5/17.
