@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/leo/Git/Weex/WeexHTMLParse/platforms/android/frescoimageviewer/src/main/assets"/><source path="/Users/leo/Git/Weex/WeexHTMLParse/platforms/android/frescoimageviewer/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/leo/Git/Weex/WeexHTMLParse/platforms/android/frescoimageviewer/src/debug/assets"/></dataSet></merger>
