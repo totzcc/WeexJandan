@@ -2,6 +2,9 @@
 AppStore 地址
 https://itunes.apple.com/us/app/煎蛋-有趣/id1230079100?l=zh&ls=1&mt=8
 
+腾讯应用宝地址
+http://sj.qq.com/myapp/detail.htm?apkName=android.jandan.totzcc.com.weexjandan
+
 Github地址
 https://github.com/totzcc/WeexJandan
 
