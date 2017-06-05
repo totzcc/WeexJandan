@@ -71,11 +71,11 @@ module.exports = {
 						})
 					})
 					
-					html.css(value,'.vote span',(find) => {
-						html.parse(find[1], (parse) => {
+					html.css(value,'.jandan-vote span',(find) => {
+						html.parse(find[0], (parse) => {
 							obj['support'] = parse.text
 						})
-						html.parse(find[2], (parse) => {
+						html.parse(find[1], (parse) => {
 							obj['unsupport'] = parse.text
 						})
 					})
