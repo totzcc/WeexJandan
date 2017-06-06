@@ -32,10 +32,11 @@ Android 客户端待研发
     - 多图同屏浏览
 
 ## 运行Weex项目
+> windows 请在  Git bash中运行
 
 ```
 cnpm install
-npm run dev
+./start
 ```
 
 ## 运行iOS项目 platforms/ios
