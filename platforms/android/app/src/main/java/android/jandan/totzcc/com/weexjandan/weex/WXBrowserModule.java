@@ -1,5 +1,6 @@
 package android.jandan.totzcc.com.weexjandan.weex;
 
+import android.content.Intent;
 import android.net.Uri;
 
 import com.facebook.imagepipeline.request.ImageRequest;
@@ -28,5 +29,11 @@ public class WXBrowserModule extends WXModule {
                 .setCustomImageRequestBuilder(requestBuilder)
                 .setStartPosition(selectedIndex)
                 .show();
+    }
+    @JSMethod
+    public void browserWeb(String url) {
+        Intent intent = new Intent("android.intent.action.VIEW");
+        intent.setData(Uri.parse(url));
+        mWXSDKInstance.getContext().startActivity(intent);
     }
 }
