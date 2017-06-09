@@ -34,7 +34,6 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
             } else {
                 renderByURL(getString(R.string.weex_main_url_release));
             }
-
         }
     }
 

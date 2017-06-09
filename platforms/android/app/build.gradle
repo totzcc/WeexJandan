@@ -15,9 +15,8 @@ android {
         applicationId "android.jandan.totzcc.com.weexjandan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 4
-        versionName "1.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 5
+        versionName "1.0.1"
         signingConfig signingConfigs.config
         ndk{
             abiFilters "x86"
