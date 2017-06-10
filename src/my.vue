@@ -4,7 +4,7 @@
 		<cell>
 			<div style="align-items: center; justify-content: center; margin: 50px;">
 				<image style="width: 200px; height: 200px; border-radius: 100px;" :src="config.image('icon.png')"></image>
-				<text style="margin-top: 20px; color: #999999; font-size: 28;">v1.0.1</text>
+				<text style="margin-top: 20px; color: #999999; font-size: 28;">v1.0.2</text>
 				<div v-if="userInfoStatus == 1" style="margin-top: 10px; justify-content: center; align-items: center;" @click="setUserInfo">
 					<text class="right-title">{{userInfo.author}}</text>
 					<text class="right-title">{{userInfo.email}}</text>
