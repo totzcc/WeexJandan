@@ -64,7 +64,6 @@
 		},
 		created(){
 			this.onrefresh()
-			config.event('article', '文章首页')
 		},
 		methods:{
 			onrefresh(){

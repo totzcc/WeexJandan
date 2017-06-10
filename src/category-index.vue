@@ -70,7 +70,6 @@
 			jandan.categoryIndex().then((datalist)=>{
 				this.datalist = datalist
 			})
-			config.event('category-index','分类首页')
 		},
 		methods:{
 			click(e){

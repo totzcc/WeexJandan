@@ -69,7 +69,6 @@
 					this.maxPage = response.maxPage
 				}
 			})
-			config.event('boring','无聊图')
 		},
 		methods: {
 			getUrlParam (key) {

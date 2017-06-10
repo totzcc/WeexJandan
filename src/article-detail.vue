@@ -53,7 +53,6 @@
 				this.detail.isLike = favorite.isLike(this.detail.href)
 				this.like()
 			})
-			config.event('article-detail', '文章详情')
 		},
 		methods:{
 			naviBarLeftItemClick(e){

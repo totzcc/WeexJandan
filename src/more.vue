@@ -62,7 +62,6 @@
 		},
 		created(){
 			this.onrefresh()
-			config.event('more','更多精彩文章')
 		},
 		components: {
 			navpage: require('./include/navpage.vue')

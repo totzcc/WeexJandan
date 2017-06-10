@@ -84,7 +84,6 @@
 		},
 		created() {
 			this.onrefresh()
-			config.event('joke','笑话')
 		},
 		methods: {
 			getUrlParam (key) {

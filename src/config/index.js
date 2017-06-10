@@ -1,4 +1,8 @@
-const log = weex.requireModule('log');
+const log = weex.requireModule('log')
+var pageJS = weex.config.bundleUrl
+pageJS = pageJS.substring(pageJS.lastIndexOf('/') + 1)
+log.event(pageJS,pageJS)
+console.log('log pageJS: ' + pageJS)
 module.exports = {
 	js(jsURL) {
 		var bundleUrl = weex.config.bundleUrl;
@@ -15,7 +19,7 @@ module.exports = {
 		return match && match[1]
 	},
 	event(id,label) {
-		log.event(id,label)
+//		log.event(id,label)
 	},
 	toParams(obj) {
 		var param = ""
