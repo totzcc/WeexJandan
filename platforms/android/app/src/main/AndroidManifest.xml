@@ -41,7 +41,6 @@
                 <data android:scheme="https" />
                 <data android:scheme="file" />
                 <data android:scheme="wxpage" />
-                +
             </intent-filter>
         </activity>
     </application>
