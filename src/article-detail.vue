@@ -14,10 +14,10 @@
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="likePng" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
-		<div @click="like" style="position: fixed; left: 330; bottom: 65;">
+		<!--<div @click="like" style="position: fixed; left: 330; bottom: 65;">
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="subscribe" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
-		</div>
+		</div>-->
 		<div @click="more" style="position: fixed; right: 40; bottom: 65;">
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('share.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>

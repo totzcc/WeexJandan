@@ -64,7 +64,6 @@ module.exports = {
 		category = encodeURI(category)
 		return new Promise((resolve) => {
 			var url = "http://jandan.net/tag/"+category+"/page/" + page
-			console.log(url)
 			stream.fetch({
 				method: 'GET',
 				url: url,
@@ -132,7 +131,7 @@ module.exports = {
 								obj.title = parse.text
 								obj.categorys = []
 								trs.forEach((value)=>{
-									obj.categorys.push(value[index])
+									obj.categorys.push({title:value[index]})
 								})
 								datalist.push(obj)
 							})

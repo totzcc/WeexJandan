@@ -10,6 +10,7 @@ module.exports = {
 		return baseURL + jsURL
 	},
 	image(imgURL) {
+//		return "http://192.168.1.5:12580/resources/" + imgURL;
 		return "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/resources/" + imgURL;
 	},
 	params(key) {
