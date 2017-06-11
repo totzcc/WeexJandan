@@ -58,7 +58,7 @@
 			return {
 				config:config,
 				backImg:config.image('back.png'),
-				isSubscribeing:true,
+				isSubscribeing:false,
 				datalist:[
 					{
 						title:'',
