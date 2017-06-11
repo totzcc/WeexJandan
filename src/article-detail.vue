@@ -14,7 +14,10 @@
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="likePng" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
-		
+		<div @click="like" style="position: fixed; left: 330; bottom: 65;">
+			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
+			<image :src="subscribe" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
+		</div>
 		<div @click="more" style="position: fixed; right: 40; bottom: 65;">
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('share.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
@@ -29,6 +32,7 @@
 	const modal = weex.requireModule('modal')
 	const share = weex.requireModule('share')
 	import config from './config'
+	import comments from './services/jandan-comments'
 	import favorite from './services/jandan-favorite'
 	module.exports = {
 		data(){
@@ -36,10 +40,12 @@
 				config:config,
 				src:"http://localhost:9090/",
 				likePng:config.image('like-gray.png'),
+				subscribe:config.image('subscribe-highlight.png'),
 				detail:{
 					href:'',
 					title:'',
-					isLike:false
+					isLike:false,
+					comments:''
 				}
 			}
 		},
@@ -48,10 +54,14 @@
 		},
 		created(){
 			storage.getItem('article-detail',(ret)=>{
-				this.detail = JSON.parse(ret.data)
-				this.src = "http://localhost:9090/?url=" + this.detail.href
-				this.detail.isLike = favorite.isLike(this.detail.href)
+				let detail = JSON.parse(ret.data)
+				this.src = "http://localhost:9090/?url=" + detail.href
+				detail.isLike = favorite.isLike(detail.href)
 				this.like()
+				comments.getCommentCount(detail.href).then(count=>{
+					detail.comments = count
+					this.detail = detail
+				})
 			})
 		},
 		methods:{
@@ -63,7 +73,6 @@
 			},
 			more(e){
 				share.share(this.detail.href,this.detail.title)
-				console.log('share')
 			},
 			like(e){
 				if(e) {

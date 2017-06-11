@@ -1,9 +1,8 @@
 const JANDAN_USER_INFO = "JANDAN_USER_INFO"
-const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
 const html = weex.requireModule('html')
 import config from '../config'
-
+import stream from './jandan-stream'
 var userInfo = {author:'',email:''}
 storage.getItem(JANDAN_USER_INFO,(res)=>{
 	if(res.result == 'success') {
@@ -12,7 +11,6 @@ storage.getItem(JANDAN_USER_INFO,(res)=>{
 })
 module.exports = {
 	comments(url, page){
-		console.log(url)
 		return new Promise((resolve) => {
 			setTimeout(()=>{
 				if(!page) {
@@ -100,6 +98,29 @@ module.exports = {
 				} else {
 					resolve('1')
 				}
+			})
+		})
+	},
+	getCommentCount(url){
+		return new Promise((resolve, reject) => {
+			stream.fetch({
+				method: 'GET',
+				url: url,
+				cache:true,
+				type: 'text'
+			}, function(ret) {
+				html.css(ret.data,'#comments', find =>{
+					if(find.length > 0) {
+						html.parse(find[0], parse => {
+							let start = parse.text.indexOf(':') + 1;
+							let end = parse.text.indexOf('+');
+							let count = parse.text.substring(start,end)
+							resolve(parseInt(count))
+						})
+					} else {
+						resolve(0)
+					}
+				})
 			})
 		})
 	},

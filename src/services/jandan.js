@@ -1,4 +1,4 @@
-const stream = weex.requireModule('stream')
+//const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
 const browser = weex.requireModule('browser')
 const html = weex.requireModule('html')
@@ -28,6 +28,7 @@ var readMaps = {}
 var callbackSleepTime = 1000
 import md5 from './md5.js'
 import config from '../config'
+import stream from './jandan-stream'
 storage.getItem('jokeVoteMaps',(res)=>{
 	if(res.result == 'success') {
 		jokeVoteMaps = JSON.parse(res.data)
@@ -104,7 +105,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: 'http://jandan.net/',
-				type: 'text'
+				type: 'text',
+				cache:true
 			}, function(ret) {
 				
 				html.css(ret.data,'.tag-cloud thead tr th',(find) => {
@@ -349,13 +351,13 @@ module.exports = {
 								})
 							})
 						})
-						html.css(value, '.vote span', (list) => {
-							html.parse(list[1], (value) => {
+						html.css(value, '.jandan-vote span', (list) => {
+							html.parse(list[0], (value) => {
 								if(value.text) {
 									obj['support'] = parseInt(value.text)
 								}
 							})
-							html.parse(list[2], (value) => {
+							html.parse(list[1], (value) => {
 								if(value.text) {
 									obj['unsupport'] = parseInt(value.text)
 								}

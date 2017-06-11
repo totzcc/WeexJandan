@@ -10,7 +10,7 @@ module.exports = {
 		return baseURL + jsURL
 	},
 	image(imgURL) {
-		return "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/resources/" + imgURL;
+		return "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/resources/" + imgURL;
 	},
 	params(key) {
 		var bundleUrl = weex.config.bundleUrl;

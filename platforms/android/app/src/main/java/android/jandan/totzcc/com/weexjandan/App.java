@@ -9,10 +9,6 @@ import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 
 import com.baidu.mobstat.StatService;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.animated.factory.AnimatedImageFactoryImpl;
-import com.facebook.imagepipeline.animated.impl.AnimatedDrawableBackendProvider;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.pgyersdk.Pgy;
@@ -27,7 +23,7 @@ import com.taobao.weex.utils.WXLogUtils;
  * Created by zhoucheng on 2017/5/17.
  */
 
-public class JandanApplication extends Application {
+public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,5 +51,6 @@ public class JandanApplication extends Application {
     public void initBaiduStat() {
         StatService.setAppKey("fd9494003d");
         StatService.setOn(this, StatService.EXCEPTION_LOG);
+        StatService.autoTrace(this, true, false);
     }
 }
