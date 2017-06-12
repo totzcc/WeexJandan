@@ -7,14 +7,12 @@
 //
 
 #import <WeexSDK/WeexSDK.h>
-#import <UMMobClick/MobClick.h>
-#import <BaiduMobStat/BaiduMobStat.h>
+#import "BaiduMobStat.h"
 #import "WXLogModule.h"
 
 @implementation WXLogModule
 WX_EXPORT_METHOD(@selector(event:label:))
 - (void) event:(NSString *) string label:(NSString *) label{
-    [MobClick event:string];
     [[BaiduMobStat defaultStat] logEvent:string eventLabel:label];
 }
 @end
