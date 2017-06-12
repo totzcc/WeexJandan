@@ -155,11 +155,17 @@ module.exports = {
 	},
 	vote(jokeId, voteType){
 		return new Promise((resolve)=>{
+			var body;
+			if(voteType == 1) {
+				body = "comment_id="+jokeId+"&like_type=pos&data_type=comment"
+			} else {
+				body = "comment_id="+jokeId+"&like_type=neg&data_type=comment"
+			}
 			stream.fetch({
 				method: 'POST',
 				url: 'http://jandan.net/jandan-vote.php',
 				type: 'json',
-				body:'id='+jokeId+'&vote_type='+ voteType
+				body:body
 			}, (ret) => {
 				resolve(ret.data)
 			})
