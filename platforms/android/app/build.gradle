@@ -38,6 +38,11 @@ android {
     }
     productFlavors {
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs/alipush']
+        }
+    }
 }
 
 dependencies {
@@ -66,4 +71,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:design:25.1.1'
     testCompile 'junit:junit:4.12'
+    compile files('libs/alipush/alicloud-android-push-sdk-3.0.7.jar')
+    compile files('libs/alipush/alisdk-ut-5.jar')
+    compile files('libs/alipush/utdid4all-1.1.5.3_proguard.jar')
 }
