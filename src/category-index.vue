@@ -89,7 +89,10 @@
 		},
 		computed:{
 			rightItemTitle(){
-				return this.isSubscribeing ? '完成' : '订阅通知'
+				if(this.isSubscribeing) {
+					return '完成'
+				}
+				return this.subscribes.categorys.length == 0 ? '订阅通知' : '管理订阅'
 			}
 		},
 		components: {
