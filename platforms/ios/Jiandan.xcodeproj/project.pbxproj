@@ -22,6 +22,7 @@
 		8A77E89F1EEE283100C1DDE5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E89E1EEE283100C1DDE5 /* libstdc++.tbd */; };
 		8A77E8A11EEE288D00C1DDE5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8A01EEE288D00C1DDE5 /* WebKit.framework */; };
 		8A77E8A31EEE289200C1DDE5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8A21EEE289200C1DDE5 /* libicucore.tbd */; };
+		8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */; };
 		8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */; };
 		8A9CFEC01EA4735100B4894F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEBF1EA4735100B4894F /* main.m */; };
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
@@ -60,6 +61,8 @@
 		8A77E89E1EEE283100C1DDE5 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		8A77E8A01EEE288D00C1DDE5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		8A77E8A21EEE289200C1DDE5 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		8A77E8A41EEE308E00C1DDE5 /* WXAppModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppModule.h; sourceTree = "<group>"; };
+		8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAppModule.m; sourceTree = "<group>"; };
 		8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Orientation.h"; path = "Jiandan/UIViewController+Orientation.h"; sourceTree = SOURCE_ROOT; };
 		8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Orientation.m"; path = "Jiandan/UIViewController+Orientation.m"; sourceTree = SOURCE_ROOT; };
 		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +197,8 @@
 				B31124C71EBE1353006B7F87 /* WXLogModule.m */,
 				B31124C81EBE1353006B7F87 /* WXShareModule.h */,
 				B31124C91EBE1353006B7F87 /* WXShareModule.m */,
+				8A77E8A41EEE308E00C1DDE5 /* WXAppModule.h */,
+				8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */,
 			);
 			name = WeexModule;
 			path = Jiandan/WeexModule;
@@ -346,6 +351,7 @@
 			files = (
 				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
 				B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */,
+				8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */,
 				B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */,
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
 				8A9CFEC01EA4735100B4894F /* main.m in Sources */,
