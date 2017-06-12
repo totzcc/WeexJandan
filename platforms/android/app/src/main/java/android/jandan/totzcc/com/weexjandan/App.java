@@ -43,7 +43,6 @@ public class App extends Application {
         }
         ImageLoaderConfiguration imageLoaderConfiguration = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(imageLoaderConfiguration);
-
         initBaiduStat();
         Pgy.init(this, "c9d38faacab3e0dbbabbd94e5faceee6");
     }

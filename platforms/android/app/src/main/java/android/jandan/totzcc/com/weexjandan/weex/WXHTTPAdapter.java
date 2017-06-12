@@ -1,7 +1,6 @@
 package android.jandan.totzcc.com.weexjandan.weex;
 
 import com.taobao.weex.adapter.DefaultWXHttpAdapter;
-import com.taobao.weex.adapter.IWXHttpAdapter;
 import com.taobao.weex.common.WXRequest;
 
 /**
