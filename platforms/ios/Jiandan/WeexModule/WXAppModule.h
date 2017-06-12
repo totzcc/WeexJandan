@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 #import <WeexSDK/WeexSDK.h>
 @interface WXAppModule : NSObject
-- (void) idfv:(WXModuleCallback) callback;
+- (void) getDeviceId:(WXModuleCallback) callback;
 @end

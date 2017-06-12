@@ -9,8 +9,8 @@
 #import "WXAppModule.h"
 
 @implementation WXAppModule
-WX_EXPORT_METHOD(@selector(idfv:))
-- (void)idfv:(WXModuleCallback) callback {
+WX_EXPORT_METHOD(@selector(getDeviceId:))
+- (void)getDeviceId:(WXModuleCallback) callback {
     callback([[[UIDevice currentDevice] identifierForVendor] UUIDString]);
 }
 @end
