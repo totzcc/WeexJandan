@@ -15,8 +15,8 @@
 					<text>{{subscribes.title}}</text>
 				</div>
 				<div class="container-item">
-					<div v-for="category in subscribes.categorys">
-						<div class="item" :category="category" @click="remove">
+					<div v-for="category in subscribes.categorys" :category="category" @click="remove">
+						<div class="item">
 							<text>{{category}}</text>
 						</div>
 						<image v-if="isSubscribeing" style="position: absolute; left: 0; top: 0; width: 40; height: 40;" :src="config.image('delete.png')"/>
@@ -28,8 +28,8 @@
 					<text>{{item.title}}</text>
 				</div>
 				<div class="container-item">
-					<div v-for="category in item.categorys" v-if="!category.isSubscribe">
-						<div class="item" :category="category" :item="item" @click="click">
+					<div v-for="category in item.categorys" v-if="!category.isSubscribe" :category="category" :item="item" @click="click">
+						<div class="item">
 							<text>{{category.title}}</text>
 						</div>
 						<image v-if="isSubscribeing" style="position: absolute; left: 0; top: 0; width: 40; height: 40;" :src="config.image('add.png')"/>
@@ -51,7 +51,8 @@
 <script>
 	let navigator = weex.requireModule('navigator')
 	import config from './config'
-	import jandan from './services/jandan'
+	import jandanService from './services/jandan'
+	import subscribeService from './services/jandan-subscribe'
 	module.exports = {
 		data(){
 			return {
@@ -95,9 +96,12 @@
 			navpage: require('./include/navpage.vue')
 		},
 		created(){
-			jandan.categoryIndex().then((datalist)=>{
-				this.datalist = datalist
-				this.refreshCategoryState()
+			subscribeService.getSubscribe().then( data=>{
+				this.subscribes.categorys = data
+				jandanService.categoryIndex().then((datalist)=>{
+					this.datalist = datalist
+					this.refreshCategoryState()
+				})
 			})
 		},
 		methods:{
@@ -152,6 +156,9 @@
 				navigator.pop({},()=>{})
 			},
 			naviBarRightItemClick(e){
+				if(this.isSubscribeing) {
+					subscribeService.setSubscribe(this.subscribes.categorys)
+				}
 				this.isSubscribeing = !this.isSubscribeing;
 			}
 		}
