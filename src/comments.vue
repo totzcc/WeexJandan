@@ -141,6 +141,7 @@
 			reply(e){
 				storage.setItem('REPLY_COMMENTS',JSON.stringify({
 					postId:this.detail.postId,
+					type:'comment',
 					placeholder:'回复主题：' + this.detail.title
 				}),()=>{
 					navigator.push({url:config.js('comment-submit.js')})

@@ -141,23 +141,42 @@ module.exports = {
 			})
 		})
 	},
-	submitComment(postId,comment){
-		return new Promise((resolve,reject) => {
-			const param = {
-				author:userInfo.author,
-				email:userInfo.email,
-				comment:comment,
-				comment_post_ID:postId
-			}
-			stream.fetch({
-				method: 'POST',
-				url: 'http://jandan.net/jandan-comment.php',
-				type: 'json',
-				body:config.toParams(param)
-			}, (ret) => {
-				resolve(ret.data)
+	submitComment(postId,comment, type){
+		if(type == 'comment') {
+			return new Promise((resolve,reject) => {
+				const param = {
+					author:userInfo.author,
+					email:userInfo.email,
+					comment:comment,
+					comment_post_ID:postId
+				}
+				stream.fetch({
+					method: 'POST',
+					url: 'http://jandan.net/jandan-comment.php',
+					type: 'json',
+					body:config.toParams(param)
+				}, (ret) => {
+					resolve(ret.data)
+				})
 			})
-		})
+		} else {
+			return new Promise((resolve,reject) => {
+				const param = {
+					author:userInfo.author,
+					email:userInfo.email,
+					content:comment,
+					comment_id:postId
+				}
+				stream.fetch({
+					method: 'POST',
+					url: 'http://jandan.net/jandan-tucao.php',
+					type: 'json',
+					body:config.toParams(param)
+				}, (ret) => {
+					resolve(ret.data)
+				})
+			})
+		}
 	},
 	vote(jokeId, voteType){
 		jokeVoteMaps[jokeId] = voteType

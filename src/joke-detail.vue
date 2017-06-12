@@ -6,7 +6,9 @@
 	    backgroundColor="#ffffff"
 	    titleColor="#333333"
 	    :leftItemSrc="config.image('back.png')"
-	    @naviBarLeftItemClick="naviBarLeftItemClick">
+	    :rightItemSrc="config.image('reply.png')"
+	    @naviBarLeftItemClick="naviBarLeftItemClick"
+	    @naviBarRightItemClick="naviBarRightItemClick">
 		<list style="background-color: #f3f3f3;">
 			<cell style="height: 44px;"></cell>
 			<cell>
@@ -156,6 +158,15 @@
 					} else {
 						item.vote_negative = parseInt(item.vote_negative) + 1
 					}
+				})
+			},
+			naviBarRightItemClick(e){
+				storage.setItem('REPLY_COMMENTS',JSON.stringify({
+					postId:this.item.id,
+					type:'tucao',
+					placeholder:'回复吐槽：' + this.item.title
+				}),()=>{
+					navigator.push({url:config.js('comment-submit.js')})
 				})
 			},
 			naviBarLeftItemClick(e){
