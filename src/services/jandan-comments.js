@@ -4,9 +4,15 @@ const html = weex.requireModule('html')
 import config from '../config'
 import stream from './jandan-stream'
 var userInfo = {author:'',email:''}
+var jokeVoteMaps = {}
 storage.getItem(JANDAN_USER_INFO,(res)=>{
 	if(res.result == 'success') {
 		userInfo = JSON.parse(res.data)
+	}
+})
+storage.getItem('jokeVoteMaps',(res)=>{
+	if(res.result == 'success') {
+		jokeVoteMaps = JSON.parse(res.data)
 	}
 })
 module.exports = {
@@ -154,6 +160,8 @@ module.exports = {
 		})
 	},
 	vote(jokeId, voteType){
+		jokeVoteMaps[jokeId] = voteType
+		storage.setItem('jokeVoteMaps',JSON.stringify(jokeVoteMaps))
 		return new Promise((resolve)=>{
 			var body;
 			if(voteType == 1) {
