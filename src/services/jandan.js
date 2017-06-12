@@ -243,21 +243,21 @@ module.exports = {
 			})
 		})
 	},
-	list(type, page) {
+	list(type, page, cache) {
 		return new Promise((resolve) => {
 			setTimeout(()=>{
 				if(page) {
-					this.listContext(type, page).then(datalist => {
+					this.listContext(type, page, cache).then(datalist => {
 						resolve({
 							datalist: datalist
 						})
 					})
 				} else {
-					this.maxPage(type).then(maxPage => {
-						this.listContext(type, maxPage).then((datalist) => {
+					this.maxPage(type, cache).then(maxPage => {
+						this.listContext(type, maxPage, cache).then((datalist) => {
 							if(datalist.length <=8) {
 								maxPage -= 1
-								this.listContext(type, maxPage).then((newlist) => {
+								this.listContext(type, maxPage, cache).then((newlist) => {
 									datalist = datalist.concat(newlist)
 									resolve({
 										datalist: datalist,
@@ -276,7 +276,7 @@ module.exports = {
 			},500)
 		})
 	},
-	listContext(type, page) {
+	listContext(type, page, cache) {
 		var requestURL = ''
 		if(type == 'girl') {
 			requestURL = girlPageURL
@@ -293,7 +293,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: requestURL.replace('{page}', page),
-				type: 'text'
+				type: 'text',
+				cache:cache
 			}, (ret) => {
 				html.css(ret.data, ".commentlist li", (data) => {
 					var datalist = new Array()
@@ -371,7 +372,7 @@ module.exports = {
 			})
 		})
 	},
-	maxPage(type) {
+	maxPage(type, cache) {
 		var requestURL = ""
 		if(type == 'girl') {
 			requestURL = girlURL
@@ -388,7 +389,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: requestURL,
-				type: 'text'
+				type: 'text',
+				cache:cache
 			}, function(ret) {
 				html.css(ret.data, '.current-comment-page', function(find) {
 					html.parse(find[0], function(data) {

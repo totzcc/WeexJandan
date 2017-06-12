@@ -11,7 +11,7 @@
 					<text>Loading...</text>
 				</div>
 			</cell>
-			<cell v-for="item in datalist" @click="clickLike" :item="item">
+			<cell v-for="item in datalist" @click="click" :item="item">
 				<div class="item">
 					<text style="color: #333333;">{{item.title}}</text>
 					<div style="flex-direction: row; align-items: center; justify-content: space-between; margin-top: 5px; padding: 5px;" class="item-box">
@@ -59,6 +59,8 @@
 	import jandanComments from './services/jandan-comments'
 	import animation from './animation/animation'
 	const browser = weex.requireModule('browser')
+	const storage = weex.requireModule('storage')
+	const navigator = weex.requireModule('navigator')
 	const modal = weex.requireModule('modal')
 	export default {
 		data: {
@@ -83,7 +85,7 @@
 			}
 		},
 		created() {
-			this.onrefresh()
+			this.onrefresh(true)
 		},
 		methods: {
 			getUrlParam (key) {
@@ -91,9 +93,13 @@
 				var match = weex.config.bundleUrl.match(reg)
 				return match && match[1]
 			},
-			onrefresh(showRefresh){
+			onrefresh(readCache){
+				var cache = false
+				if(readCache == true) {
+					cache = true
+				}
 				this.showRefresh = 'show'
-		        jandan.list(this.type).then((response)=>{
+		        jandan.list(this.type, null, cache).then((response)=>{
 		        		this.showRefresh = 'hide'
 					this.datalist = response.datalist
 					if(response.maxPage) {
@@ -126,47 +132,11 @@
 					}
 				})
 			},
-			clickLike(e){
+			click(e){
 				const item = e.target.attr.item
-				if(!this.lastClickObj.item == item) {
-					this.lastClickObj = {item:item,timestamp:e.timestamp}
-					this.isSingleClick = true
-				}
-				if(e.timestamp - this.lastClickObj.timestamp <= 200) {
-					if(item.vote) {
-						return
-					}
-					if(item.vote != 1) {
-						item.vote = 1
-						jandanComments.vote(item.id, 1).then(res=>{
-							item.support += 1
-						})
-						setTimeout(()=>{
-							this.isSingleClick = true
-						},200)
-						this.isSingleClick = false
-					}
-				} else {
-					setTimeout(()=>{
-						if(this.isSingleClick && item.imgs && item.imgs.length > 0) {
-							var imgs = [];
-							var currentIndex = 0;
-							var find = false
-							this.datalist.forEach((value) => {
-								if(value.imgs && value.imgs.length>0) {
-									imgs = imgs.concat(value.imgs);
-									if(!find && value != item) {
-										currentIndex += value.imgs.length;
-									} else {
-										find = true
-									}
-								}
-							})
-							browser.browserImages(imgs, currentIndex)
-						}
-					},300)
-				}
-				this.lastClickObj = {item:item,timestamp:e.timestamp}
+				storage.setItem('joke-detail', JSON.stringify(item),(e) => {
+					navigator.push({url:config.js('joke-detail.js')},()=>{})
+				})
 			}
 		}
 	}
