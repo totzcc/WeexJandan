@@ -363,6 +363,13 @@ module.exports = {
 								}
 							})
 						})
+						html.css(value, '.tucao-btn', (find) => {
+							html.parse(find[0], (value) => {
+								var tucao = value.text;
+								tucao = tucao.substring(tucao.indexOf('[') + 1, tucao.indexOf(']'))
+								obj['tucao'] = tucao
+							})
+						})
 						datalist.push(obj)
 					})
 					setTimeout(() => {

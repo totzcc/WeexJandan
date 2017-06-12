@@ -22,14 +22,19 @@
 						<image v-if="item.vote==1" class="like-item" :src="config.image('like.png')"></image>
 						<image v-if="item.vote==0"class="like-item" :src="config.image('dislike.png')"></image>
 					</div>
-					<div style="flex-direction: row;">
-						<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="1">
-							<text style="color:#FF4D33;">OO  </text>
-							<text style="color:#FE0000;">{{item.support}}</text>
+					<div style="flex-direction: row; justify-content: space-between; align-items: center;">
+						<div style="flex-direction: row;">
+							<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="1">
+								<text style="color:#FF4D33;">OO  </text>
+								<text style="color:#FE0000;">{{item.support}}</text>
+							</div>
+							<div style="flex: 1;height: 55px; margin-left: 30;" class="item-box-center" @click='support' :item="item" vote-type="0">
+								<text style="color: #999999;">XX  </text>
+								<text style="color: #666666;">{{item.unsupport}}</text>
+							</div>
 						</div>
-						<div style="flex: 1;height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="0">
-							<text style="color: #999999;">XX  </text>
-							<text style="color: #666666;">{{item.unsupport}}</text>
+						<div>
+							<text style="color: #666666;">吐槽 {{item.tucao}}</text>
 						</div>
 					</div>
 				</div>
@@ -45,8 +50,8 @@
 <style>
 	.container{padding-left: 10px;background-color: #f3f3f3;}
 	.item{padding: 10px;padding-bottom: 0px; background-color: #FFFFFF; border-width: 1px; border-color: #e3e3e3;}
-	.item-box{border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
-	.item-box-center{align-items: center;justify-content: center;flex-direction: row;border-width: 1px; border-color: #e3e3e3;border-style:dashed; border-bottom-width: 0px;}
+	.item-box{border-width: 1px; border-color: #e3e3e3;border-style:dashed;}
+	.item-box-center{align-items: center;justify-content: center;flex-direction: row;}
 	.refresh{width: 750px; height: 100px; align-items: center;justify-content: center;}
 	.loading{width: 750px; height: 100px;  align-items: center;justify-content: center;}
 	.like-conver {position: absolute;top: 0;right: 0;bottom: 0;left: 0;justify-content: center;align-items: center;}
