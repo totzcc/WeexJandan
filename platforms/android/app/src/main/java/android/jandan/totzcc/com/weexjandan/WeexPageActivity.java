@@ -24,7 +24,6 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
         setContentView(R.layout.activity_main);
 
         recreateInstace();
-
         String weexURL = getIntent().getDataString();
         if (weexURL != null) {
             renderByURL(weexURL);
