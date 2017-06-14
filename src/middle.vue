@@ -1,0 +1,41 @@
+<template>
+	<div style="align-items: center; justify-content: center;" @viewappear="viewappear">
+		<text>Loadding...</text>
+	</div>
+</template>
+
+<script>
+	import config from './config'
+	import jandan from './services/jandan'
+	let navigator = weex.requireModule('navigator')
+	let app = weex.requireModule('app')
+	var firstVisit = true;
+	export default {
+		created(){
+			app.getRecentNotification((res)=>{
+				if(res) {
+					let href = res.extraMap.href;
+					let title = res.extraMap.title;
+					let target = res.extraMap.target;
+					if(target == 'article-detail') {
+						jandan.toDetail({href:href})
+					}
+				} else {
+					navigator.pop(()=>{})
+				}
+			})
+		},
+		methods:{
+			viewappear(){
+				if(firstVisit) {
+					firstVisit = false;
+				} else {
+					navigator.pop(()=>{})
+				}
+			}
+		}
+	}
+</script>
+
+<style>
+</style>
