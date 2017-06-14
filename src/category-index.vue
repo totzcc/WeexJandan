@@ -106,6 +106,13 @@
 					this.refreshCategoryState()
 				})
 			})
+//			jandanService.categoryIndex().then((datalist)=>{
+//				this.datalist = datalist
+//				subscribeService.getSubscribe().then( data=>{
+//					this.subscribes.categorys = data
+//					this.refreshCategoryState()
+//				})
+//			})
 		},
 		methods:{
 			click(e){

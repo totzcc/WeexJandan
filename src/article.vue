@@ -86,7 +86,7 @@
 			},
 			more(){
 				navigator.push({url:config.js('category-index.js')},()=>{})
-//				navigator.push({url:config.js('more.js')},()=>{})
+//				navigator.push({url:config.js('middle.js')},()=>{})
 			}
 		}
 	}

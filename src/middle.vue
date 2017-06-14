@@ -17,7 +17,7 @@
 					let href = res.extraMap.href;
 					let title = res.extraMap.title;
 					let target = res.extraMap.target;
-					if(target == 'article-detail') {
+					if(target == 'articleDetail') {
 						jandan.toDetail({href:href})
 					}
 				} else {
