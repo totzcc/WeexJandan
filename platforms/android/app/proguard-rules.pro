@@ -49,3 +49,7 @@
 -dontwarn anetwork.**
 -dontwarn com.ut.**
 -dontwarn com.ta.**
+
+-dontwarn okio.**
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault

@@ -3,4 +3,5 @@
     <string name="weex_main_url_debug">http://192.168.199.200:12580/dist/native/index.js</string>
     <string name="weex_main_url_release">http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/dist/native/index.js</string>
     <string name="weex_message_middle_page">middle.js</string>
+    <string name="weex_zip_file">http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/jandan.zip</string>
 </resources>

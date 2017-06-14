@@ -2,6 +2,7 @@ package android.jandan.totzcc.com.weexjandan;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.jandan.totzcc.com.weexjandan.weex.WXAppModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXBrowserModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXHTMLModule;
@@ -22,16 +23,18 @@ import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKEngine;
 import com.taobao.weex.common.WXException;
 import com.taobao.weex.utils.LogLevel;
-import com.taobao.weex.utils.WXLogUtils;
 
 /**
  * Created by zhoucheng on 2017/5/17.
  */
 
 public class App extends Application {
+    private static SharedPreferences sharedPreferences = null;
     @Override
     public void onCreate() {
         super.onCreate();
+        sharedPreferences = getSharedPreferences("jandan", Context.MODE_PRIVATE);
+        WeexFileTools.initWeexServive(this);
         Fresco.initialize(this);
         InitConfig weexConfig = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
         WXSDKEngine.initialize(this, weexConfig);
@@ -45,7 +48,7 @@ public class App extends Application {
             WXSDKEngine.registerModule("browser", WXBrowserModule.class);
             WXSDKEngine.registerModule("app", WXAppModule.class);
         } catch (WXException e) {
-            WXLogUtils.e(e.getMessage(), e);
+            LogUtil.e(e.getMessage(), e);
         }
         ImageLoaderConfiguration imageLoaderConfiguration = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(imageLoaderConfiguration);
@@ -69,13 +72,16 @@ public class App extends Application {
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {
-                WXLogUtils.d("init cloudchannel success");
-                WXLogUtils.d("DeviceId:"+pushService.getDeviceId());
+                LogUtil.d("init cloudchannel success");
+                LogUtil.d("DeviceId:"+pushService.getDeviceId());
             }
             @Override
             public void onFailed(String errorCode, String errorMessage) {
-                WXLogUtils.d("init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
+                LogUtil.d("init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
             }
         });
+    }
+    public static SharedPreferences getSharedPreferences(){
+        return sharedPreferences;
     }
 }
