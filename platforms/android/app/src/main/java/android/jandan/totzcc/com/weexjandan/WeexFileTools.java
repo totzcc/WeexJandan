@@ -2,25 +2,16 @@ package android.jandan.totzcc.com.weexjandan;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.Date;
-import java.util.Enumeration;
-import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import okhttp3.Call;
@@ -28,8 +19,6 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static com.alibaba.fastjson.util.IOUtils.close;
 
 /**
  * Created by zhoucheng on 2017/6/14.

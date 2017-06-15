@@ -10,7 +10,6 @@ import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
 
-
 import java.io.IOException;
 
 public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
