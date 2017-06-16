@@ -22,6 +22,12 @@ public class WXImageAdapter implements IWXImgLoaderAdapter {
             .build();
     @Override
     public void setImage(String url, final ImageView imageView, WXImageQuality quality, WXImageStrategy strategy) {
+        if (url.startsWith("//")) {
+            url = "http://" + url;
+        }
+        if (url.startsWith("file://")) {
+            url = url.replace("file://", "http://");
+        }
         ImageLoader.getInstance().displayImage(url, imageView, options);
     }
 }
