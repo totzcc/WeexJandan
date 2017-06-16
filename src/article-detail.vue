@@ -59,7 +59,7 @@
 				detail.isLike = favorite.isLike(detail.href)
 				this.like()
 				comments.getCommentCount(detail.href).then(count=>{
-					detail.comments = count
+					detail.comments = count || 0
 					this.detail = detail
 				})
 			})
