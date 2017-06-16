@@ -30,7 +30,12 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
             if (WXEnvironment.isApkDebugable()) {
                 renderByURL(getString(R.string.weex_main_url_debug));
             } else {
-                renderByURL(getString(R.string.weex_main_url_release));
+                WeexFileTools.initWeexServive(this, new WeexFileTools.WeexFileToolsCallback() {
+                    @Override
+                    public void invoke(String bundleURL) {
+                        renderByURL(bundleURL + "/index.js");
+                    }
+                });
             }
         }
     }

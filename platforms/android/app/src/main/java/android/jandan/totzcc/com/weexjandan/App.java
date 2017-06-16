@@ -34,7 +34,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sharedPreferences = getSharedPreferences("jandan", Context.MODE_PRIVATE);
-        WeexFileTools.initWeexServive(this);
         Fresco.initialize(this);
         InitConfig weexConfig = new InitConfig.Builder().setImgAdapter(new WXImageAdapter()).build();
         WXSDKEngine.initialize(this, weexConfig);

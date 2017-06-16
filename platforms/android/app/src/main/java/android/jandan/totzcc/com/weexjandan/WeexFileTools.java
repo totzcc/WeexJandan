@@ -3,6 +3,8 @@ package android.jandan.totzcc.com.weexjandan;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,13 +28,22 @@ import okhttp3.Response;
 
 public class WeexFileTools {
     private static final String ZIP_FILE_CONTENT_LENGTH = "ZIP_FILE_CONTENT_LENGTH";
-    public static void initWeexServive(Context context) {
-        if (!unzipAssetsZip(context)) {
-            checkDownloadZipFromInternet(context);
+    private static boolean isInit = false;
+    private static KProgressHUD hud;
+    public static void initWeexServive(Context context, WeexFileToolsCallback callback) {
+        if (!isInit) {
+            if (!unzipAssetsZip(context)) {
+                checkDownloadZipFromInternet(context);
+            }
+            isInit = true;
+        }
+        if (callback != null) {
+            callback.invoke("file://" + new File(context.getFilesDir() + "/weexFile").getAbsolutePath());
         }
     }
 
     private static void checkDownloadZipFromInternet(final Context context) {
+        hud = KProgressHUD.create(context).show();
         LogUtil.d("检查远程资源包大小");
         OkHttpClient client = new OkHttpClient.Builder().build();
         Request request = new Request.Builder().head().url(context.getString(R.string.weex_zip_file)).build();
@@ -50,6 +61,8 @@ public class WeexFileTools {
                 if (localContentLength != remoteContentLength) {
                     LogUtil.d("需要更新本地zip文件");
                     downloadZipFromInternetAndUnZip(context);
+                } else {
+                    hud.dismiss();
                 }
             }
         });
@@ -79,6 +92,7 @@ public class WeexFileTools {
                     edit.putLong(ZIP_FILE_CONTENT_LENGTH, response.body().contentLength());
                     edit.apply();
                 }
+                hud.dismiss();
 
             }
         });
@@ -153,5 +167,8 @@ public class WeexFileTools {
             }
         }
         file.delete();
+    }
+    public static interface WeexFileToolsCallback{
+        void invoke(String bundleURL);
     }
 }
