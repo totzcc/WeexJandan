@@ -15,7 +15,7 @@ android {
         applicationId "android.jandan.totzcc.com.weexjandan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 7
+        versionCode 8
         versionName "1.0.2"
         signingConfig signingConfigs.config
         ndk{
