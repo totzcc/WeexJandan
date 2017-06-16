@@ -24,4 +24,4 @@ ios.py
 *.apk
 build
 pack.py
-android.config.json
+android.json
