@@ -33,6 +33,8 @@
 				content:'',
 				reply:{
 					postId:'',
+					placeholder:'',
+					type:'' // tucao \ comment
 				}
 			}
 		},
@@ -55,7 +57,7 @@
 					modal.toast({message:'未填写内容',duration:1})
 					return
 				}
-				jandanComments.submitComment(this.reply.postId, this.content).then((res)=>{
+				jandanComments.submitComment(this.reply.postId, this.content, this.reply.type).then((res)=>{
 					this.content = ''
 					modal.toast({message:'发表成功，审核通过后会自动展示',duration:1})
 					setTimeout(()=>{

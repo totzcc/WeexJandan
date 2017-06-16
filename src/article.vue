@@ -20,9 +20,12 @@
 						</div>
 					</div>
 					<div class="opeart-bar">
-						<text style="color: #999999; font-size: 24; margin-right: 5px;">{{item.commentTime}}</text>
-						<image class="comment" :src="config.image('comment.png')"></image>
-						<text style="color: #999999; font-size: 24; margin-left: 5px;">{{item.comments || 0}}</text>
+						<div></div>
+						<div style="flex-direction: row; align-items: center;">
+							<text style="color: #999999; font-size: 24; margin-right: 5px;"> {{item.commentTime || 'x mins ago'}} </text>
+							<image class="comment" :src="config.image('comment.png')"></image>
+							<text style="color: #999999; font-size: 24; margin-left: 5px;"> {{item.comments || 0}}</text>
+						</div>
 					</div>
 				</div>
 			</cell>
@@ -40,7 +43,7 @@
 	.item{background-color: #ffffff;margin-top: 40px; padding: 20px; padding-bottom: 0px;}
 	.item-author{color: #999999; font-size: 24;}
 	.item-summary{color: #333333; font-size: 26;}
-	.opeart-bar{margin-top: 20px; height: 80px; border-top-width: 1;border-top-style: dashed; border-top-color: #e3e3e3; align-items: center; justify-content: center;  flex-direction: row; justify-content: flex-end;}
+	.opeart-bar{margin-top: 20px; height: 80px; border-top-width: 1;border-top-style: dashed; border-top-color: #e3e3e3; align-items: center; justify-content: center;  flex-direction: row; justify-content: space-between;}
 	.refresh{width: 750px; padding-top: 40px; padding-top: 80px; align-items: center;justify-content: center;}
 </style>
 <script>
@@ -64,7 +67,6 @@
 		},
 		created(){
 			this.onrefresh()
-			config.event('article', '文章首页')
 		},
 		methods:{
 			onrefresh(){
@@ -83,7 +85,8 @@
 				}
 			},
 			more(){
-				navigator.push({url:config.js('more.js')},()=>{})
+				navigator.push({url:config.js('category-index.js')},()=>{})
+//				navigator.push({url:config.js('middle.js')},()=>{})
 			}
 		}
 	}

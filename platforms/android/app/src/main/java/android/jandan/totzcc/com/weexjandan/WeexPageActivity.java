@@ -9,7 +9,6 @@ import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.common.WXRenderStrategy;
-import com.taobao.weex.utils.WXLogUtils;
 
 import java.io.IOException;
 
@@ -24,7 +23,6 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
         setContentView(R.layout.activity_main);
 
         recreateInstace();
-
         String weexURL = getIntent().getDataString();
         if (weexURL != null) {
             renderByURL(weexURL);
@@ -32,7 +30,12 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
             if (WXEnvironment.isApkDebugable()) {
                 renderByURL(getString(R.string.weex_main_url_debug));
             } else {
-                renderByURL(getString(R.string.weex_main_url_release));
+                WeexFileTools.initWeexServive(this, new WeexFileTools.WeexFileToolsCallback() {
+                    @Override
+                    public void invoke(String bundleURL) {
+                        renderByURL(bundleURL + "/index.js");
+                    }
+                });
             }
         }
     }
@@ -64,7 +67,7 @@ public class WeexPageActivity extends BaseActivity implements IWXRenderListener{
         try {
             JandanWebService.getInstance(this).onActivityStart();
         } catch (IOException e) {
-            WXLogUtils.e("启动Web服务失败", e);
+            LogUtil.e("启动Web服务失败", e);
         }
     }
 

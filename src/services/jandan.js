@@ -1,4 +1,4 @@
-const stream = weex.requireModule('stream')
+//const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
 const browser = weex.requireModule('browser')
 const html = weex.requireModule('html')
@@ -28,6 +28,7 @@ var readMaps = {}
 var callbackSleepTime = 1000
 import md5 from './md5.js'
 import config from '../config'
+import stream from './jandan-stream'
 storage.getItem('jokeVoteMaps',(res)=>{
 	if(res.result == 'success') {
 		jokeVoteMaps = JSON.parse(res.data)
@@ -63,7 +64,6 @@ module.exports = {
 		category = encodeURI(category)
 		return new Promise((resolve) => {
 			var url = "http://jandan.net/tag/"+category+"/page/" + page
-			console.log(url)
 			stream.fetch({
 				method: 'GET',
 				url: url,
@@ -104,7 +104,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: 'http://jandan.net/',
-				type: 'text'
+				type: 'text',
+				cache:true
 			}, function(ret) {
 				
 				html.css(ret.data,'.tag-cloud thead tr th',(find) => {
@@ -130,7 +131,7 @@ module.exports = {
 								obj.title = parse.text
 								obj.categorys = []
 								trs.forEach((value)=>{
-									obj.categorys.push(value[index])
+									obj.categorys.push({title:value[index]})
 								})
 								datalist.push(obj)
 							})
@@ -242,21 +243,21 @@ module.exports = {
 			})
 		})
 	},
-	list(type, page) {
+	list(type, page, cache) {
 		return new Promise((resolve) => {
 			setTimeout(()=>{
 				if(page) {
-					this.listContext(type, page).then(datalist => {
+					this.listContext(type, page, cache).then(datalist => {
 						resolve({
 							datalist: datalist
 						})
 					})
 				} else {
-					this.maxPage(type).then(maxPage => {
-						this.listContext(type, maxPage).then((datalist) => {
+					this.maxPage(type, cache).then(maxPage => {
+						this.listContext(type, maxPage, cache).then((datalist) => {
 							if(datalist.length <=8) {
 								maxPage -= 1
-								this.listContext(type, maxPage).then((newlist) => {
+								this.listContext(type, maxPage, cache).then((newlist) => {
 									datalist = datalist.concat(newlist)
 									resolve({
 										datalist: datalist,
@@ -275,7 +276,7 @@ module.exports = {
 			},500)
 		})
 	},
-	listContext(type, page) {
+	listContext(type, page, cache) {
 		var requestURL = ''
 		if(type == 'girl') {
 			requestURL = girlPageURL
@@ -292,7 +293,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: requestURL.replace('{page}', page),
-				type: 'text'
+				type: 'text',
+				cache:cache
 			}, (ret) => {
 				html.css(ret.data, ".commentlist li", (data) => {
 					var datalist = new Array()
@@ -349,16 +351,23 @@ module.exports = {
 								})
 							})
 						})
-						html.css(value, '.vote span', (list) => {
-							html.parse(list[1], (value) => {
+						html.css(value, '.jandan-vote span', (list) => {
+							html.parse(list[0], (value) => {
 								if(value.text) {
 									obj['support'] = parseInt(value.text)
 								}
 							})
-							html.parse(list[2], (value) => {
+							html.parse(list[1], (value) => {
 								if(value.text) {
 									obj['unsupport'] = parseInt(value.text)
 								}
+							})
+						})
+						html.css(value, '.tucao-btn', (find) => {
+							html.parse(find[0], (value) => {
+								var tucao = value.text;
+								tucao = tucao.substring(tucao.indexOf('[') + 1, tucao.indexOf(']'))
+								obj['tucao'] = tucao
 							})
 						})
 						datalist.push(obj)
@@ -370,7 +379,7 @@ module.exports = {
 			})
 		})
 	},
-	maxPage(type) {
+	maxPage(type, cache) {
 		var requestURL = ""
 		if(type == 'girl') {
 			requestURL = girlURL
@@ -387,7 +396,8 @@ module.exports = {
 			stream.fetch({
 				method: 'GET',
 				url: requestURL,
-				type: 'text'
+				type: 'text',
+				cache:cache
 			}, function(ret) {
 				html.css(ret.data, '.current-comment-page', function(find) {
 					html.parse(find[0], function(data) {

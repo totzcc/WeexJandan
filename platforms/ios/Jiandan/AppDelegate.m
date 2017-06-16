@@ -8,12 +8,10 @@
 #import <WeexSDK/WeexSDK.h>
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import <UMMobClick/MobClick.h>
 #import <HTMLReader/HTMLReader.h>
-#import <BaiduMobStat/BaiduMobStat.h>
+#import "BaiduMobStat.h"
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
-#import <GrowingIO/Growing.h>
 #import <SSZipArchive/SSZipArchive.h>
 #import "DataUtil.h"
 #import "AppDelegate.h"
@@ -23,6 +21,7 @@
 #import "WXBrowserImageModule.h"
 #import "WXShareModule.h"
 #import "WXLogModule.h"
+#import "WXAppModule.h"
 
 #define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
@@ -38,12 +37,6 @@
     [[BaiduMobStat defaultStat] startWithAppId:@"fd52db7f54"];
     [[BaiduMobStat defaultStat] logEvent:@"didFinishLaunchingWithOptions" eventLabel:@"启动"];
     
-    UMConfigInstance.appKey = @"59006e6c6e27a45e71001bcb";
-    [MobClick startWithConfigure:UMConfigInstance];
-    [MobClick event:@"didFinishLaunchingWithOptions"];
-    
-    [Growing startWithAccountId:@"809b5650755a1813"];
-    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     [WXAppConfiguration setAppGroup:@"Leo Studio"];
@@ -57,6 +50,7 @@
     [WXSDKEngine registerModule:@"browser" withClass:[WXBrowserImageModule class]];
     [WXSDKEngine registerModule:@"share" withClass:[WXShareModule class]];
     [WXSDKEngine registerModule:@"log" withClass:[WXLogModule class]];
+    [WXSDKEngine registerModule:@"app" withClass:[WXAppModule class]];
     [WXSDKEngine initSDKEnvironment];
     [WXLog setLogLevel:WXLogLevelLog];
     
@@ -73,13 +67,7 @@
     [self.webServer startWithPort:9090 bonjourName:nil];
     return YES;
 }
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    if ([Growing handleUrl:url]) // 请务必确保该函数被调用
-    {
-        return YES;
-    }
-    return NO;
-}
+
 - (void) loadMainBundleJS{
     if (self.window.rootViewController == nil) {
         self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:nil];
@@ -167,13 +155,6 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [MobClick event:@"applicationDidBecomeActive"];
-    [[BaiduMobStat defaultStat] logEvent:@"applicationDidBecomeActive" eventLabel:@"后台恢复"];
-}
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

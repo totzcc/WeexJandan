@@ -23,7 +23,7 @@
 	    				<div style="background-color: #FFFFFF; margin-top: 20px;padding: 20px; padding-bottom: 0px;">
 	    					<div>
 		    					<div style="flex-direction: row; padding: 20px; padding-left: 0px;">
-		    						<text style="color: #999999; font-size: 24;">#{{index}}</text>
+		    						<text style="color: #999999; font-size: 24;">#{{index + 1}}</text>
 		    						<text style="color: orangered; font-size: 24;margin-left: 20px;">{{item.author}}</text>
 		    						<text style="color: #999999; font-size: 20; margin-left: 20px;">{{item.time}}</text>
 		    					</div>
@@ -97,7 +97,6 @@
 				this.detail = JSON.parse(ret.data)
 				this.onrefresh()
 			})
-			config.event('comments','评论列表')
 		},
 		methods:{
 			onrefresh(){
@@ -109,7 +108,6 @@
 					this.datalist = result.datalist
 					this.detail.postId = result.postId
 					this.showRefresh = 'hide'
-					console.log('postId=' + this.detail.postId)
 				})
 			},
 			onloading(){
@@ -143,6 +141,7 @@
 			reply(e){
 				storage.setItem('REPLY_COMMENTS',JSON.stringify({
 					postId:this.detail.postId,
+					type:'comment',
 					placeholder:'回复主题：' + this.detail.title
 				}),()=>{
 					navigator.push({url:config.js('comment-submit.js')})

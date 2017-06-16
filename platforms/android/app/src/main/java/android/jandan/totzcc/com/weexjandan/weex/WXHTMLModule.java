@@ -40,21 +40,21 @@ public class WXHTMLModule extends WXModule {
             callback.invoke(new HashMap<String,String>());
             return;
         }
-        Elements elements = Jsoup.parse(html).body().children();
-        if (elements.size() == 0) {
-            callback.invoke(new HashMap<String,String>());
-            return;
+        Element body = Jsoup.parse(html).body();
+        Element element;
+        if (body.children().size() == 0) {
+            element = body;
         } else {
-            Element element = Jsoup.parse(html).body().child(0);
-            Attributes attributes = element.attributes();
-            Iterator<Attribute> iterator = attributes.iterator();
-            HashMap<String, String> attrMaps = new HashMap<>();
-            while (iterator.hasNext()) {
-                Attribute attribute =  iterator.next();
-                attrMaps.put(attribute.getKey(), attribute.getValue());
-            }
-            attrMaps.put("text", element.text());
-            callback.invoke(attrMaps);
+            element = body.children().get(0);
         }
+        Attributes attributes = element.attributes();
+        Iterator<Attribute> iterator = attributes.iterator();
+        HashMap<String, String> attrMaps = new HashMap<>();
+        while (iterator.hasNext()) {
+            Attribute attribute =  iterator.next();
+            attrMaps.put(attribute.getKey(), attribute.getValue());
+        }
+        attrMaps.put("text", element.text());
+        callback.invoke(attrMaps);
     }
 }

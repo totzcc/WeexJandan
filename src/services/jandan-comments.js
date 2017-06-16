@@ -1,18 +1,22 @@
 const JANDAN_USER_INFO = "JANDAN_USER_INFO"
-const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
 const html = weex.requireModule('html')
 import config from '../config'
-
+import stream from './jandan-stream'
 var userInfo = {author:'',email:''}
+var jokeVoteMaps = {}
 storage.getItem(JANDAN_USER_INFO,(res)=>{
 	if(res.result == 'success') {
 		userInfo = JSON.parse(res.data)
 	}
 })
+storage.getItem('jokeVoteMaps',(res)=>{
+	if(res.result == 'success') {
+		jokeVoteMaps = JSON.parse(res.data)
+	}
+})
 module.exports = {
 	comments(url, page){
-		console.log(url)
 		return new Promise((resolve) => {
 			setTimeout(()=>{
 				if(!page) {
@@ -103,6 +107,29 @@ module.exports = {
 			})
 		})
 	},
+	getCommentCount(url){
+		return new Promise((resolve, reject) => {
+			stream.fetch({
+				method: 'GET',
+				url: url,
+				cache:true,
+				type: 'text'
+			}, function(ret) {
+				html.css(ret.data,'#comments', find =>{
+					if(find.length > 0) {
+						html.parse(find[0], parse => {
+							let start = parse.text.indexOf(':') + 1;
+							let end = parse.text.indexOf('+');
+							let count = parse.text.substring(start,end)
+							resolve(parseInt(count))
+						})
+					} else {
+						resolve(0)
+					}
+				})
+			})
+		})
+	},
 	request(url){
 		return new Promise((resolve) =>{
 			stream.fetch({
@@ -114,31 +141,58 @@ module.exports = {
 			})
 		})
 	},
-	submitComment(postId,comment){
-		return new Promise((resolve,reject) => {
-			const param = {
-				author:userInfo.author,
-				email:userInfo.email,
-				comment:comment,
-				comment_post_ID:postId
-			}
-			stream.fetch({
-				method: 'POST',
-				url: 'http://jandan.net/jandan-comment.php',
-				type: 'json',
-				body:config.toParams(param)
-			}, (ret) => {
-				resolve(ret.data)
+	submitComment(postId,comment, type){
+		if(type == 'comment') {
+			return new Promise((resolve,reject) => {
+				const param = {
+					author:userInfo.author,
+					email:userInfo.email,
+					comment:comment,
+					comment_post_ID:postId
+				}
+				stream.fetch({
+					method: 'POST',
+					url: 'http://jandan.net/jandan-comment.php',
+					type: 'json',
+					body:config.toParams(param)
+				}, (ret) => {
+					resolve(ret.data)
+				})
 			})
-		})
+		} else {
+			return new Promise((resolve,reject) => {
+				const param = {
+					author:userInfo.author,
+					email:userInfo.email,
+					content:comment,
+					comment_id:postId
+				}
+				stream.fetch({
+					method: 'POST',
+					url: 'http://jandan.net/jandan-tucao.php',
+					type: 'json',
+					body:config.toParams(param)
+				}, (ret) => {
+					resolve(ret.data)
+				})
+			})
+		}
 	},
 	vote(jokeId, voteType){
+		jokeVoteMaps[jokeId] = voteType
+		storage.setItem('jokeVoteMaps',JSON.stringify(jokeVoteMaps))
 		return new Promise((resolve)=>{
+			var body;
+			if(voteType == 1) {
+				body = "comment_id="+jokeId+"&like_type=pos&data_type=comment"
+			} else {
+				body = "comment_id="+jokeId+"&like_type=neg&data_type=comment"
+			}
 			stream.fetch({
 				method: 'POST',
 				url: 'http://jandan.net/jandan-vote.php',
 				type: 'json',
-				body:'id='+jokeId+'&vote_type='+ voteType
+				body:body
 			}, (ret) => {
 				resolve(ret.data)
 			})

@@ -14,12 +14,10 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - BaiduMobStat (4.5.0)
   - DACircularProgress (2.3.1)
   - GCDWebServer (3.3.3):
     - GCDWebServer/Core (= 3.3.3)
   - GCDWebServer/Core (3.3.3)
-  - GrowingIO (0.9.47)
   - HTMLReader (2.0.5)
   - MBProgressHUD (0.9.2)
   - MWPhotoBrowser (2.1.2):
@@ -33,30 +31,24 @@ PODS:
   - SocketRocket (0.5.1)
   - SSZipArchive (1.8.1)
   - SVProgressHUD (2.1.2)
-  - UMengAnalytics-NO-IDFA (4.2.5)
   - WeexSDK (0.11.0):
     - SocketRocket
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
-  - BaiduMobStat
   - GCDWebServer (~> 3.3.3)
-  - GrowingIO
   - HTMLReader (~> 2.0.5)
   - MWPhotoBrowser (~> 2.1.2)
   - NullSafe (~> 1.2.2)
   - SDWebImage (~> 3.8.2)
   - SSZipArchive (~> 1.8.1)
   - SVProgressHUD (~> 2.1.2)
-  - UMengAnalytics-NO-IDFA
   - WeexSDK (~> 0.11.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  BaiduMobStat: 404e5d87147428dd5baf0912c5b95647b8a25367
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   GCDWebServer: 1c39a1f0763e4eb492bee021e4270fce097d3555
-  GrowingIO: f529ec2787cc93da291f52d18517619d67a0bcd1
   HTMLReader: 979c66cd2b23c67e0b45a4b3e0ab8ce933a3e71a
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
@@ -65,9 +57,8 @@ SPEC CHECKSUMS:
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
-  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   WeexSDK: f9cfe6adc91fba3ca5e36bc9808bf1b6e8be2106
 
-PODFILE CHECKSUM: 732c7074f16d5eeea1565bad43aa90e1d342e61d
+PODFILE CHECKSUM: 0136468ad8761285f487c1861446990701093550
 
 COCOAPODS: 1.1.1

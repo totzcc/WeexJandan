@@ -10,7 +10,5 @@ target 'Jiandan' do
     pod 'NullSafe', '~> 1.2.2'
     pod 'GCDWebServer', '~> 3.3.3'
     pod 'SSZipArchive', '~> 1.8.1'
-    pod 'UMengAnalytics-NO-IDFA'
-    pod 'GrowingIO'
-    pod 'BaiduMobStat'
+#    pod 'BaiduMobStat'
 end

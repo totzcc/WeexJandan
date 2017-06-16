@@ -19,6 +19,7 @@
 					selectedImage: config.image('article-highlight.png'),
 //					src: config.js('pics.js'),
 					src: config.js('article.js'),
+//					src: config.js('joke.js'),
 					visibility: 'visible',
 				},{
 					index: 1,

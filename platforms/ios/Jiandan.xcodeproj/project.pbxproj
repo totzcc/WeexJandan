@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		8A17DE1E1EA61ED400847A88 /* UIWindow+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */; };
 		8A2D782E1EC53A8800D81AF2 /* jandan.zip in Resources */ = {isa = PBXBuildFile; fileRef = 8A2D782D1EC53A8800D81AF2 /* jandan.zip */; };
+		8A77E88B1EEE274200C1DDE5 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E88A1EEE274200C1DDE5 /* libBaiduMobStat.a */; };
+		8A77E88D1EEE27FF00C1DDE5 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E88C1EEE27FF00C1DDE5 /* JavaScriptCore.framework */; };
+		8A77E88F1EEE280400C1DDE5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E88E1EEE280400C1DDE5 /* Security.framework */; };
+		8A77E8911EEE280900C1DDE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8901EEE280900C1DDE5 /* CoreLocation.framework */; };
+		8A77E8931EEE280E00C1DDE5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8921EEE280E00C1DDE5 /* SystemConfiguration.framework */; };
+		8A77E8951EEE281300C1DDE5 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8941EEE281300C1DDE5 /* CoreTelephony.framework */; };
+		8A77E8971EEE281700C1DDE5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8961EEE281700C1DDE5 /* CoreGraphics.framework */; };
+		8A77E8991EEE281C00C1DDE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8981EEE281C00C1DDE5 /* UIKit.framework */; };
+		8A77E89B1EEE282100C1DDE5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E89A1EEE282100C1DDE5 /* Foundation.framework */; };
+		8A77E89D1EEE282900C1DDE5 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E89C1EEE282900C1DDE5 /* libz.1.2.5.tbd */; };
+		8A77E89F1EEE283100C1DDE5 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E89E1EEE283100C1DDE5 /* libstdc++.tbd */; };
+		8A77E8A11EEE288D00C1DDE5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8A01EEE288D00C1DDE5 /* WebKit.framework */; };
+		8A77E8A31EEE289200C1DDE5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A77E8A21EEE289200C1DDE5 /* libicucore.tbd */; };
+		8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */; };
 		8A8ADEF01EB058850051C08F /* UIViewController+Orientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */; };
 		8A9CFEC01EA4735100B4894F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEBF1EA4735100B4894F /* main.m */; };
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
@@ -33,6 +47,22 @@
 		8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
 		8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Motion.m"; sourceTree = "<group>"; };
 		8A2D782D1EC53A8800D81AF2 /* jandan.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = jandan.zip; sourceTree = "<group>"; };
+		8A77E8891EEE274200C1DDE5 /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		8A77E88A1EEE274200C1DDE5 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		8A77E88C1EEE27FF00C1DDE5 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		8A77E88E1EEE280400C1DDE5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8A77E8901EEE280900C1DDE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8A77E8921EEE280E00C1DDE5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8A77E8941EEE281300C1DDE5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		8A77E8961EEE281700C1DDE5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8A77E8981EEE281C00C1DDE5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8A77E89A1EEE282100C1DDE5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8A77E89C1EEE282900C1DDE5 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		8A77E89E1EEE283100C1DDE5 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		8A77E8A01EEE288D00C1DDE5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		8A77E8A21EEE289200C1DDE5 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		8A77E8A41EEE308E00C1DDE5 /* WXAppModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAppModule.h; sourceTree = "<group>"; };
+		8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAppModule.m; sourceTree = "<group>"; };
 		8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Orientation.h"; path = "Jiandan/UIViewController+Orientation.h"; sourceTree = SOURCE_ROOT; };
 		8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Orientation.m"; path = "Jiandan/UIViewController+Orientation.m"; sourceTree = SOURCE_ROOT; };
 		8A9CFEBB1EA4735100B4894F /* Jiandan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jiandan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +94,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A77E8A31EEE289200C1DDE5 /* libicucore.tbd in Frameworks */,
+				8A77E8A11EEE288D00C1DDE5 /* WebKit.framework in Frameworks */,
+				8A77E89F1EEE283100C1DDE5 /* libstdc++.tbd in Frameworks */,
+				8A77E89D1EEE282900C1DDE5 /* libz.1.2.5.tbd in Frameworks */,
+				8A77E89B1EEE282100C1DDE5 /* Foundation.framework in Frameworks */,
+				8A77E8991EEE281C00C1DDE5 /* UIKit.framework in Frameworks */,
+				8A77E8971EEE281700C1DDE5 /* CoreGraphics.framework in Frameworks */,
+				8A77E8951EEE281300C1DDE5 /* CoreTelephony.framework in Frameworks */,
+				8A77E8931EEE280E00C1DDE5 /* SystemConfiguration.framework in Frameworks */,
+				8A77E8911EEE280900C1DDE5 /* CoreLocation.framework in Frameworks */,
+				8A77E88F1EEE280400C1DDE5 /* Security.framework in Frameworks */,
+				8A77E88D1EEE27FF00C1DDE5 /* JavaScriptCore.framework in Frameworks */,
+				8A77E88B1EEE274200C1DDE5 /* libBaiduMobStat.a in Frameworks */,
 				F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A77E8881EEE274200C1DDE5 /* BaiduMTJ_iOS_App_Codeless_V4.6.1 */ = {
+			isa = PBXGroup;
+			children = (
+				8A77E8891EEE274200C1DDE5 /* BaiduMobStat.h */,
+				8A77E88A1EEE274200C1DDE5 /* libBaiduMobStat.a */,
+			);
+			path = BaiduMTJ_iOS_App_Codeless_V4.6.1;
+			sourceTree = "<group>";
+		};
 		8A9CFEB21EA4735100B4894F = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +197,8 @@
 				B31124C71EBE1353006B7F87 /* WXLogModule.m */,
 				B31124C81EBE1353006B7F87 /* WXShareModule.h */,
 				B31124C91EBE1353006B7F87 /* WXShareModule.m */,
+				8A77E8A41EEE308E00C1DDE5 /* WXAppModule.h */,
+				8A77E8A51EEE308E00C1DDE5 /* WXAppModule.m */,
 			);
 			name = WeexModule;
 			path = Jiandan/WeexModule;
@@ -153,6 +207,19 @@
 		D6D7771A93FFA3B2847A8354 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A77E8A21EEE289200C1DDE5 /* libicucore.tbd */,
+				8A77E8A01EEE288D00C1DDE5 /* WebKit.framework */,
+				8A77E89E1EEE283100C1DDE5 /* libstdc++.tbd */,
+				8A77E89C1EEE282900C1DDE5 /* libz.1.2.5.tbd */,
+				8A77E89A1EEE282100C1DDE5 /* Foundation.framework */,
+				8A77E8981EEE281C00C1DDE5 /* UIKit.framework */,
+				8A77E8961EEE281700C1DDE5 /* CoreGraphics.framework */,
+				8A77E8941EEE281300C1DDE5 /* CoreTelephony.framework */,
+				8A77E8921EEE280E00C1DDE5 /* SystemConfiguration.framework */,
+				8A77E8901EEE280900C1DDE5 /* CoreLocation.framework */,
+				8A77E88E1EEE280400C1DDE5 /* Security.framework */,
+				8A77E88C1EEE27FF00C1DDE5 /* JavaScriptCore.framework */,
+				8A77E8881EEE274200C1DDE5 /* BaiduMTJ_iOS_App_Codeless_V4.6.1 */,
 				6A591C6F409486FC3104C757 /* Pods_jiandan.framework */,
 				87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */,
 			);
@@ -284,6 +351,7 @@
 			files = (
 				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
 				B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */,
+				8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */,
 				B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */,
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
 				8A9CFEC01EA4735100B4894F /* main.m in Sources */,
@@ -408,6 +476,10 @@
 				DEVELOPMENT_TEAM = 3B9X46F744;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduMTJ_iOS_App_Codeless_V4.6.1",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leo.jandan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -423,6 +495,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BaiduMTJ_iOS_App_Codeless_V4.6.1",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leo.jandan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

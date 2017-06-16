@@ -2,8 +2,6 @@ package android.jandan.totzcc.com.weexjandan;
 
 import android.content.Context;
 
-import com.taobao.weex.utils.WXLogUtils;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -56,6 +54,7 @@ public class JandanWebService extends NanoHTTPD {
                     fileInputStream.read(fileContent);
                     fileInputStream.close();
                     String html = new String(fileContent, "utf-8");
+                    LogUtil.i("cache web filepath:" + htmlFile.getAbsolutePath());
                     return newFixedLengthResponse(html);
                 }
 
@@ -87,7 +86,7 @@ public class JandanWebService extends NanoHTTPD {
                 fos.close();
                 return newFixedLengthResponse(sb.toString());
             } catch (IOException e) {
-                WXLogUtils.e("获取文章详情失败", e);
+                LogUtil.e("获取文章详情失败", e);
                 return newFixedLengthResponse("获取文章详情失败");
             }
         } else {
@@ -96,14 +95,14 @@ public class JandanWebService extends NanoHTTPD {
     }
     public void onActivityStart() throws IOException {
         if (!this.isAlive()) {
-            WXLogUtils.i("启动Web服务：   http://127.0.0.1:" + PORT);
+            LogUtil.i("启动Web服务：   http://127.0.0.1:" + PORT);
             this.start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
         }
     }
     public void onActivityPause(){
         if (this.isAlive()) {
             this.stop();
-            WXLogUtils.i("关闭Web服务");
+            LogUtil.i("关闭Web服务");
         }
     }
 }
