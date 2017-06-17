@@ -25,3 +25,4 @@ ios.py
 build
 pack.py
 android.json
+ios.json
