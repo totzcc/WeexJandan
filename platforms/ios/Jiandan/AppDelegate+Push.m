@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate+Push.h"
-#import <CloudPushSDK/CloudPushSDK.h>
 
+#import <WeexSDK/WeexSDK.h>
+#import <CloudPushSDK/CloudPushSDK.h>
 @implementation AppDelegate (Push)
 - (void)initCloudPush:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // SDK初始化
@@ -21,6 +22,13 @@
     }];
     [CloudPushSDK sendNotificationAck:launchOptions];
     [self registerAPNS:application];
+    
+    if (launchOptions != nil && launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        NSDictionary *userInfo = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self pushToMiddleWeexPage:userInfo];
+        });
+    }
 }
 /**
  *    注册苹果推送，获取deviceToken用于推送
@@ -81,6 +89,7 @@
  *  App处于启动状态时，通知打开回调
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
+    
     NSLog(@"Receive one notification.");
     // 取得APNS通知内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
@@ -91,13 +100,32 @@
     // 播放声音
     NSString *sound = [aps valueForKey:@"sound"];
     // 取得Extras字段内容
-    NSString *Extras = [userInfo valueForKey:@"Extras"]; //服务端中Extras字段，key是自己定义的
-    NSLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, Extras);
+    NSDictionary *extraMap = [userInfo valueForKey:@"extraMap"]; //服务端中Extras字段，key是自己定义的
+    NSLog(@"content = [%@], badge = [%ld], sound = [%@], Extras = [%@]", content, (long)badge, sound, extraMap);
     // iOS badge 清0
     application.applicationIconBadgeNumber = 0;
     // 通知打开回执上报
     // [CloudPushSDK handleReceiveRemoteNotification:userInfo];(Deprecated from v1.8.1)
     [CloudPushSDK sendNotificationAck:userInfo];
+    
+    
+    if (application.applicationState != UIApplicationStateActive) {
+        [self pushToMiddleWeexPage:userInfo];
+    }
+}
+
+- (void) pushToMiddleWeexPage:(NSDictionary *) userInfo {
+    [[NSUserDefaults standardUserDefaults] setObject:userInfo forKey:@"RecentNotification"];
+    if ([self.window.rootViewController isKindOfClass:[WXRootViewController class]]) {
+        WXRootViewController *rootViewController = (WXRootViewController*) self.window.rootViewController;
+        NSRange range = [self.mainURL.absoluteString rangeOfString:@"/" options:(NSBackwardsSearch)];
+        if (range.location != NSNotFound) {
+            NSString *weexEntry =  [self.mainURL.absoluteString substringWithRange:NSMakeRange(0, range.location)];
+            NSURL *middleURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/middle.js", weexEntry]];
+            WXBaseViewController *viewController = [[WXBaseViewController alloc] initWithSourceURL:middleURL];
+            [rootViewController pushViewController:viewController animated:YES];
+        }
+    }
 }
 
 @end

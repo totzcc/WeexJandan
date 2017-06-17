@@ -29,7 +29,6 @@
 #define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.1/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
-@property (nonatomic, strong) NSURL *mainURL;
 @property (nonatomic, strong) GCDWebServer *webServer;
 @end
 

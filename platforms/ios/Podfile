@@ -14,5 +14,5 @@ target 'Jiandan' do
     pod 'GCDWebServer', '~> 3.3.3'
     pod 'SSZipArchive', '~> 1.8.1'
     pod 'AlicloudPush', '~> 1.9.1'
-#    pod 'BaiduMobStat'
+    pod 'MJExtension', '~> 3.0.13'
 end
