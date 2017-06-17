@@ -13,7 +13,7 @@
 	export default {
 		created(){
 			app.getRecentNotification((res)=>{
-				if(res) {
+				if(res && res.extraMap) {
 					let href = res.extraMap.href;
 					let title = res.extraMap.title;
 					let target = res.extraMap.target;
@@ -21,17 +21,18 @@
 						jandan.toDetail({href:href})
 					}
 				} else {
-					navigator.pop(()=>{})
+					navigator.pop({},()=>{})
 				}
 			})
 		},
 		methods:{
 			viewappear(){
-				if(firstVisit) {
-					firstVisit = false;
-				} else {
-					navigator.pop(()=>{})
+				if(!firstVisit) {
+					navigator.pop({},()=>{})
 				}
+				setTimeout(()=>{
+					firstVisit = false;
+				},500)
 			}
 		}
 	}

@@ -8,9 +8,21 @@
 
 #import "WXAppModule.h"
 
+#import <CloudPushSDK/CloudPushSDK.h>
+#import <MJExtension/MJExtension.h>
 @implementation WXAppModule
 WX_EXPORT_METHOD(@selector(getDeviceId:))
+WX_EXPORT_METHOD(@selector(getRecentNotification:))
 - (void)getDeviceId:(WXModuleCallback) callback {
-    callback([[[UIDevice currentDevice] identifierForVendor] UUIDString]);
+    callback([CloudPushSDK getDeviceId]);
+}
+
+- (void)getRecentNotification:(WXModuleCallback)callback {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *notification = [defaults objectForKey:@"RecentNotification"];
+    [defaults removeObjectForKey:@"RecentNotification"];
+    [defaults synchronize];
+    
+    callback(notification);
 }
 @end

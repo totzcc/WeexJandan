@@ -10,4 +10,6 @@
 #import <WeexSDK/WeexSDK.h>
 @interface WXAppModule : NSObject
 - (void) getDeviceId:(WXModuleCallback) callback;
+
+- (void) getRecentNotification:(WXModuleCallback) callback;
 @end
