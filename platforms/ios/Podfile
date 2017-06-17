@@ -1,3 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/aliyun/aliyun-specs.git'
+
 platform :ios, '8.0'
 use_frameworks!
 target 'Jiandan' do
@@ -10,5 +13,6 @@ target 'Jiandan' do
     pod 'NullSafe', '~> 1.2.2'
     pod 'GCDWebServer', '~> 3.3.3'
     pod 'SSZipArchive', '~> 1.8.1'
+    pod 'AlicloudPush', '~> 1.9.1'
 #    pod 'BaiduMobStat'
 end

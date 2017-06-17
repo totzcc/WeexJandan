@@ -13,9 +13,12 @@
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <SSZipArchive/SSZipArchive.h>
+#import <CloudPushSDK/CloudPushSDK.h>
+
 #import "DataUtil.h"
 #import "AppDelegate.h"
 #import "WXEventModule.h"
+#import "AppDelegate+Push.h"
 #import "WXHTMLParserModule.h"
 #import "WXImgLoaderDefaultImpl.h"
 #import "WXBrowserImageModule.h"
@@ -36,6 +39,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[BaiduMobStat defaultStat] startWithAppId:@"fd52db7f54"];
     [[BaiduMobStat defaultStat] logEvent:@"didFinishLaunchingWithOptions" eventLabel:@"启动"];
+    [self initCloudPush:application didFinishLaunchingWithOptions:launchOptions];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
@@ -74,7 +79,7 @@
     }
 #if DEBUG
 //    self.mainURL = [NSURL URLWithString:@"http://192.168.199.200:12580/dist/native/index.js"];
-    self.mainURL = [NSURL URLWithString:@"http://127.0.0.1:12580/dist/native/index.js"];
+    self.mainURL = [NSURL URLWithString:@"http://192.168.0.106:12580/dist/native/index.js"];
     [SVProgressHUD show];
     [[AFHTTPSessionManager manager] HEAD:self.mainURL.absoluteString parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
         [SVProgressHUD dismiss];

@@ -8,9 +8,10 @@
 
 #import "WXAppModule.h"
 
+#import <CloudPushSDK/CloudPushSDK.h>
 @implementation WXAppModule
 WX_EXPORT_METHOD(@selector(getDeviceId:))
 - (void)getDeviceId:(WXModuleCallback) callback {
-    callback([[[UIDevice currentDevice] identifierForVendor] UUIDString]);
+    callback([CloudPushSDK getDeviceId]);
 }
 @end

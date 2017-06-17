@@ -35,13 +35,13 @@
 		B31124CD1EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C51EBE1353006B7F87 /* WXImgLoaderDefaultImpl.m */; };
 		B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C71EBE1353006B7F87 /* WXLogModule.m */; };
 		B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C91EBE1353006B7F87 /* WXShareModule.m */; };
+		B3A916D91EF51FD00052291D /* AppDelegate+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = B3A916D81EF51FD00052291D /* AppDelegate+Push.m */; };
 		F653CFF53BF3FB51A9817E52 /* Pods_Jiandan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21EF9A3466E102F8080BD119 /* Pods-Jiandan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jiandan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan.debug.xcconfig"; sourceTree = "<group>"; };
 		4326974907A30B3FC4E8E929 /* Pods-Jiandan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jiandan.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jiandan/Pods-Jiandan.release.xcconfig"; sourceTree = "<group>"; };
-		6A591C6F409486FC3104C757 /* Pods_jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		790813696CFCFDEB0A96B786 /* Pods-jiandan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jiandan.release.xcconfig"; path = "Pods/Target Support Files/Pods-jiandan/Pods-jiandan.release.xcconfig"; sourceTree = "<group>"; };
 		87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jiandan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A17DE1C1EA61ED400847A88 /* UIWindow+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Motion.h"; sourceTree = "<group>"; };
@@ -87,6 +87,9 @@
 		B31124C71EBE1353006B7F87 /* WXLogModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXLogModule.m; sourceTree = "<group>"; };
 		B31124C81EBE1353006B7F87 /* WXShareModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareModule.h; sourceTree = "<group>"; };
 		B31124C91EBE1353006B7F87 /* WXShareModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareModule.m; sourceTree = "<group>"; };
+		B3A916D61EF51D520052291D /* Jiandan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Jiandan.entitlements; path = Jiandan/Jiandan.entitlements; sourceTree = SOURCE_ROOT; };
+		B3A916D71EF51FD00052291D /* AppDelegate+Push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+Push.h"; path = "Jiandan/AppDelegate+Push.h"; sourceTree = SOURCE_ROOT; };
+		B3A916D81EF51FD00052291D /* AppDelegate+Push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+Push.m"; path = "Jiandan/AppDelegate+Push.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 		8A9CFEBD1EA4735100B4894F /* Jiandan */ = {
 			isa = PBXGroup;
 			children = (
+				B3A916D61EF51D520052291D /* Jiandan.entitlements */,
 				B31124BD1EBE1353006B7F87 /* WeexModule */,
 				8A9CFEBE1EA4735100B4894F /* Supporting Files */,
 				8A9CFEC11EA4735100B4894F /* AppDelegate.h */,
@@ -158,6 +162,8 @@
 				8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */,
 				8AD3BBC21EBC1DF800637983 /* DataUtil.h */,
 				8AD3BBC31EBC1DF800637983 /* DataUtil.m */,
+				B3A916D71EF51FD00052291D /* AppDelegate+Push.h */,
+				B3A916D81EF51FD00052291D /* AppDelegate+Push.m */,
 			);
 			name = Jiandan;
 			path = jiandan;
@@ -220,7 +226,6 @@
 				8A77E88E1EEE280400C1DDE5 /* Security.framework */,
 				8A77E88C1EEE27FF00C1DDE5 /* JavaScriptCore.framework */,
 				8A77E8881EEE274200C1DDE5 /* BaiduMTJ_iOS_App_Codeless_V4.6.1 */,
-				6A591C6F409486FC3104C757 /* Pods_jiandan.framework */,
 				87B64E19C66968D39F3563F2 /* Pods_Jiandan.framework */,
 			);
 			name = Frameworks;
@@ -262,6 +267,14 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = 3B9X46F744;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -351,6 +364,7 @@
 			files = (
 				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
 				B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */,
+				B3A916D91EF51FD00052291D /* AppDelegate+Push.m in Sources */,
 				8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */,
 				B31124CF1EBE1353006B7F87 /* WXShareModule.m in Sources */,
 				8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */,
@@ -473,6 +487,7 @@
 			baseConfigurationReference = 21EF9A3466E102F8080BD119 /* Pods-Jiandan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Jiandan/Jiandan.entitlements;
 				DEVELOPMENT_TEAM = 3B9X46F744;
 				INFOPLIST_FILE = jiandan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -491,6 +506,7 @@
 			baseConfigurationReference = 4326974907A30B3FC4E8E929 /* Pods-Jiandan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Jiandan/Jiandan.entitlements;
 				DEVELOPMENT_TEAM = 3B9X46F744;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = jiandan/Info.plist;
