@@ -14,9 +14,10 @@ https://github.com/totzcc/WeexJandan
 
   https://m.weibo.cn/status/4105460950805404
 
-采用Weex 做的iOS煎蛋客户端，
-iOS拓展解析HTML 的基础能力。所有的业务逻辑代码都用Weex 实现
-Android 客户端待研发
+采用Weex Vue语法做的iOS\Android 煎蛋客户端， 不支持H5
+
+原生拓展解析HTML 的基础能力。所有的业务逻辑代码都用Weex 实现
+
 主要功能有
   - 文章
     - 热门文章
