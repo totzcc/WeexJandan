@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.sdk.android.push.notification.CPushMessage;
 import com.taobao.weex.WXEnvironment;
 
@@ -78,6 +79,11 @@ public class MessageReceiver extends com.alibaba.sdk.android.push.MessageReceive
             this.title = title;
             this.summary = summary;
             this.extraMap = extraMap;
+        }
+
+        @Override
+        public String toString() {
+            return JSONObject.toJSONString(this);
         }
     }
 }

@@ -13,6 +13,8 @@ import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
+import com.alibaba.sdk.android.push.register.HuaWeiRegister;
+import com.alibaba.sdk.android.push.register.MiPushRegister;
 import com.baidu.mobstat.StatService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -54,6 +56,8 @@ public class App extends Application {
         initBaiduStat();
         initCloudChannel(this);
         Pgy.init(this, "c9d38faacab3e0dbbabbd94e5faceee6");
+        MiPushRegister.register(this, "2882303761517586258", "5661758611258");
+        HuaWeiRegister.register(this);
     }
 
     public void initBaiduStat() {

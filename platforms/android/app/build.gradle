@@ -15,7 +15,7 @@ android {
         applicationId "android.jandan.totzcc.com.weexjandan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 9
+        versionCode 10
         versionName "1.0.2"
         signingConfig signingConfigs.config
         ndk{
@@ -42,6 +42,12 @@ android {
         main {
             jniLibs.srcDirs = ['libs/alipush']
         }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs '.' //this way we can find the .aar file in libs folder
     }
 }
 
@@ -78,4 +84,5 @@ dependencies {
     compile files('libs/alipush/alicloud-android-push-sdk-3.0.7.jar')
     compile files('libs/alipush/alisdk-ut-5.jar')
     compile files('libs/alipush/utdid4all-1.1.5.3_proguard.jar')
+    compile(name: 'libs/alipush/third-push-support-3.0.2', ext: 'aar')
 }
