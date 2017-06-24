@@ -117,6 +117,12 @@ module.exports = {
 								const tds = []
 								find.forEach((value)=>{
 									html.parse(value,(parse)=>{
+										let category = parse.text;
+										if (category.indexOf("何其低俗焉") != -1) {
+											if (config.level <= 1) {
+												return;
+											}
+										}
 										tds.push(parse.text)
 									})
 								})

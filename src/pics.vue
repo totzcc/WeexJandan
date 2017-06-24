@@ -24,13 +24,18 @@
 						title: '煎蛋画师',
 						src: config.js('pics-sub.js?type=huashi'),
 						visibility: 'hidden'
-					},
-					{
+					}
+					
+				]
+			}
+		},
+		created(){
+			if(config.level > 1) {
+				this.pics.push({
 						title: '妹子图',
 						src: config.js('pics-sub.js?type=girl'),
 						visibility: 'hidden'
-					}
-				]
+				});
 			}
 		},
 		methods: {

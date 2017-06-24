@@ -2,8 +2,12 @@ const log = weex.requireModule('log')
 var pageJS = weex.config.bundleUrl
 pageJS = pageJS.substring(pageJS.lastIndexOf('/') + 1)
 log.event(pageJS,pageJS)
-console.log('log pageJS: ' + pageJS)
+/**
+ * 展示内容等级： 1 普通， 2，17+
+ * */
+let level = 1;
 module.exports = {
+	level:level,
 	js(jsURL) {
 		var bundleUrl = weex.config.bundleUrl;
 		var baseURL = bundleUrl.substring(0, bundleUrl.lastIndexOf("/") + 1)
@@ -18,9 +22,6 @@ module.exports = {
 		var reg = new RegExp('[?|&]' + key + '=([^&]+)')
 		var match = bundleUrl.match(reg)
 		return match && match[1]
-	},
-	event(id,label) {
-//		log.event(id,label)
 	},
 	toParams(obj) {
 		var param = ""
