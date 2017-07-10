@@ -17,8 +17,15 @@
 						<text>{{item.author}}</text>
 						<text v-if="item.imgs">({{item.imgs.length}})</text>
 					</div>
-					<div style="align-items: center;">
-						<image v-if="item.isLike" ref='like' class="like-item" :src="config.image('like.png')"></image>
+					<div style="flex-direction: row; justify-content: space-around;">
+						<div style="flex-direction: row; justify-content: center; align-items: center;">
+	    						<text style="color: orangered;" @click="vote" type="1" :item="item">OO</text>
+		    					<text style="color: #999999;" @click="vote" type="1" :item="item">[{{item.support || 0}}]</text>
+		    					<text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0" :item="item">XX</text>
+		    					<text style="color: #999999;" @click="vote" type="0" :item="item">[{{item.unsupport || 0}}]</text>
+	    					</div>
+						<image v-if="item.vote==1" class="like-item" :src="config.image('like.png')"></image>
+						<image v-if="item.vote==0" class="like-item" :src="config.image('dislike.png')"></image>
 					</div>
 				</div>
 			</cell>
@@ -36,11 +43,14 @@
 	.container{padding-left: 10px;background-color: #f3f3f3;}
 	.item{border-radius: 10px;background-color: #ffffff;padding: 10px;margin-top: 40px;}
 	.loading{width: 750px; padding-top: 40px; padding-bottom: 40px; align-items: center;justify-content: center;}
+	.like-item{width: 50px; height: 50px;}
 </style>
 <script>
 	import config from './config'
 	import jandan from './services/jandan'
 	import animation from './animation/animation'
+	import jandanComments from './services/jandan-comments'
+	const modal = weex.requireModule('modal')
 	const browser = weex.requireModule('browser')
 	export default {
 		data: {
@@ -119,7 +129,23 @@
 					})
 					browser.browserImages(imgs, currentIndex)
 				}
-			}
+			},
+			vote(e){
+				var item = e.target.attr.item
+				const voteType = e.target.attr.type
+				jandanComments.vote(item.id, voteType).then((res) => {
+					if(res.error == 0) {
+						if(voteType == 1) {
+							item.support = parseInt(item.support) + 1
+						} else {
+							item.unsupport = parseInt(item.unsupport) + 1
+						}
+						item.vote = voteType;
+					} else {
+						modal.toast({message:res.msg,duration:1})		
+					}
+				})
+			},
 		}
 	}
 </script>

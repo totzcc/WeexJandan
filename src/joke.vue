@@ -26,11 +26,11 @@
 						<div style="flex-direction: row;">
 							<div style="flex: 1; border-right-width: 0px; height: 55px;" class="item-box-center" @click='support' :item="item" vote-type="1">
 								<text style="color:#FF4D33;">OO  </text>
-								<text style="color:#FE0000;">{{item.support}}</text>
+								<text style="color:#FE0000;">[{{item.support}}]</text>
 							</div>
 							<div style="flex: 1;height: 55px; margin-left: 30;" class="item-box-center" @click='support' :item="item" vote-type="0">
 								<text style="color: #999999;">XX  </text>
-								<text style="color: #666666;">{{item.unsupport}}</text>
+								<text style="color: #666666;">[{{item.unsupport}}]</text>
 							</div>
 						</div>
 						<div>

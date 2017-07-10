@@ -358,12 +358,12 @@ module.exports = {
 							})
 						})
 						html.css(value, '.jandan-vote span', (list) => {
-							html.parse(list[0], (value) => {
+							html.parse(list[1], (value) => {
 								if(value.text) {
 									obj['support'] = parseInt(value.text)
 								}
 							})
-							html.parse(list[1], (value) => {
+							html.parse(list[3], (value) => {
 								if(value.text) {
 									obj['unsupport'] = parseInt(value.text)
 								}
