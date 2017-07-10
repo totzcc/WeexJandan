@@ -76,10 +76,10 @@ module.exports = {
 					})
 					
 					html.css(value,'.jandan-vote span',(find) => {
-						html.parse(find[0], (parse) => {
+						html.parse(find[1], (parse) => {
 							obj['support'] = parse.text
 						})
-						html.parse(find[1], (parse) => {
+						html.parse(find[3], (parse) => {
 							obj['unsupport'] = parse.text
 						})
 					})
