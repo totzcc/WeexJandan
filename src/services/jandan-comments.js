@@ -15,6 +15,7 @@ storage.getItem('jokeVoteMaps',(res)=>{
 		jokeVoteMaps = JSON.parse(res.data)
 	}
 })
+
 module.exports = {
 	comments(url, page){
 		return new Promise((resolve) => {

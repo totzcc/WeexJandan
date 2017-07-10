@@ -37,6 +37,7 @@
 		<div class="like-conver" v-if="showLike">
 			<image ref='like' class="like" :src="config.image('like.png')"></image>
 		</div>
+		<readSuportTips/>
 	</div>
 </template>
 <style>
@@ -70,6 +71,9 @@
 				}
 				return this.showLoading == 'hide' ? '上拉加载更多' : '加载中...'
 			}
+		},
+		components: {
+			readSuportTips: require('./components/readSuportTips.vue')
 		},
 		created() {
 			this.type = config.params('type')

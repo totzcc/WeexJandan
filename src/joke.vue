@@ -45,6 +45,7 @@
 		      <text class="indicator">{{loadingTips}}</text>
 		    </loading>
 		</list>
+		<readSuportTips/>
 	</div>
 </template>
 <style>
@@ -88,6 +89,9 @@
 			refreshTips(){
 				return this.showRefresh == 'hide' ? '下拉获取最新数据' : '加载中...'
 			}
+		},
+		components: {
+			readSuportTips: require('./components/readSuportTips.vue')
 		},
 		created() {
 			this.onrefresh(true)
