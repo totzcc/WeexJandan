@@ -55,9 +55,9 @@ module.exports = {
 		isRead(text)
 	},
 	toDetail(item){
-		storage.setItem('article-detail',JSON.stringify(item), ()=>{
-			navigator.push({url:config.js('article-detail.js')})
-		})
+		item.href = item.href.replace("http://www.jandan.net", "http://i.jandan.net");
+		item.href = item.href.replace("http://jandan.net", "http://i.jandan.net");
+		browser.browserWeb(item.href,true);
 	},
 	
 	category(category, page) {
