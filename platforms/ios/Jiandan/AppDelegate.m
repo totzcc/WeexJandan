@@ -133,11 +133,14 @@
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [SVProgressHUD dismiss];
+            /**
+             去除检查远程资源文件失败后的提示
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
             [alert addAction:[UIAlertAction actionWithTitle:@"检查网络" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
                 [self loadMainBundleJS];
             }]];
             [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+             */
         }];
     }
    
