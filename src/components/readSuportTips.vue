@@ -12,13 +12,13 @@
 		data(){
 			return {
 				config:config,
-				isReadedSuportTips:false,
+				isReadedSuportTips:true,
 			}
 		},
 		created(){
 			storage.getItem('isReadedSuportTips',(res)=>{
-				if(res.result == 'success') {
-					this.isReadedSuportTips = res.data == "true"
+				if(res.result != 'success') {
+					this.isReadedSuportTips = false
 				}
 			})
 		},
