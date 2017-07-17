@@ -1,7 +1,7 @@
 <template>
 	<navpage dataRole="none" :height="config.barHeight()" title="用户服务协议" backgroundColor="#ffffff" titleColor="#333333">
 		<div style="flex: 1;">
-			<web src="http://127.0.0.1:12580/resources/userAgreement.html" style="flex: 1;"></web>
+			<web :src="config.image('userAgreement.html')" style="flex: 1;"></web>
 			<div style="flex-direction: row;">
 				<div style="height: 100px; width: 200px; background-color: #333333; justify-content: center; align-items: center;" @click="agree(0)">
 					<text style="color: #FFFFFF;">我不同意</text>
