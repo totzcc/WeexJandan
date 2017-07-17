@@ -50,6 +50,7 @@
 	const browser = weex.requireModule('browser')
 	const navigator = weex.requireModule('navigator')
 	const storage = weex.requireModule('storage')
+	const modal = weex.requireModule('modal')
 	import config from './config'
 	import jandan from './services/jandan'
 	module.exports = {
@@ -67,6 +68,16 @@
 		},
 		created(){
 			this.onrefresh()
+			storage.getItem('agreeRegister', (res)=>{
+				if(res.result != 'success') {
+					modal.alert({
+						message:'用户协议更新',
+						okTitle:'立即查看'
+					}, ()=>{
+						navigator.push({url:config.js('components/user-agreement.js')},()=>{})
+					})
+				}
+			})
 		},
 		methods:{
 			onrefresh(){
