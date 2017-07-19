@@ -15,10 +15,10 @@ android {
         applicationId "android.jandan.totzcc.com.weexjandan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 10
+        versionCode 13
         versionName "1.0.2"
         signingConfig signingConfigs.config
-        ndk{
+        ndk {
             abiFilters "x86"
             abiFilters "armeabi"
         }
@@ -58,6 +58,18 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    // 支持 GIF 动图，需要添加
+    // 支持 WebP （静态图+动图），需要添加
+    // 仅支持 WebP 静态图，需要添加
+    compile 'com.facebook.fresco:webpsupport:0.12.0'
+    //    compile 'com.github.stfalcon:frescoimageviewer:0.5.0'
+    
+
+
+    compile files('libs/alipush/alicloud-android-push-sdk-3.0.7.jar')
+    compile files('libs/alipush/alisdk-ut-5.jar')
+    compile files('libs/alipush/utdid4all-1.1.5.3_proguard.jar')
+    compile(name: 'libs/alipush/third-push-support-3.0.2', ext:'aar')
     compile 'com.alibaba:fastjson:1.2.32'
     compile 'com.taobao.android:weex_sdk:0.11.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
@@ -65,24 +77,14 @@ dependencies {
     compile 'org.nanohttpd:nanohttpd:2.3.1'
     compile 'com.pgyersdk:sdk:2.5.6'
     compile 'com.facebook.fresco:fresco:0.12.0'
-    // 支持 GIF 动图，需要添加
     compile 'com.facebook.fresco:animated-gif:0.12.0'
-    // 支持 WebP （静态图+动图），需要添加
     compile 'com.facebook.fresco:animated-webp:0.12.0'
     compile 'com.facebook.fresco:webpsupport:0.12.0'
-    // 仅支持 WebP 静态图，需要添加
-    compile 'com.facebook.fresco:webpsupport:0.12.0'
-    //    compile 'com.github.stfalcon:frescoimageviewer:0.5.0'
     compile 'com.squareup.okhttp3:okhttp:3.8.0'
     compile 'com.kaopiz:kprogresshud:1.0.5'
-
-
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:design:25.1.1'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
-    compile files('libs/alipush/alicloud-android-push-sdk-3.0.7.jar')
-    compile files('libs/alipush/alisdk-ut-5.jar')
-    compile files('libs/alipush/utdid4all-1.1.5.3_proguard.jar')
-    compile(name: 'libs/alipush/third-push-support-3.0.2', ext: 'aar')
 }

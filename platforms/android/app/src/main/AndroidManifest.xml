@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.jandan.totzcc.com.weexjandan">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-
-    <!--阿里移动推送相关权限-->
-    <!--Android 6.0版本可去除，用于选举信息（通道复用）的同步-->
+    <!-- 阿里移动推送相关权限 -->
+    <!-- Android 6.0版本可去除，用于选举信息（通道复用）的同步 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!--进行网络访问和网络状态监控相关的权限声明-->
+    <!-- 进行网络访问和网络状态监控相关的权限声明 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--允许对sd卡进行读写操作-->
+    <!-- 允许对sd卡进行读写操作 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--网络库使用，当网络操作时需要确保事务完成不被杀掉-->
+    <!-- 网络库使用，当网络操作时需要确保事务完成不被杀掉 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!--用于读取手机硬件信息等，用于机型过滤-->
+    <!-- 用于读取手机硬件信息等，用于机型过滤 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--选举使用，当应用有删除或者更新时需要重新选举，复用推送通道-->
+    <!-- 选举使用，当应用有删除或者更新时需要重新选举，复用推送通道 -->
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
     <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
-    <!--补偿通道小米PUSH使用，不用可去除-->
+    <!-- 补偿通道小米PUSH使用，不用可去除 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <!--补偿通道GCM使用，不使用可去除-->
+    <!-- 补偿通道GCM使用，不使用可去除 -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <!--允许监听启动完成事件-->
+    <!-- 允许监听启动完成事件 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!--允许访问震动器-->
+    <!-- 允许访问震动器 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <!-- 允许task重排序 -->
     <uses-permission android:name="android.permission.REORDER_TASKS" />
@@ -42,32 +42,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MiddleActivity"/>
+        <activity android:name=".MiddleActivity" />
         <activity
             android:name=".WeexPageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.taobao.android.intent.action.WEEX" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.taobao.android.intent.category.WEEX" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="file" />
-                <data android:scheme="wxpage" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-
-
-        <!-- Push SDK 相关组件，required-->
+        <!-- Push SDK 相关组件，required -->
         <!-- 消息接收服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.MsgService"
@@ -76,79 +62,91 @@
                 <action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION" />
             </intent-filter>
         </service>
-        <service android:name="com.alibaba.sdk.android.push.channel.CheckService"
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.CheckService"
             android:process=":channel">
             <intent-filter>
                 <action android:name="com.alibaba.sdk.android.push.CHECK_SERVICE" />
             </intent-filter>
         </service>
-        <service android:name="com.taobao.accs.ChannelService"
-            android:exported="true" android:process=":channel">
+        <service
+            android:name="com.taobao.accs.ChannelService"
+            android:exported="true"
+            android:process=":channel">
             <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+                <action android:name="com.taobao.accs.intent.action.SERVICE" />
             </intent-filter>
         </service>
         <service
             android:name="com.taobao.accs.ChannelService$KernelService"
             android:exported="false"
-            android:process=":channel" >
-        </service>
-        <service android:name="com.taobao.accs.data.MsgDistributeService"
+            android:process=":channel"></service>
+        <service
+            android:name="com.taobao.accs.data.MsgDistributeService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.RECEIVE" />
             </intent-filter>
         </service>
-        <receiver android:name="com.taobao.accs.EventReceiver"
+
+        <receiver
+            android:name="com.taobao.accs.EventReceiver"
             android:process=":channel">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.taobao.accs.ServiceReceiver"
+        <receiver
+            android:name="com.taobao.accs.ServiceReceiver"
             android:process=":channel">
             <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+                <action android:name="com.taobao.accs.intent.action.COMMAND" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"/>
+                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO" />
             </intent-filter>
         </receiver>
-        <service android:name="org.android.agoo.accs.AgooService"
-            android:exported="true" >
+
+        <service
+            android:name="org.android.agoo.accs.AgooService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.RECEIVE" />
             </intent-filter>
         </service>
-        <service android:name="com.alibaba.sdk.android.push.AliyunPushIntentService"
-            android:exported="true"
-            >
+        <service
+            android:name="com.alibaba.sdk.android.push.AliyunPushIntentService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.agoo.android.intent.action.RECEIVE" />
             </intent-filter>
         </service>
+
         <receiver
             android:name="com.taobao.agoo.AgooCommondReceiver"
-            android:process=":channel"
-            android:exported="true" >
+            android:exported="true"
+            android:process=":channel">
             <intent-filter>
                 <action android:name="${applicationId}.intent.action.COMMAND" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="com.alibaba.sdk.android.push.channel.TaobaoRecvService"
             android:exported="true"
@@ -157,15 +155,18 @@
                 <action android:name="org.android.agoo.client.MessageReceiverService" />
             </intent-filter>
         </service>
-        <service android:name="com.alibaba.sdk.android.push.channel.KeepChannelService"
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.KeepChannelService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":channel" />
-        <receiver android:name="com.alibaba.sdk.android.push.SystemEventReceiver"
+
+        <receiver
+            android:name="com.alibaba.sdk.android.push.SystemEventReceiver"
             android:process=":channel">
             <intent-filter>
-                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
 
@@ -183,7 +184,14 @@
                 <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
             </intent-filter>
         </receiver>
-        <meta-data android:name="com.alibaba.app.appkey" android:value="24303407"/>
-        <meta-data android:name="com.alibaba.app.appsecret" android:value="8d50a4afe9377c658fdaa5ea025a747d"/>
+
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="24303407" />
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="8d50a4afe9377c658fdaa5ea025a747d" />
+
     </application>
+
 </manifest>
