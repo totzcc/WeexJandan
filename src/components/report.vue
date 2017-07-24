@@ -1,18 +1,22 @@
 <template>
-    <div class="report">
+    <div class="report" @click="report">
         <text>举报</text>
         <image :src="reportImage" class="report-image"></image>
     </div>
 </template>
 <script>
     import config from '../config'
+    const navigator = weex.requireModule('navigator')
     export default {
-        data: {
-            reportImage:''
-        },
+        props:['reportImage'],
         created(){
             this.reportImage = config.image('report.png')
         },
+        methods:{
+            report(){
+                navigator.push({url:config.js('components/report-detail.js')},()=>{})
+            },
+        }
     }
 </script>
 <style>

@@ -19,14 +19,15 @@
 					</div>
 					<div style="flex-direction: row; justify-content: space-around;">
 						<div style="flex-direction: row; justify-content: center; align-items: center;">
-	    						<text style="color: orangered;" @click="vote" type="1" :item="item">OO</text>
-		    					<text style="color: #999999;" @click="vote" type="1" :item="item">[{{item.support || 0}}]</text>
-		    					<text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0" :item="item">XX</text>
-		    					<text style="color: #999999;" @click="vote" type="0" :item="item">[{{item.unsupport || 0}}]</text>
-	    					</div>
+                            <text style="color: orangered;" @click="vote" type="1" :item="item">OO</text>
+                            <text style="color: #999999;" @click="vote" type="1" :item="item">[{{item.support || 0}}]</text>
+                            <text style="color: #AAAAFF; margin-left: 30px;" @click="vote" type="0" :item="item">XX</text>
+                            <text style="color: #999999;" @click="vote" type="0" :item="item">[{{item.unsupport || 0}}]</text>
+                        </div>
 						<image v-if="item.vote==1" class="like-item" :src="config.image('like.png')"></image>
 						<image v-if="item.vote==0" class="like-item" :src="config.image('dislike.png')"></image>
 					</div>
+                    <report/>
 				</div>
 			</cell>
 			<cell style="height: 80px;"></cell>
@@ -80,6 +81,9 @@
 				}
 			})
 		},
+        components:{
+		    report:require('./components/report.vue')
+        },
 		methods: {
 			getUrlParam (key) {
 				var reg = new RegExp('[?|&]' + key + '=([^&]+)')
