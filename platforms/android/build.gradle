@@ -15,7 +15,7 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
         maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
     }
 }

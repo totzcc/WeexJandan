@@ -8,6 +8,7 @@ import android.jandan.totzcc.com.weexjandan.weex.WXBrowserModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXHTMLModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXImageAdapter;
 import android.jandan.totzcc.com.weexjandan.weex.WXLogModule;
+import android.jandan.totzcc.com.weexjandan.weex.WXNavigatorConstomerModule;
 import android.jandan.totzcc.com.weexjandan.weex.WXShareModule;
 
 import com.alibaba.sdk.android.push.CloudPushService;
@@ -48,6 +49,7 @@ public class App extends Application {
             WXSDKEngine.registerModule("share", WXShareModule.class);
             WXSDKEngine.registerModule("browser", WXBrowserModule.class);
             WXSDKEngine.registerModule("app", WXAppModule.class);
+            WXSDKEngine.registerModule("navigator", WXNavigatorConstomerModule.class);
         } catch (WXException e) {
             LogUtil.e(e.getMessage(), e);
         }
