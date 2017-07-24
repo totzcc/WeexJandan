@@ -18,7 +18,9 @@
 					let title = res.extraMap.title;
 					let target = res.extraMap.target;
 					if(target == 'articleDetail') {
-						jandan.toDetail({href:href})
+						setTimeout(()=>{
+							jandan.toDetail({href:href})
+						},1000)
 					}
 				} else {
 					navigator.pop({},()=>{})

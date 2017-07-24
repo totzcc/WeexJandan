@@ -26,3 +26,5 @@ build
 pack.py
 android.json
 ios.json
+platforms/android/freeline
+platforms/android

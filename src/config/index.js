@@ -5,7 +5,7 @@ log.event(pageJS,pageJS)
 /**
  * 展示内容等级： 1 普通， 2，17+
  * */
-let level = 1;
+let level = 2;
 module.exports = {
 	level:level,
 	js(jsURL) {
@@ -14,9 +14,8 @@ module.exports = {
 		return baseURL + jsURL
 	},
 	image(imgURL) {
-		var url = ""
-//		var url = "http://127.0.0.1:12580/resources/" + imgURL
-		url = "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/resources/" + imgURL
+		var url = "http://127.0.0.1:12580/resources/" + imgURL
+		// url = "http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/resources/" + imgURL
 //		url += "?" + new Date().getTime()
 		return url;
 	},

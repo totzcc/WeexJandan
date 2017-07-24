@@ -4,11 +4,8 @@
   "description": "a weex project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.web.config.js && webpack --config webpack.dev.config.js",
-    "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
-    "dev:web": "webpack -w --config webpack.web.config.js",
+    "build": "webpack --config webpack.native.config.js",
     "dev": "webpack -w --config webpack.native.config.js",
-    "dev:all": "webpack -w --config webpack.native.config.js & webpack -w --config webpack.web.config.js & serve -p 12580",
     "serve": "serve -p 12580"
   },
   "keywords": [

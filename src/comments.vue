@@ -49,7 +49,6 @@
 					<text class="indicator">{{loadingTips}}</text>
 			    </loading>
 	    		</list>
-	    		<readSuportTips/>
 	    </div>
 	</navpage>
 </template>
@@ -92,7 +91,6 @@
 		},
 		components: {
 			navpage: require('./include/navpage.vue'),
-			readSuportTips: require('./components/readSuportTips.vue')
 		},
 		created(){
 			storage.getItem('article-detail',(ret)=>{
