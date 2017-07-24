@@ -27,7 +27,6 @@
 		8A9CFEC31EA4735100B4894F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A9CFEC21EA4735100B4894F /* AppDelegate.m */; };
 		8A9CFECB1EA4735100B4894F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECA1EA4735100B4894F /* Assets.xcassets */; };
 		8A9CFECE1EA4735100B4894F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9CFECC1EA4735100B4894F /* LaunchScreen.storyboard */; };
-		8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD3BBC31EBC1DF800637983 /* DataUtil.m */; };
 		B31124CA1EBE1353006B7F87 /* WXBrowserImageModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124BF1EBE1353006B7F87 /* WXBrowserImageModule.m */; };
 		B31124CB1EBE1353006B7F87 /* WXEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C11EBE1353006B7F87 /* WXEventModule.m */; };
 		B31124CC1EBE1353006B7F87 /* WXHTMLParserModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B31124C31EBE1353006B7F87 /* WXHTMLParserModule.m */; };
@@ -72,8 +71,6 @@
 		8A9CFECD1EA4735100B4894F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A9CFECF1EA4735100B4894F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AA9AE77E1C852D95CF40A9C /* Pods-jiandan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jiandan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jiandan/Pods-jiandan.debug.xcconfig"; sourceTree = "<group>"; };
-		8AD3BBC21EBC1DF800637983 /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
-		8AD3BBC31EBC1DF800637983 /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		B31124BE1EBE1353006B7F87 /* WXBrowserImageModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBrowserImageModule.h; sourceTree = "<group>"; };
 		B31124BF1EBE1353006B7F87 /* WXBrowserImageModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBrowserImageModule.m; sourceTree = "<group>"; };
 		B31124C01EBE1353006B7F87 /* WXEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXEventModule.h; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 				8A17DE1D1EA61ED400847A88 /* UIWindow+Motion.m */,
 				8A8ADEEE1EB058850051C08F /* UIViewController+Orientation.h */,
 				8A8ADEEF1EB058850051C08F /* UIViewController+Orientation.m */,
-				8AD3BBC21EBC1DF800637983 /* DataUtil.h */,
-				8AD3BBC31EBC1DF800637983 /* DataUtil.m */,
 				B3A916D71EF51FD00052291D /* AppDelegate+Push.h */,
 				B3A916D81EF51FD00052291D /* AppDelegate+Push.m */,
 			);
@@ -362,7 +357,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AD3BBC41EBC1DF800637983 /* DataUtil.m in Sources */,
 				B31124CE1EBE1353006B7F87 /* WXLogModule.m in Sources */,
 				B3A916D91EF51FD00052291D /* AppDelegate+Push.m in Sources */,
 				8A77E8A61EEE308E00C1DDE5 /* WXAppModule.m in Sources */,

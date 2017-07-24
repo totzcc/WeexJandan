@@ -10,12 +10,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <HTMLReader/HTMLReader.h>
 #import "BaiduMobStat.h"
-#import <GCDWebServer/GCDWebServer.h>
-#import <GCDWebServer/GCDWebServerDataResponse.h>
 #import <SSZipArchive/SSZipArchive.h>
 #import <CloudPushSDK/CloudPushSDK.h>
-
-#import "DataUtil.h"
 #import "AppDelegate.h"
 #import "WXEventModule.h"
 #import "AppDelegate+Push.h"
@@ -29,7 +25,6 @@
 #define ZIPFileOnline [NSString stringWithFormat:@"%@?timestamp=%f", @"http://images-file.oss-cn-hangzhou.aliyuncs.com/weex/jandan/1.0.2/jandan.zip", [NSDate timeIntervalSinceReferenceDate]]
 #define ZIPFileOnlineSize @"ZIPFileOnlineSize"
 @interface AppDelegate ()
-@property (nonatomic, strong) GCDWebServer *webServer;
 @end
 
 @implementation AppDelegate
@@ -60,15 +55,6 @@
     
     
     [self loadMainBundleJS];
-    self.webServer = [[GCDWebServer alloc] init];
-    [GCDWebServer setLogLevel:WXLogLevelError];
-    [self.webServer addDefaultHandlerForMethod:@"GET"
-                              requestClass:[GCDWebServerRequest class]
-                              processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-                                  NSString *url = request.query[@"url"];
-                                  return [GCDWebServerDataResponse responseWithHTML:[DataUtil convertToReaderHTML:url]];
-                              }];
-    [self.webServer startWithPort:9090 bonjourName:nil];
     return YES;
 }
 
@@ -101,7 +87,7 @@
         self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
         [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:ZIPFileOnlineSize];
     } else {
-        [SVProgressHUD show];
+//        [SVProgressHUD show];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
             
@@ -124,15 +110,15 @@
                     [[NSFileManager defaultManager] removeItemAtPath:weexFileDir error:&deleteFileError];
                     [[NSFileManager defaultManager] createDirectoryAtPath:weexFileDir withIntermediateDirectories:YES attributes:nil error:nil];
                     [SSZipArchive unzipFileAtPath:filePath.path toDestination:weexFileDir];
-                    [SVProgressHUD dismissWithDelay:1 completion:^{
-                        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
-                    }];
+//                    [SVProgressHUD dismissWithDelay:1 completion:^{
+//                        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
+//                    }];
                 }] resume];
             } else {
                 self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [SVProgressHUD dismiss];
+//            [SVProgressHUD dismiss];
             /**
              去除检查远程资源文件失败后的提示
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您当前网络已经离线，请检查网络设置" message:nil preferredStyle:(UIAlertControllerStyleAlert)];
