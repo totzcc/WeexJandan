@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.antfortune.freeline'
 
 android {
     signingConfigs {
@@ -15,7 +16,7 @@ android {
         applicationId "android.jandan.totzcc.com.weexjandan"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 10
+        versionCode 11
         versionName "1.0.2"
         signingConfig signingConfigs.config
         ndk{

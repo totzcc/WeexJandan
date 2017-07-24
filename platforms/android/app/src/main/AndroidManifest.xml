@@ -65,8 +65,6 @@
             </intent-filter>
         </activity>
 
-
-
         <!-- Push SDK 相关组件，required-->
         <!-- 消息接收服务 -->
         <service
