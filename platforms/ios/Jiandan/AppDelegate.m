@@ -114,9 +114,8 @@
 //                        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
 //                    }];
                 }] resume];
-            } else {
-                self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
             }
+            self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //            [SVProgressHUD dismiss];
             /**
