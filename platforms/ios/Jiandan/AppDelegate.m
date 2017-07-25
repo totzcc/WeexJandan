@@ -88,13 +88,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:ZIPFileOnlineSize];
     } else {
 //        [SVProgressHUD show];
+        self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         [manager HEAD:ZIPFileOnline parameters:nil success:^(NSURLSessionDataTask * _Nonnull task) {
-            
             NSHTTPURLResponse *response = (NSHTTPURLResponse *) task.response;
             NSDictionary *headers =  response.allHeaderFields;
             NSString *contentLength = headers[@"Content-Length"];
-            
             if (![zipSize isEqualToString:contentLength]) {
                 [[manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ZIPFileOnline]] progress:^(NSProgress * _Nonnull downloadProgress) {
                     //
@@ -115,7 +114,6 @@
 //                    }];
                 }] resume];
             }
-            self.window.rootViewController = [[WXRootViewController alloc] initWithSourceURL:self.mainURL];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //            [SVProgressHUD dismiss];
             /**
