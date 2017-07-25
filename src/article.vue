@@ -9,9 +9,9 @@
 					<text>更多有趣文章</text>
 				</div>
 			</cell>
-			<cell v-for="(item,index) in datalist" @click="click" :item="item">
+			<cell v-for="(item,index) in datalist">
 				<div class="item">
-					<div style="flex-direction: row;">
+					<div style="flex-direction: row;" @click="goDetail" :item="item">
 						<image resize="cover" :src='item.img' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>
 						<div style="flex: 1;margin-left: 20px;">
 							<text class="font-small" v-bind:style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.title}}</text>
@@ -19,7 +19,7 @@
 							<text class="item-summary">{{item.summary}}</text>
 						</div>
 					</div>
-					<div class="opeart-bar">
+					<div class="opeart-bar" @click="goComments" :item="item">
 						<div></div>
 						<div style="flex-direction: row; align-items: center;">
 							<text style="color: #999999; font-size: 24; margin-right: 5px;"> {{item.commentTime || 'x mins ago'}} </text>
@@ -87,14 +87,22 @@
 					this.showRefresh = 'hide'
 				})
 			},
-			click(e){
-				const item = e.target.attr.item
-				if(item) {
-					jandan.makeRead(item.title)
-					item.isRead = true
-					jandan.toDetail(item)
-				}
-			},
+            goDetail(e){
+                const item = e.target.attr.item
+                if(item) {
+                    jandan.makeRead(item.title)
+                    item.isRead = true
+                    jandan.toDetail(item)
+                }
+            },
+            goComments(e){
+                const item = e.target.attr.item
+                if(item) {
+                    jandan.makeRead(item.title)
+                    item.isRead = true
+                    jandan.toCommentsDetail(item)
+                }
+            },
 			more(){
 //				navigator.push({url:config.js('middle.js')},()=>{})
 				navigator.push({url:config.js('category-index.js')},()=>{})
