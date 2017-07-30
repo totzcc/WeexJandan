@@ -57,7 +57,7 @@ module.exports = {
     toDetail(item){
         item.href = item.href.replace("http://www.jandan.net", "http://i.jandan.net");
         item.href = item.href.replace("http://jandan.net", "http://i.jandan.net");
-        browser.browserWeb(item.href, true);
+        browser.browserWeb(item.href);
     },
     toCommentsDetail(item){
         storage.setItem('article-detail',JSON.stringify(item), ()=>{

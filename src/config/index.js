@@ -5,7 +5,7 @@ log.event(pageJS, pageJS)
 /**
  * 展示内容等级： 1 普通， 2，17+
  * */
-let level = 1;
+let level = 2;
 module.exports = {
     level: level,
     js(jsURL) {
