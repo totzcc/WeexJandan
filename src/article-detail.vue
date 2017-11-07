@@ -1,6 +1,6 @@
 <template>
-	<div class="container">
-		<web style="flex: 1;" :src="src"></web>
+	<scroller class="container">
+        <rich-text :html="html" style="flex: 1;"></rich-text>
 		<div @click="naviBarLeftItemClick" style="position: fixed; left: 25; top: 65;">
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('back.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
@@ -22,15 +22,20 @@
 			<div style="width: 80px; height: 80px;border-radius: 80px;background-color: #000000; opacity: 0.1;"></div>
 			<image :src="config.image('share.png')" style=" position: absolute; width: 50px;height: 50px; left: 15px; top: 15px;"></image>
 		</div>
-	</div>
+	</scroller>
 </template>
 <style>
+    .container {
+        padding:20px;
+    }
 </style>
 <script>
 	const navigator = weex.requireModule('navigator')
 	const storage = weex.requireModule('storage')
 	const modal = weex.requireModule('modal')
 	const share = weex.requireModule('share')
+	const html = weex.requireModule('html')
+	const stream = weex.requireModule('stream')
 	import config from './config'
 	import comments from './services/jandan-comments'
 	import favorite from './services/jandan-favorite'
@@ -46,22 +51,34 @@
 					title:'',
 					isLike:false,
 					comments:''
-				}
+				},
+                html:""
 			}
 		},
 		components: {
-			navpage: require('./include/navpage.vue')
+			navpage: require('./include/navpage.vue'),
+            richText: require('./components/rich-text.vue')
 		},
 		created(){
 			storage.getItem('article-detail',(ret)=>{
 				let detail = JSON.parse(ret.data)
-				this.src = "http://localhost:9090/?url=" + detail.href
 				detail.isLike = favorite.isLike(detail.href)
 				this.like()
 				comments.getCommentCount(detail.href).then(count=>{
 					detail.comments = count || 0
 					this.detail = detail
 				})
+                 stream.fetch({
+                     method: 'GET',
+                     url: detail.href,
+                     cache:true,
+                     type: 'text'
+                 }, (ret) => {
+				    console.log('11111111')
+                     html.cssEx(ret.data,'.entry',['.shang','script','.jandan-zan'], find => {
+                         this.html = find[0]
+                     })
+                 })
 			})
 		},
 		methods:{

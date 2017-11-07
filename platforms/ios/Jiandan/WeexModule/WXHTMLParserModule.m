@@ -6,12 +6,15 @@
 //  Copyright © 2017年 Leo Studio. All rights reserved.
 //
 #import <HTMLReader/HTMLReader.h>
-#import "WXHTMLParserModule.h"
+#import <MJExtension/MJExtension.h>
 
+#import "WXHTMLParserModule.h"
 @implementation WXHTMLParserModule
 WX_EXPORT_METHOD(@selector(css:css:callback:))
+WX_EXPORT_METHOD(@selector(cssEx:css:ex:callback:))
 WX_EXPORT_METHOD(@selector(parse:callback:))
-- (void) css:(NSString *)html css:(NSString *)css callback:(WXModuleCallback) callback{
+WX_EXPORT_METHOD(@selector(parseTree:callback:))
+- (void) css:(NSString *)html css:(NSString *)css callback:(WXModuleCallback) callback {
     HTMLDocument *document = [HTMLDocument documentWithString:html];
     NSArray<HTMLNode*> *nodes = [document nodesMatchingSelector:css];
     NSMutableArray<NSString*> *nodesHTML = [NSMutableArray new];
@@ -19,6 +22,17 @@ WX_EXPORT_METHOD(@selector(parse:callback:))
         [nodesHTML addObject:[obj serializedFragment]];
     }];
     callback(nodesHTML);
+}
+
+- (void) cssEx:(NSString *)html css:(NSString *)css ex:(NSArray<NSString*>*) exIncludes callback:(WXModuleCallback) callback {
+    HTMLDocument *document = [HTMLDocument documentWithString:html];
+    [exIncludes enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[document nodesMatchingSelector:obj] enumerateObjectsUsingBlock:^(HTMLElement * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj removeFromParentNode];
+        }];
+    }];
+    html = document.innerHTML;
+    [self css:html css:css callback:callback];
 }
 - (void) parse:(NSString *)html callback:(WXModuleCallback) callback {
     HTMLDocument *document = [HTMLDocument documentWithString:html];
@@ -30,4 +44,39 @@ WX_EXPORT_METHOD(@selector(parse:callback:))
     dictionary[@"text"] = [document textContent];
     callback(dictionary);
 }
+- (void) parseTree:(NSString *) html callback:(WXModuleCallback) callback {
+    NSMutableArray<NSDictionary *> *nodes = [[NSMutableArray alloc] init];;
+    HTMLDocument *doc = [HTMLDocument documentWithString:html];
+    HTMLElement *body = doc.bodyElement;
+    NSArray<HTMLElement *> *elements =  body.childElementNodes;
+    for (HTMLElement *element in elements) {
+        [self findImg:element nodes:nodes];
+        for (HTMLElement *subElement in element.childElementNodes) {
+            HtmlModuleObject *obj = [[HtmlModuleObject alloc] init];
+            obj.name = element.tagName;
+            obj.text = [subElement.textContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            [nodes addObject:obj.mj_keyValues];
+        }
+    }
+    callback(nodes);
+}
+- (void) findImg:(HTMLElement *) element nodes:(NSMutableArray<NSDictionary *> *) nodes{
+    NSArray<HTMLElement *> *elements =  element.childElementNodes;
+    for (HTMLElement *child in elements) {
+        [self findImg:child nodes:nodes];
+    }
+    if ([[element.tagName lowercaseString] isEqualToString:@"img"]) {
+        HtmlModuleObject *obj = [[HtmlModuleObject alloc] init];
+        obj.name = element.tagName;
+        obj.src = [element attributes][@"src"];
+        if(!obj.src) {
+            obj.src = [element attributes][@"data-original"];
+        }
+        [nodes addObject:obj.mj_keyValues];
+    }
+}
 @end
+
+@implementation HtmlModuleObject
+@end
+
