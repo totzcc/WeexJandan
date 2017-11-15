@@ -14,7 +14,7 @@
 					<div style="flex-direction: row;" @click="goDetail" :item="item">
 						<image resize="cover" :src='item.img' style="width: 250px;height: 150px; background-color: #e3e3e3;"></image>
 						<div style="flex: 1;margin-left: 20px;">
-							<text class="font-small" v-bind:style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.title}}</text>
+							<text class="font-small" :style="{'color' : item.isRead ? '#333333':'#dd3333'}">{{item.title}}</text>
 							<text class="item-author">{{item.author}}</text>
 							<text class="item-summary">{{item.summary}}</text>
 						</div>

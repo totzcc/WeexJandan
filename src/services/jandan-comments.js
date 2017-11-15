@@ -18,94 +18,58 @@ storage.getItem('jokeVoteMaps',(res)=>{
 
 module.exports = {
 	comments(url, page){
-		return new Promise((resolve) => {
-			setTimeout(()=>{
-				if(!page) {
-					this.request(url).then((html)=>{
-						this.commentsMaxPage(html).then((page)=>{
-							page = page.trim()
-							this.commentsList(html).then((result)=>{
-								resolve({maxPage:page,datalist:result.comments, postId:result.postId})
+        url = url.replace("http://www.jandan.net", "http://i.jandan.net");
+        url = url.replace("http://jandan.net", "http://i.jandan.net");
+        return new Promise((resolve) => {
+            stream.fetch({
+                method: 'GET',
+                url: url,
+                cache:false,
+                type: 'text'
+            }, function(ret) {
+                html.css(ret.data,'.commentlist li', find =>{
+                    var result = {
+                        postId:'',
+                        datalist:[]
+                    }
+                    find.forEach(item => {
+
+						let obj = {};
+                        html.css(item,'b', (find) => {
+                            html.parse(find[0], (parse)=>{
+                                obj['author'] = parse.text;
 							})
 						})
+                        html.css(item,'.time', (find) => {
+                            html.parse(find[0], (parse)=>{
+                                obj['time'] = parse.text;
+                            })
+                        })
+                        html.css(item,'.righttext', (find) => {
+                            html.parse(find[0], (parse)=>{
+                                obj['id'] = parse.text;
+                            })
+                        })
+						html.css(item,'.commenttext', (find) => {
+                            html.parse(find[0], (parse)=>{
+                                obj['title'] = parse.text;
+                            })
+                        })
+                        html.css(item,'.jandan-vote span', (find) => {
+                            html.parse(find[1], (parse)=>{
+                                obj['support'] = parse.text;
+                            })
+                            html.parse(find[3], (parse)=>{
+                                obj['unsupport'] = parse.text;
+                            })
+                        })
+                        result.datalist.push(obj)
+                        setTimeout(()=>{
+                            resolve(result)
+                        },200)
 					})
-				} else {
-					this.request(url + "/page-"+page+"#comments").then((html)=>{
-						this.commentsList(html).then((result)=>{
-							resolve({datalist:result.comments, postId:result.postId})
-						})
-					})
-				}
-			},300)
-		})
-	},
-	commentsList(htmlString){
-		return new Promise((resolve)=>{
-			var result = {
-				postId:'',
-				comments:[]
-			}
-			html.css(htmlString, '.current-post', (find) => {
-				html.parse(find[0], (parse) => {
-					result.postId = parse.id
-				})
-			})
-			html.css(htmlString,'.commentlist .row',(find) =>{
-				const datalist = []
-				find.forEach((value) => {
-					const obj = {}
-					html.css(value,'.author strong',(find) => {
-						html.parse(find[0], (parse) => {
-							obj['author'] = parse.text
-						})
-					})
-					html.css(value,'.author small',(find) => {
-						html.parse(find[0], (parse) => {
-							obj['time'] = parse.text
-						})
-					})
-					
-					html.css(value,'.text p',(find) => {
-						html.parse(find[0], (parse) => {
-							obj['title'] = parse.text
-						})
-					})
-					html.css(value,'.righttext a',(find) => {
-						html.parse(find[0], (parse) => {
-							obj['id'] = parse.text
-						})
-					})
-					
-					html.css(value,'.jandan-vote span',(find) => {
-						html.parse(find[1], (parse) => {
-							obj['support'] = parse.text
-						})
-						html.parse(find[3], (parse) => {
-							obj['unsupport'] = parse.text
-						})
-					})
-					datalist.push(obj)
-				})
-				setTimeout(()=>{
-					result.comments = datalist;
-					resolve(result)
-				},200)
-			})
-		})
-	},
-	commentsMaxPage(htmlString){
-		return new Promise((resolve) =>{
-			html.css(htmlString,'.current-comment-page',(find) =>{
-				if(find.length > 0) {
-					html.parse(find[0], function(data) {
-						var maxPage = data.text.replace('[', '')
-						maxPage = maxPage.replace(']', '')
-						resolve(maxPage)
-					})
-				} else {
-					resolve('1')
-				}
-			})
+                })
+            })
 		})
 	},
 	getCommentCount(url){
@@ -116,13 +80,10 @@ module.exports = {
 				cache:true,
 				type: 'text'
 			}, function(ret) {
-				html.css(ret.data,'#comments', find =>{
+				html.css(ret.data,'#comments h3', find =>{
 					if(find.length > 0) {
 						html.parse(find[0], parse => {
-							let start = parse.text.indexOf(':') + 1;
-							let end = parse.text.indexOf('+');
-							let count = parse.text.substring(start,end)
-							resolve(parseInt(count))
+							resolve(parse.text.trim().substr(2,1))
 						})
 					} else {
 						resolve(0)

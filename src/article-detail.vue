@@ -37,6 +37,7 @@
 	const html = weex.requireModule('html')
 	const stream = weex.requireModule('stream')
 	import config from './config'
+    import jandan from './services/jandan'
 	import comments from './services/jandan-comments'
 	import favorite from './services/jandan-favorite'
 	module.exports = {
@@ -85,7 +86,7 @@
 				navigator.pop({},()=>{})
 			},
 			seeComments(e){
-				navigator.push({url:config.js('comments.js')},()=>{})
+                jandan.toCommentsDetail(this.detail)
 			},
 			more(e){
 				share.share(this.detail.href,this.detail.title)

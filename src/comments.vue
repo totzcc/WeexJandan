@@ -45,7 +45,6 @@
 	    				</div>
 	    			</cell>
 	    			<cell style="height: 20px;"></cell>
-	    			<loading class="loading" @loading="onloading" :display="showLoading" v-if="page && datalist">
 					<text class="indicator">{{loadingTips}}</text>
 			    </loading>
 	    		</list>
@@ -109,19 +108,6 @@
 					this.detail.postId = result.postId
 					this.showRefresh = 'hide'
 				})
-			},
-			onloading(){
-				this.page -= 1
-				if(this.page < 1) {
-					this.page = null
-					return;
-				}
-				this.showLoading = 'show'
-				jandanComments.comments(this.detail.href, this.page).then((result) =>{
-					this.datalist = this.datalist.concat(result.datalist)
-					this.showLoading = 'hide'
-				})
-				
 			},
 			vote(e){
 				var item = e.target.attr.item
