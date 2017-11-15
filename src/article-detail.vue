@@ -63,10 +63,10 @@
 			storage.getItem('article-detail',(ret)=>{
 				let detail = JSON.parse(ret.data)
 				detail.isLike = favorite.isLike(detail.href)
-				this.like()
 				comments.getCommentCount(detail.href).then(count=>{
 					detail.comments = count || 0
 					this.detail = detail
+                    this.like()
 				})
                  stream.fetch({
                      method: 'GET',
@@ -74,7 +74,6 @@
                      cache:true,
                      type: 'text'
                  }, (ret) => {
-				    console.log('11111111')
                      html.cssEx(ret.data,'.entry',['.shang','script','.jandan-zan'], find => {
                          this.html = find[0]
                      })
@@ -95,7 +94,7 @@
 				if(e) {
 					this.detail.isLike = favorite.toggleLike(this.detail.href, this.detail.title, this.detail.img)
 				}
-				if(this.detail.isLike == true) {
+				if(this.detail.isLike === true) {
 					this.likePng = config.image('like.png')
 				} else {
 					this.likePng = config.image('like-gray.png')
