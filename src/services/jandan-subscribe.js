@@ -1,4 +1,4 @@
-let stream = weex.requireModule('stream')
+import stream from './jandan-stream'
 let storage = weex.requireModule('storage')
 let app = weex.requireModule('app')
 let subscribeStorageKey = 'subscribeStorageKey'

@@ -2,10 +2,9 @@ const stream = weex.requireModule('stream')
 const storage = weex.requireModule('storage')
 module.exports = {
 	fetch(option,callback){
-		option.cache = false
-		if (option.cache == true) {
+		if (option.cache === true) {
 			storage.getItem(option.url,(event) => {
-				if(event.result == 'success') {
+				if(event.result === 'success') {
 					console.log('read web cache:' + option.url)
 					callback(JSON.parse(event.data))
 				} else {

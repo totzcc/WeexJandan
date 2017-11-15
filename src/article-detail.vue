@@ -35,9 +35,9 @@
 	const modal = weex.requireModule('modal')
 	const share = weex.requireModule('share')
 	const html = weex.requireModule('html')
-	const stream = weex.requireModule('stream')
 	import config from './config'
     import jandan from './services/jandan'
+    import stream from './services/jandan-stream'
 	import comments from './services/jandan-comments'
 	import favorite from './services/jandan-favorite'
 	module.exports = {

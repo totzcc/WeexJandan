@@ -97,10 +97,11 @@
 </template>
 
 <script>
-    let stream = weex.requireModule('stream')
+
     let storage = weex.requireModule('storage')
     const navigator = weex.requireModule('navigator')
     import config from './config'
+    import stream from './services/jandan-stream'
     import jandanComments from './services/jandan-comments'
     export default {
         components: {
