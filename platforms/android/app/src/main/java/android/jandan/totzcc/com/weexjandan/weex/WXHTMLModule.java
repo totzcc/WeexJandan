@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by zhoucheng on 2017/5/18.
@@ -31,6 +32,25 @@ public class WXHTMLModule extends WXModule {
         ArrayList<String> strings = new ArrayList<String>(elements.size());
         for (Element element : elements) {
             strings.add(element.outerHtml());
+        }
+        callback.invoke(strings);
+    }
+
+    @JSMethod(uiThread = false)
+    public void cssEx(String html, String css, List<String> exIncludes, JSCallback callback) {
+        if (html == null || html.isEmpty()) {
+            callback.invoke(new ArrayList<>());
+            return;
+        }
+        Document document = Jsoup.parse(html);
+        Elements elements = document.select(css);
+        ArrayList<String> strings = new ArrayList<String>(elements.size());
+        for (Element element : elements) {
+            Document parse = Jsoup.parse(element.outerHtml());
+            for (String exInclude : exIncludes) {
+                parse.select(exInclude).remove();
+            }
+            strings.add(parse.outerHtml());
         }
         callback.invoke(strings);
     }
