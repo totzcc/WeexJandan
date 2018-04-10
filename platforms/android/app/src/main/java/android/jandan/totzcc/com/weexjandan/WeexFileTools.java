@@ -56,6 +56,11 @@ public class WeexFileTools {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 long remoteContentLength = response.body().contentLength();
+                if (remoteContentLength <= 2000) {
+                    // 文件小于2k肯定是下载失败了
+                    hud.dismiss();
+                    return;
+                }
                 long localContentLength = App.getSharedPreferences().getLong(ZIP_FILE_CONTENT_LENGTH, 0);
                 LogUtil.d(MessageFormat.format("本地文件大小：{0}，远程文件大小：{1}", remoteContentLength, localContentLength));
                 if (localContentLength != remoteContentLength) {
